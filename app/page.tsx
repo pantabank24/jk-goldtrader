@@ -111,7 +111,7 @@ export default function Home() {
   return (
     <section className="flex flex-col items-center justify-center gap-4 pb-8 md:pb-10">
       <div className="relative w-full max-md:h-72 h-96  overflow-hidden mb-10">
-        <img className=" w-full max-md:h-72 max-2xl:h-96 object-cover" src="https://scontent.fbkk22-6.fna.fbcdn.net/v/t39.30808-6/469870415_122104990004668442_9007667758804756180_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeH7MvKEoaJDWxJQVQJmWkS3o2XdnA1NDHCjZd2cDU0McJpRM3PfMVkVvHavKASueNT62OgjiAjv4v0hldQ3ZWP5&_nc_ohc=XhuFZpBL00cQ7kNvwG8tTeE&_nc_oc=Adn4FWTHKyBL44-WsXHdw7EW_Dzmb3NAUBu48DfzD6qsKQAZm0ExMGStpO7PZNxyOv8&_nc_zt=23&_nc_ht=scontent.fbkk22-6.fna&_nc_gid=aCVQwkDP3chrc8Rmd4S92g&oh=00_AfILYqPrYHkNnlPaZ_2vghbsS1WSt7iFMDRT1rIZ7bjYQQ&oe=68203555" />
+        <img alt="" className=" w-full max-md:h-72 max-2xl:h-96 object-cover" src="https://scontent.fbkk22-6.fna.fbcdn.net/v/t39.30808-6/469870415_122104990004668442_9007667758804756180_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeH7MvKEoaJDWxJQVQJmWkS3o2XdnA1NDHCjZd2cDU0McJpRM3PfMVkVvHavKASueNT62OgjiAjv4v0hldQ3ZWP5&_nc_ohc=XhuFZpBL00cQ7kNvwG8tTeE&_nc_oc=Adn4FWTHKyBL44-WsXHdw7EW_Dzmb3NAUBu48DfzD6qsKQAZm0ExMGStpO7PZNxyOv8&_nc_zt=23&_nc_ht=scontent.fbkk22-6.fna&_nc_gid=aCVQwkDP3chrc8Rmd4S92g&oh=00_AfILYqPrYHkNnlPaZ_2vghbsS1WSt7iFMDRT1rIZ7bjYQQ&oe=68203555" />
         <div className="absolute bottom-0 left-0 w-full h-10 bg-gradient-to-t from-black to-transparent" />
       </div>
 
@@ -176,7 +176,7 @@ export default function Home() {
       </div>
 
       <Button as="a" href="https://line.me/R/ti/p/@446pxqyk?ts=04201136&oat_content=url" className=" flex h-14 px-10  bg-green-600" radius="full">
-        <img width={40} src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/LINE_New_App_Icon_%282020-12%29.png/500px-LINE_New_App_Icon_%282020-12%29.png"/>
+        <img alt="" width={40} src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/LINE_New_App_Icon_%282020-12%29.png/500px-LINE_New_App_Icon_%282020-12%29.png"/>
         <div>สนใจซื้อขาย คลิกที่นี่</div>
       </Button>
       

@@ -56,7 +56,7 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 sm:basis-full " justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
         <NextLink className="flex justify-start items-center gap-1" href="/">
-            <img src="https://scontent.fbkk22-6.fna.fbcdn.net/v/t39.30808-6/469715516_122106781766650734_32385465079353714_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGqay0_VNyzz8pBbeFx7tPmBwq9aCqhgDQHCr1oKqGANKET4WqYsuxUE4q3eMFPRcqqQenkfMTBIxuE8W1aokpO&_nc_ohc=cK-nGKN0UYkQ7kNvwGQtM3n&_nc_oc=AdkDmdBwXneKOT082pVUjCOQ9ci9nM-aY1gTgztNXhIj6oIyEaAxoHHPHK4PrVxUTxc&_nc_zt=23&_nc_ht=scontent.fbkk22-6.fna&_nc_gid=R6O4Cty5sUnk8I2Dj-nOPA&oh=00_AfI6N9LzRiipe_OMISH_Ss2UGK5jGlFj8nCDiovShYUh3g&oe=68204045" 
+            <img alt="" src="https://scontent.fbkk22-6.fna.fbcdn.net/v/t39.30808-6/469715516_122106781766650734_32385465079353714_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGqay0_VNyzz8pBbeFx7tPmBwq9aCqhgDQHCr1oKqGANKET4WqYsuxUE4q3eMFPRcqqQenkfMTBIxuE8W1aokpO&_nc_ohc=cK-nGKN0UYkQ7kNvwGQtM3n&_nc_oc=AdkDmdBwXneKOT082pVUjCOQ9ci9nM-aY1gTgztNXhIj6oIyEaAxoHHPHK4PrVxUTxc&_nc_zt=23&_nc_ht=scontent.fbkk22-6.fna&_nc_gid=R6O4Cty5sUnk8I2Dj-nOPA&oh=00_AfI6N9LzRiipe_OMISH_Ss2UGK5jGlFj8nCDiovShYUh3g&oe=68204045" 
               className=" w-16 h-16"/>
             <p className="font-bold text-inherit text-white">จ่าคิง ปากพนัง</p>
           </NextLink>
