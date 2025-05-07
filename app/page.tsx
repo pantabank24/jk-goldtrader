@@ -13,29 +13,29 @@ import {Button, Select, SelectItem} from "@heroui/react";
 import React, { useEffect } from "react";
 import moment from "moment";
 
-export const goldTypes = [
-  {key: "1", label: "ทองคำแท่ง 96.5%"},
-  {key: "2", label: "ทองรูปพรรณ"},
-  {key: "3", label: "ทองหลอม"},
-  {key: "4", label: "กรอบทอง/ตลับทอง"},
-  {key: "5", label: "ทอง 9K"},
-  {key: "6", label: "ทอง 14K"},
-  {key: "7", label: "ทอง 18K"},
-  {key: "8", label: "อื่น ๆ"},
-];
-
-export interface PriceDto {
-  gold965: Gold965
-  timestamp: string
-}
-
-export interface Gold965 {
-  bid: number
-  ask: number
-  diff: any
-}
-
 export default function Home() {
+
+  const goldTypes = [
+    {key: "1", label: "ทองคำแท่ง 96.5%"},
+    {key: "2", label: "ทองรูปพรรณ"},
+    {key: "3", label: "ทองหลอม"},
+    {key: "4", label: "กรอบทอง/ตลับทอง"},
+    {key: "5", label: "ทอง 9K"},
+    {key: "6", label: "ทอง 14K"},
+    {key: "7", label: "ทอง 18K"},
+    {key: "8", label: "อื่น ๆ"},
+  ];
+
+  interface PriceDto {
+    gold965: Gold965
+    timestamp: string
+  }
+
+  interface Gold965 {
+    bid: number
+    ask: number
+    diff: any
+  }
 
   const [gold, setGold] = React.useState<PriceDto>();
 
