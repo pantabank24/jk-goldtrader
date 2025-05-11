@@ -9,6 +9,7 @@ import { siteConfig } from "@/config/site";
 import { fontKanit } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import { Button } from "@heroui/button";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: {
@@ -48,9 +49,20 @@ export default function RootLayout({
             {/* <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow"> */}
               {children}
             </main>
-            <footer className="w-full flex items-center justify-center py-5 flex-col bg-[#14100b]">
-              <span className="text-default-600 text-lg">JK Goldtrader by จ่าคิง ปากพนัง</span>
-              <span className="text-default-600 text-sm">ร้านเปิดทุกวัน 09:30-16:30 (แนะนำให้โทรนัดครับ)</span>
+            <footer className="w-full flex items-center justify-center py-10 flex-col bg-[#14100b]">
+              <div className=" flex flex-row gap-x-2">
+                <Image
+                  className=" rounded-full"
+                  alt="jkChill"
+                  src="/images/jk-chilling.png"
+                  width={50}
+                  height={50}
+                />
+                <div className=" flex flex-col">
+                  <span className="text-default-600 text-lg">JK Goldtrader by จ่าคิง ปากพนัง</span>
+                  <span className="text-default-600 text-sm">ร้านเปิดทุกวัน 09:30-16:30 (แนะนำให้โทรนัดครับ)</span>
+                </div>
+              </div>
               <div className="  grid max-sm:grid-cols-1 grid-cols-2 gap-x-2 gap-y-2 my-2 ">
                 <Button color="primary" variant="flat" as="a" radius="full" href="tel:0639325566">
                   โทร 063-932-5566 (จ่าคิง)
