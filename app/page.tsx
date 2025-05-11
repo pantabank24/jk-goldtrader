@@ -68,10 +68,10 @@ export default function Home() {
     var gramPrice = (data?.gold965.ask ?? 0) / 15.2;
       switch (option) {
         case "1": 
-          setCalc((gramPrice * parseFloat(gram ?? "0"))-30)
+          setCalc((gramPrice * parseFloat(gram ?? "0")))
           break;
         case "2": 
-          setCalc((goldPrice * service * 0.97 * parseFloat(gram ?? "0"))-30)
+          setCalc((goldPrice * service * 0.97 * parseFloat(gram ?? "0")))
           break;
         case "3":
           var calcs = 0
@@ -82,27 +82,27 @@ export default function Home() {
           } else if (parseFloat(percent) < 30 && gram != null) {
             calcs = goldPrice * service * (parseFloat(percent)/100) * parseFloat(gram ?? "0")
           }
-          setCalc(calcs-30)
+          setCalc(calcs)
           break;
         case "4":
           var calcs = goldPrice * service * (parseFloat(percent)/100) *  parseFloat(gram ?? "0")
-          setCalc(calcs-30)
+          setCalc(calcs)
           break;
         case "5":
           var calcs = (goldPrice + 1000) * service * 0.375 * parseFloat(gram ?? "0")
-          setCalc(calcs-30)
+          setCalc(calcs)
           break;
         case "6":
           var calcs = (goldPrice + 1000) * service * 0.585 * parseFloat(gram ?? "0")
-          setCalc(calcs-30)
+          setCalc(calcs)
           break;
         case "7":
           var calcs = (goldPrice + 1000) * service * 0.75 * parseFloat(gram ?? "0")
-          setCalc(calcs-30)
+          setCalc(calcs)
           break;
         case "8":
           var calcs = goldPrice * service * (parseFloat(percent)/100) * parseFloat(gram ?? "0")
-          setCalc(calcs-30)
+          setCalc(calcs)
           break;
         default:
           setCalc(2)
