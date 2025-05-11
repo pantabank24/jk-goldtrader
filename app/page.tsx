@@ -68,10 +68,10 @@ export default function Home() {
     var gramPrice = (data?.gold965.ask ?? 0) / 15.2;
       switch (option) {
         case "1": 
-          setCalc(gramPrice * parseFloat(gram ?? "0"))
+          setCalc((gramPrice * parseFloat(gram ?? "0"))-30)
           break;
         case "2": 
-          setCalc(goldPrice * service * 0.97 * parseFloat(gram ?? "0"))
+          setCalc((goldPrice * service * 0.97 * parseFloat(gram ?? "0"))-30)
           break;
         case "3":
           var calcs = 0
@@ -82,27 +82,27 @@ export default function Home() {
           } else if (parseFloat(percent) < 30 && gram != null) {
             calcs = goldPrice * service * (parseFloat(percent)/100) * parseFloat(gram ?? "0")
           }
-          setCalc(calcs)
+          setCalc(calcs-30)
           break;
         case "4":
           var calcs = goldPrice * service * (parseFloat(percent)/100) *  parseFloat(gram ?? "0")
-          setCalc(calcs)
+          setCalc(calcs-30)
           break;
         case "5":
           var calcs = (goldPrice + 1000) * service * 0.375 * parseFloat(gram ?? "0")
-          setCalc(calcs)
+          setCalc(calcs-30)
           break;
         case "6":
           var calcs = (goldPrice + 1000) * service * 0.585 * parseFloat(gram ?? "0")
-          setCalc(calcs)
+          setCalc(calcs-30)
           break;
         case "7":
           var calcs = (goldPrice + 1000) * service * 0.75 * parseFloat(gram ?? "0")
-          setCalc(calcs)
+          setCalc(calcs-30)
           break;
         case "8":
           var calcs = goldPrice * service * (parseFloat(percent)/100) * parseFloat(gram ?? "0")
-          setCalc(calcs)
+          setCalc(calcs-30)
           break;
         default:
           setCalc(2)
@@ -273,12 +273,10 @@ export default function Home() {
          {
           blogs.map((i, index) => (
             <div key={index} className=" flex flex-col rounded-2xl border-yellow-600 border-2 bg-[#14100b] w-96  ">
-              <Image
+              <img
                 className="h-64 w-full object-cover rounded-xl"
                 alt="fischer"
                 src={i.img}
-                height={0}
-                width={0}
               />
               
               <span className=" w-96 px-5 text-2xl font-medium text-yellow-600 mt-2">{i.title}</span>
@@ -312,12 +310,10 @@ export default function Home() {
             <>
               <ModalHeader className="flex flex-col gap-1">{blog.title}</ModalHeader>
               <ModalBody>
-                <Image
+                <img
                   className="w-full h-64 object-cover rounded-3xl"
                   alt="author"
                   src={blog.img}
-                  width={0}
-                  height={0}
                 />
                 <span className="whitespace-pre-line">{blog.description}</span>
               </ModalBody>
