@@ -20,6 +20,16 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    images: {
+      url: "https://jk-goldtrader-rhfc.vercel.app/images/jk-banner.jpg",
+      width: 1200,
+      height: 630,
+    }
+  }
 };
 
 export const viewport: Viewport = {
