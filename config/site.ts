@@ -5,10 +5,6 @@ export const siteConfig = {
   url: "https://jk-goldtrader-rhfc.vercel.app/",
   description: "JK Goldtrader by จ่าคิง ปากพนัง ตรวจราคาทอง เช็คราคาทอง ประเมินราคาทองได้ที่นี่ | รับซื้อทองคำทุกประเภท โทร 0639325566 จ่าคิง หรือเดินทางมาที่ร้าน https://maps.app.goo.gl/zFnoEgPjEydyLTQg6?g_st=il",
   navItems: [
-    {
-      label: "Home",
-      href: "/",
-    },
   ],
   navMenuItems: [
     {

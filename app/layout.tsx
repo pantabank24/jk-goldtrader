@@ -86,7 +86,7 @@ export default function RootLayout({
                 className="flex items-center gap-1 text-current"
               >
                 <span className="text-default-600">Powered by</span>
-                <p className="text-primary">JK Goldtraders</p>
+                <p className="text-primary">JK Goldtrader</p>
               </div>
 
             </footer>

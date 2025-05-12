@@ -82,12 +82,12 @@ export const Navbar = () => {
         className=" sm:flex basis-1/5 sm:basis-full"
         justify="end"
       >
-        <NavbarItem className=" flex gap-2">
+        <NavbarItem className=" flex gap-4 bg-white/20 px-3 py-2 rounded-full">
           <Link isExternal aria-label="Facebook" href={siteConfig.links.facebook}>
-            <FacebookIcon className="text-default-500" />
+            <Image src="/images/facebook.png" alt="facebook" width={30} height={30}/>
           </Link>
           <Link isExternal aria-label="Line" href={siteConfig.links.line}>
-            <LineIcon className="text-default-500" />
+            <Image src="/images/line.png" alt="facebook" width={30} height={30}/>
           </Link>
           {/* <ThemeSwitch /> */}
         </NavbarItem>
