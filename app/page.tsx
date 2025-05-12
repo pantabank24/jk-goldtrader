@@ -182,7 +182,7 @@ export default function Home() {
           <span className=" font-normal text-sm text-yellow-500">ราคารับซื้อ</span>
 
           <span className=" font-normal text-sm justify-end items-end flex mr-10">
-              <Skeleton  isLoaded={!isValidating} className="h-3 w-3/5 rounded-lg ">
+              <Skeleton  isLoaded={!isValidating} className="h-3 w-96 rounded-lg">
                 {(data?.gold965.ask ?? 0).toLocaleString(`th-TH`, {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
@@ -194,7 +194,7 @@ export default function Home() {
 
           
             <span className=" font-normal text-sm justify-end items-end flex mr-10">
-              <Skeleton  isLoaded={!isValidating} className="h-3 w-3/5 rounded-lg ">
+              <Skeleton  isLoaded={!isValidating} className="h-3 w-96 rounded-lg ">
                 {(data?.gold965.bid ?? 0).toLocaleString(`th-TH`, {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
