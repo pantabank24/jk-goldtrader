@@ -33,11 +33,7 @@ export default function Home() {
 
   const fetcher = (url: string) => fetch('/api/gold').then(res => res.json());
 
-  const { data, error, isLoading, isValidating } = useSWR<PriceDto>('/api/gold',  fetcher,
-    {
-      refreshInterval: 30000
-    }
-  )
+  const { data, error, isLoading, isValidating } = useSWR<PriceDto>('/api/gold',  fetcher)
 
   const goldTypes = [
     {key: "1", label: "ทองคำแท่ง 96.5%"},
@@ -182,7 +178,7 @@ export default function Home() {
           <span className=" font-normal text-sm text-yellow-500">ราคารับซื้อ</span>
 
           <span className=" font-normal text-sm justify-end items-end flex mr-10">
-              <Skeleton  isLoaded={!isValidating} className="h-3 w-96 rounded-lg">
+              <Skeleton  isLoaded={!isLoading} className="h-3 w-96 rounded-lg">
                 {(data?.gold965.ask ?? 0).toLocaleString(`th-TH`, {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
@@ -194,7 +190,7 @@ export default function Home() {
 
           
             <span className=" font-normal text-sm justify-end items-end flex mr-10">
-              <Skeleton  isLoaded={!isValidating} className="h-3 w-96 rounded-lg ">
+              <Skeleton  isLoaded={!isLoading} className="h-3 w-96 rounded-lg items-start justify-start">
                 {(data?.gold965.bid ?? 0).toLocaleString(`th-TH`, {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
@@ -206,7 +202,7 @@ export default function Home() {
         </div>
         <span className=" font-normal text-sm mb-2 mt-4 flex flex-row  justify-center">
           อัปเดทล่าสุด : 
-          <Skeleton  isLoaded={!isValidating} className="h-3  rounded-lg ml-2">
+          <Skeleton  isLoaded={!isLoading} className="h-3  rounded-lg ml-2">
             {moment(data?.timestamp).locale('th').format('D MMMM YYYY HH:mm')}
           </Skeleton>
         </span>
@@ -246,7 +242,7 @@ export default function Home() {
         <div className="mt-8 flex">
           <div className=" flex flex-col items-center justify-center border-1.5 border-yellow-600 bg-[#14100b] rounded-2xl min-w-80 py-5">
             <span className=" flex text-center">ราคาประเมิน</span>
-            <Skeleton isLoaded={!isValidating} className="rounded-lg">
+            <Skeleton isLoaded={!isLoading} className="rounded-lg">
               <span className="text-yellow-500 font-normal text-2xl">{calc.toLocaleString(`th-TH`, {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
