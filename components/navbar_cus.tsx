@@ -34,7 +34,7 @@ import Image from "next/image";
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar, User, useDisclosure, DropdownSection} from "@heroui/react";
 import LoginModal from "./login-modal";
 
-export const Navbar = () => {
+export const NavbarCus = () => {
   const {
     isOpen: isLoginOpen, 
     onOpen: onLoginOpen, 
@@ -63,7 +63,8 @@ export const Navbar = () => {
   );
 
   return (
-    <HeroUINavbar className=" bg-[#710711]" maxWidth="xl" position="sticky" >
+    <div className="fixed top-2 left-4 right-4 z-50">
+      <HeroUINavbar className=" bg-[#710711] rounded-3xl shadow-md border-1 " maxWidth="xl" position="sticky" >
       <NavbarContent className="basis-1/5 sm:basis-full " justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
         <NextLink className="flex justify-start items-center gap-1" href="/">
@@ -73,25 +74,27 @@ export const Navbar = () => {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent
-        className=" sm:flex basis-1/5 sm:basis-full max-sm:hidden"
-        justify="end"
-      >
-        <NavbarItem className=" flex gap-4 bg-white/20 px-3 py-2 rounded-full">
-          <Link isExternal aria-label="Facebook" href={siteConfig.links.facebook}>
-            <Image src="/images/facebook.png" alt="facebook" width={30} height={30}/>
-          </Link>
-          <Link isExternal aria-label="Line" href={siteConfig.links.line}>
-            <Image src="/images/line.png" alt="facebook" width={30} height={30}/>
-          </Link>
-          {/* <ThemeSwitch /> */}
-        </NavbarItem>
-        <Button className="bg-green-500" radius="full">
-                <div>ลงชื่อเข้าใช้</div>
-        </Button>
-      </NavbarContent>
+      <div className=" max-lg:hidden">
+        <NavbarContent
+          className=" sm:flex basis-1/5 sm:basis-full"
+          justify="end"
+        >
+          <NavbarItem className=" flex gap-4 bg-white/20 px-3 py-2 rounded-full">
+            <Link isExternal aria-label="Facebook" href={siteConfig.links.facebook}>
+              <Image src="/images/facebook.png" alt="facebook" width={30} height={30}/>
+            </Link>
+            <Link isExternal aria-label="Line" href={siteConfig.links.line}>
+              <Image src="/images/line.png" alt="facebook" width={30} height={30}/>
+            </Link>
+            {/* <ThemeSwitch /> */}
+          </NavbarItem>
+          <Button className="bg-green-500" radius="full">
+                  <div>ลงชื่อเข้าใช้</div>
+          </Button>
+        </NavbarContent>
+      </div>
 
-      <div className=" sm:hidden">
+      <div className=" lg:hidden">
         <Dropdown placement="bottom-end" backdrop="blur">
           <DropdownTrigger>
               <IoMdMenu size={32}/>
@@ -127,5 +130,6 @@ export const Navbar = () => {
       <LoginModal mIsOpen={isLoginOpen} mOnOpenChange={onLoginOpenChange}/>     
 
     </HeroUINavbar>
+    </div>
   );
 };

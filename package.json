@@ -11,6 +11,7 @@
   "dependencies": {
     "@heroui/button": "2.2.19",
     "@heroui/code": "2.2.14",
+    "@heroui/dropdown": "^2.3.19",
     "@heroui/image": "^2.2.12",
     "@heroui/input": "2.4.19",
     "@heroui/kbd": "2.2.15",
@@ -38,6 +39,7 @@
     "puppeteer": "^24.8.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-icons": "^5.5.0",
     "swr": "^2.3.3"
   },
   "devDependencies": {

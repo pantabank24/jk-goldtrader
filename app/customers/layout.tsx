@@ -3,13 +3,13 @@ import { Metadata, Viewport } from "next";
 import { Link } from "@heroui/link";
 import clsx from "clsx";
 
-import { Providers } from "./providers";
-
 import { siteConfig } from "@/config/site";
 import { fontKanit } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import { Button } from "@heroui/button";
 import Image from "next/image";
+import { Providers } from "../providers";
+import { NavbarCus } from "@/components/navbar_cus";
 
 export const metadata: Metadata = {
   title: {
@@ -44,6 +44,22 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+  const Menu = [
+    {
+      id: 0,
+      name: "หน้าแรก"
+    },
+    {
+      id: 1,
+      name: "ขายทอง"
+    },
+    {
+      id: 2,
+      name: "รายการขาย"
+    }
+  ]
+  
   return (
     <html suppressHydrationWarning lang="en">
       <head />
@@ -52,12 +68,24 @@ export default function RootLayout({
       <body
         className={`min-h-screen bg-background font-sans antialiased ${fontKanit.variable}`}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+        <Providers themeProps={{ attribute: "class", forcedTheme: "light" }}>
           <div className="relative flex flex-col h-screen">
-            <Navbar />
+            <NavbarCus />
             <main className="">
-            {/* <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow"> */}
-              {children}
+              <div className=" flex flex-row h-screen pt-24 pb-4 px-4 gap-6">
+                <div className="  h-auto w-60 bg-gray-100 rounded-3xl flex flex-col gap-y-2 p-3 shadow-md border-1 max-lg:hidden">
+                  {
+                    Menu.map((i) => 
+                      i.id == 0
+                        ? <Button className={` flex justify-start bg-gradient-to-t from-[#51070e]  to-[#89111c] text-white font-semibold h-14 rounded-2xl`}  key={i.id}>{i.name}</Button>
+                        : <Button className={` flex justify-start bg-white text-[#710711] font-semibold border-1 border-[#710711] h-14 rounded-2xl`}  key={i.id}>{i.name}</Button>
+                    )
+                  }
+                </div>
+                <div className="">
+                  {children}
+                </div>
+              </div>
             </main>
             <footer className="w-full flex items-center justify-center py-10 flex-col bg-[#14100b]">
               <div className=" flex flex-row gap-x-2">
