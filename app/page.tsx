@@ -121,6 +121,9 @@ export default function Home() {
   }
 
   const validateGramInput = (i: string) => {
+    if (parseFloat(i) > 999999) {
+      i = '999999'
+    }
     if (/^\d*\.?\d*$/.test(i)) {
       if (parseInt(i) < 0) {
         setGram("")
@@ -135,6 +138,19 @@ export default function Home() {
       setOption(val.target.value)
     }
   }
+
+  function formatNumber(num: number): string {
+  if (num >= 1_000_000_000) {
+    return (num / 1_000_000_000).toFixed(1).replace(/\.0$/, '') + ' พันล้าน';
+  }
+  if (num >= 1_000_000) {
+    return (num / 1_000_000).toFixed(1).replace(/\.0$/, '') + ' ล้าน';
+  }
+  if (num >= 1_000) {
+    return (num / 1_000).toFixed(1).replace(/\.0$/, '') + ' พัน';
+  }
+  return num.toString();
+}
 
   const blogs = [
     {
@@ -220,7 +236,7 @@ export default function Home() {
                   <span className=" font-normal text-sm text-yellow-500">ราคารับซื้อ</span>
                     <span className=" text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold">
                       {(data?.gold965.ask ?? 0).toLocaleString(`th-TH`, {
-                        minimumFractionDigits: 2,
+                        minimumFractionDigits: 0,
                         maximumFractionDigits: 2,
                       })}
                     </span>
@@ -236,7 +252,7 @@ export default function Home() {
                   <span className=" font-normal text-sm text-yellow-500 ">ราคาขาย</span>
                     <span className=" text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold">
                       {(data?.gold965.bid ?? 0).toLocaleString(`th-TH`, {
-                        minimumFractionDigits: 2,
+                        minimumFractionDigits: 0,
                         maximumFractionDigits: 2,
                       })}
                     </span>
@@ -282,17 +298,21 @@ export default function Home() {
           }
         
           <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">น้ำหนักทอง (กรัม)</span>
-          <Input className=" min-w-80 text-base" step="1" type="text" inputMode="decimal" min="0" value={gram ?? ""} onValueChange={(e) => validateGramInput(e)} />
+          <Input className=" min-w-80 text-base " step="1" type="text" inputMode="decimal" min="0" value={gram ?? ""} onValueChange={(e) => validateGramInput(e)} />
         </div>
 
         <div className="mt-8 flex">
-          <div className=" flex flex-col w-full items-center justify-center border-1.5 border-yellow-600 bg-[#14100b] rounded-2xl py-5">
+          <div className=" flex flex-col w-full items-center justify-center border-2 border-yellow-600 bg-gradient-to-b from-orange-950 to-[#14100b] rounded-2xl py-5">
             <span className=" flex text-center">ราคาประเมิน</span>
             <Skeleton isLoaded={!isLoading} className="rounded-lg">
-              <span className="bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold text-2xl">{calc.toLocaleString(`th-TH`, {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })} บาท</span>
+              <span className="bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold truncate text-3xl">{
+                  calc > 9999999 
+                    ? formatNumber(calc) + "บาท"
+                    : calc.toLocaleString(`th-TH`, {
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 2,
+                    }) + " บาท"
+                } </span>
             </Skeleton>
             
             <span className=" font-normal text-xs mt-2">ประเมินราคาทองคำแบบเรียลไทม์ด้วยระบบอัตโนมัติ</span>
