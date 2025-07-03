@@ -1,128 +1,63 @@
-import {
-  Navbar as HeroUINavbar,
-  NavbarContent,
-  NavbarMenu,
-  NavbarMenuToggle,
-  NavbarBrand,
-  NavbarItem,
-  NavbarMenuItem,
-} from "@heroui/navbar";
-import { Button } from "@heroui/button";
-import { Kbd } from "@heroui/kbd";
-import { Link } from "@heroui/link";
-import { Input } from "@heroui/input";
-import { link as linkStyles } from "@heroui/theme";
-import NextLink from "next/link";
-import clsx from "clsx";
+'use client'
 
-import { siteConfig } from "@/config/site";
-import { ThemeSwitch } from "@/components/theme-switch";
-import {
-  TwitterIcon,
-  GithubIcon,
-  DiscordIcon,
-  HeartFilledIcon,
-  SearchIcon,
-  Logo,
-  FacebookIcon,
-  LineIcon,
-} from "@/components/icons";
-import Image from "next/image";
+import React, { useState, useEffect } from 'react';
 
-export const Navbar = () => {
-  const searchInput = (
-    <Input
-      aria-label="Search"
-      classNames={{
-        inputWrapper: "bg-default-100",
-        input: "text-sm",
-      }}
-      endContent={
-        <Kbd className="hidden lg:inline-block" keys={["command"]}>
-          K
-        </Kbd>
-      }
-      labelPlacement="outside"
-      placeholder="Search..."
-      startContent={
-        <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
-      }
-      type="search"
-    />
-  );
+const ModernNavbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Navbar scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 200;
+      setIsScrolled(scrolled);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <HeroUINavbar className=" bg-[#710711]" maxWidth="xl" position="sticky" >
-      <NavbarContent className="basis-1/5 sm:basis-full " justify="start">
-        <NavbarBrand as="li" className="gap-3 max-w-fit">
-        <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Image width={60} height={60} src="/images/jk-icon.jpg" alt="banner"/>
-            <p className="font-bold text-inherit text-white">จ่าคิง ปากพนัง</p>
-          </NextLink>
-        </NavbarBrand>
-        {/* <ul className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium text-white",
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </NextLink>
-            </NavbarItem>
-          ))}
-        </ul> */}
-      </NavbarContent>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 rounded-b-2xl  ${
+      isScrolled 
+        ? 'bg-[#710711]/80 backdrop-blur-lg shadow-lg' 
+        : 'bg-transparent'
+    }`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo Brand */}
+          <div className="flex items-center gap-3">
+            {
+              isScrolled ? <div className=' flex flex-row items-center'>
+              <img 
+                src="/images/jk-icon.jpg" 
+                alt="logo" 
+                className="w-12 h-12 rounded-full object-cover"
+              />
+              <span className="font-bold text-white text-lg">จ่าคิง ปากพนัง</span>
+            </div>
+            : null
+            }
+          </div>
 
-      <NavbarContent
-        className=" sm:flex basis-1/5 sm:basis-full"
-        justify="end"
-      >
-        <NavbarItem className=" flex gap-4 bg-white/20 px-3 py-2 rounded-full">
-          <Link isExternal aria-label="Facebook" href={siteConfig.links.facebook}>
-            <Image src="/images/facebook.png" alt="facebook" width={30} height={30}/>
-          </Link>
-          <Link isExternal aria-label="Line" href={siteConfig.links.line}>
-            <Image src="/images/line.png" alt="facebook" width={30} height={30}/>
-          </Link>
-          {/* <ThemeSwitch /> */}
-        </NavbarItem>
-      </NavbarContent>
-
-      {/* <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <Link isExternal aria-label="Github" href={siteConfig.links.github}>
-          <GithubIcon className="text-default-500" />
-        </Link>
-        <ThemeSwitch />
-        <NavbarMenuToggle />
-      </NavbarContent> */}
-
-      <NavbarMenu>
-        {searchInput}
-        <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
-                }
-                href="#"
-                size="lg"
-              >
-                {item.label}
-              </Link>
-            </NavbarMenuItem>
-          ))}
+          {/* Social Links */}
+          <div className="flex items-center gap-4 bg-white/20 px-3 py-2 rounded-full">
+            <a 
+              href="#" 
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+            >
+              <img src="/images/facebook.png" alt="facebook" className="w-6 h-6" />
+            </a>
+            <a 
+              href="#" 
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+            >
+              <img src="/images/line.png" alt="line" className="w-6 h-6" />
+            </a>
+          </div>
         </div>
-      </NavbarMenu>
-    </HeroUINavbar>
+      </div>
+    </nav>
   );
 };
+
+export default ModernNavbar;

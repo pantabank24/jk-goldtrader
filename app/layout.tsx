@@ -7,9 +7,9 @@ import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
 import { fontKanit } from "@/config/fonts";
-import { Navbar } from "@/components/navbar";
 import { Button } from "@heroui/button";
 import Image from "next/image";
+import ModernNavbar from "@/components/navbar";
 
 export const metadata: Metadata = {
   title: {
@@ -54,7 +54,7 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen">
-            <Navbar />
+            <ModernNavbar/>
             <main className="">
             {/* <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow"> */}
               {children}
@@ -64,12 +64,12 @@ export default function RootLayout({
                 <Image
                   className=" rounded-full"
                   alt="jkChill"
-                  src="/images/jk-chilling.png"
+                  src="/images/owner.png"
                   width={50}
                   height={50}
                 />
                 <div className=" flex flex-col">
-                  <span className="text-default-600 text-lg">JK Goldtrader by จ่าคิง ปากพนัง</span>
+                  <span className="text-default-600 text-lg bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold">JK Goldtrader by จ่าคิง ปากพนัง</span>
                   <span className="text-default-600 text-sm">ร้านเปิดทุกวัน 09:30-16:30 (แนะนำให้โทรนัดครับ)</span>
                 </div>
               </div>
