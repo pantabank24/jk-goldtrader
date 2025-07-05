@@ -22,6 +22,7 @@ import { PriceDto } from "./models/Models";
 import Image from "next/image";
 import { Image as HImage } from "@heroui/image";
 import { BannerSlider } from "@/components/banner-slide";
+import Marquee from "react-fast-marquee";
 
 export default function Home() {
 
@@ -181,14 +182,14 @@ export default function Home() {
       img: "/images/fischer.png",
       created_at: "2025-05-11"
     },
-    {
-      title: "🔥รู้ก่อนขายได้ตังค์เพิ่มอีกเยอะ🔥",
-      author_img: "/images/owner.png",
-      author_name: "จ่าคิง ปากพนัง",
-      description: "🟢 วิธีคำนวนราคาทอง 🟢 \nราคาทองวันนี้ x 0.0656 x (% ทองจริง x น้ำหนักทอง) = ราคาทองที่จะได้รับ \n\nหน้าร้านอยู่ที่ลาดพร้าว 129 ไม่สะดวกมา โทรมาปรึกษากัน แล้วส่งพัสดุมาได้ ทางร้านยินดีดูแลให้ครับ",
-      img: "/images/jk-manygold.png",
-      created_at: "2025-05-11"
-    }
+    // {
+    //   title: "🔥รู้ก่อนขายได้ตังค์เพิ่มอีกเยอะ🔥",
+    //   author_img: "/images/owner.png",
+    //   author_name: "จ่าคิง ปากพนัง",
+    //   description: "🟢 วิธีคำนวนราคาทอง 🟢 \nราคาทองวันนี้ x 0.0656 x (% ทองจริง x น้ำหนักทอง) = ราคาทองที่จะได้รับ \n\nหน้าร้านอยู่ที่ลาดพร้าว 129 ไม่สะดวกมา โทรมาปรึกษากัน แล้วส่งพัสดุมาได้ ทางร้านยินดีดูแลให้ครับ",
+    //   img: "/images/jk-manygold.png",
+    //   created_at: "2025-05-11"
+    // }
   ]
 
   const handleSetBlog = (index: number) => {
@@ -202,12 +203,14 @@ export default function Home() {
 
       <BannerSlider />
 
-      <div className=" flex flex-col mx-4 items-center">
-        <div className="inline-block max-w-xl text-center justify-center ">
+      <div className="inline-block max-w-xl text-center justify-center ">
           <span className="text-3xl font-bold bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
             ประเมินราคาทองคำ
           </span>
         </div>
+
+      <div className=" flex flex-col mx-4 items-center">
+        
 
         {/* <div className=" flex w-96 text-center flex-col justify-center border-2 border-yellow-500 rounded-2xl py-5 bg-[#14100b] my-5">
         <span className=" font-normal text-xl mb-2">ทองคำเเท่ง 96.5%</span>
@@ -244,6 +247,8 @@ export default function Home() {
           </Skeleton>
         </span>
       </div> */}
+
+        
 
         <div className=" flex w-full text-center flex-col justify-center rounded-2xl py-2 px-5  bg-[#14100b] my-2 ">
           <span className=" font-bold text-2xl bg-gradient-to-b from-yellow-300 to-yellow-900 bg-clip-text text-transparent mb-3  ">ทองคำเเท่ง 96.5%</span>
@@ -298,6 +303,7 @@ export default function Home() {
               onChange={(e) => handleOptionChange(e)}
               className="min-w-80"
               selectedKeys={option}
+              size="lg"
             >
               {goldTypes.map((item) => (
                 <SelectItem
@@ -312,7 +318,7 @@ export default function Home() {
               option === "8" || option === "3" || option === "4"
                 ? <div className=" flex flex-col items-center">
                   <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">เปอร์เซ็นต์ทอง (%)</span>
-                  <Input className=" min-w-80 text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={percent} onValueChange={(e) => validatePercentInput(e)} />
+                  <Input size="lg" className=" min-w-80 text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={percent} onValueChange={(e) => validatePercentInput(e)} />
                 </div>
                 : null
             }
@@ -321,13 +327,13 @@ export default function Home() {
               option === "3"
                 ? <div className=" flex flex-col items-center">
                   <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">ราคาบวก</span>
-                  <Input className=" min-w-80 text-base " step="1" type="text" inputMode="decimal" min="0" value={plus ?? ""} onValueChange={(e) => validatePlusInput(e)} />
+                  <Input size="lg" className=" min-w-80 text-base " step="1" type="text" inputMode="decimal" min="0" value={plus ?? ""} onValueChange={(e) => validatePlusInput(e)} />
                 </div>
                 : null
             }
 
             <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">น้ำหนักทอง (กรัม)</span>
-            <Input className=" min-w-80 text-base " step="1" type="text" inputMode="decimal" min="0" value={gram ?? ""} onValueChange={(e) => validateGramInput(e)} />
+            <Input size="lg" className=" min-w-80 text-base " step="1" type="text" inputMode="decimal" min="0" value={gram ?? ""} onValueChange={(e) => validateGramInput(e)} />
           </div>
 
           <div className="mt-8 flex">
@@ -362,7 +368,7 @@ export default function Home() {
         <span className="  text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold">บทความ</span>
         <span className=" mb-10 bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold ">ข่าวสารประชาสัมพันธ์จาก JK Goldtrader</span>
 
-        <div className={` grid items-start justify-center gap-x-4 gap-y-5 grid-cols-2 max-md:grid-cols-1`}>
+        <div className={` grid items-start justify-center gap-x-4 gap-y-5 grid-cols-1 max-md:grid-cols-1`}>
           {
             blogs.map((i, index) => (
               <div key={index} className=" flex flex-col rounded-2xl border-yellow-600 border-2 bg-[#14100b] sm:w-96  ">

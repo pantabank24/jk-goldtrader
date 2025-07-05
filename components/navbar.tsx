@@ -29,11 +29,14 @@ const ModernNavbar = () => {
             {
               isScrolled ? <div className=' flex flex-row items-center'>
               <img 
-                src="/images/jk-icon.jpg" 
+                src="/images/JKLOGO.png" 
                 alt="logo" 
-                className="w-12 h-12 rounded-full object-cover"
+                className=" w-8"
               />
-              <span className="font-bold text-white text-lg">จ่าคิง ปากพนัง</span>
+              <div className=' flex flex-col'>
+                <span className="font-bold  text-xl ml-3 bg-gradient-to-b from-yellow-100 to-yellow-500 bg-clip-text text-transparent">จ่าคิง ปากพนัง</span>
+                <span className="font-bold  text-xs ml-3 mt-[-5] bg-gradient-to-b from-yellow-100 to-yellow-600 bg-clip-text text-transparent">รับสกัดทอง รับซื้อทองคำ ทุกประเภท</span>
+              </div>
             </div>
             : null
             }
@@ -42,14 +45,18 @@ const ModernNavbar = () => {
           {/* Social Links */}
           <div className="flex items-center gap-4 bg-white/20 px-3 py-2 rounded-full">
             <a 
-              href="#" 
+              href="https://www.facebook.com/profile.php?id=61570053279894" 
               className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <img src="/images/facebook.png" alt="facebook" className="w-6 h-6" />
             </a>
             <a 
-              href="#" 
+              href="https://line.me/R/ti/p/@446pxqyk?ts=04201136&oat_content=url" 
               className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <img src="/images/line.png" alt="line" className="w-6 h-6" />
             </a>

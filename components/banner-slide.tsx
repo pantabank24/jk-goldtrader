@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import Marquee from "react-fast-marquee";
 
 export const BannerSlider = () => {
 
@@ -47,12 +48,12 @@ export const BannerSlider = () => {
 
   // Auto-play functionality
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 5000);
+  const interval = setInterval(() => {
+    nextSlide();
+  }, 10000);
 
-    return () => clearInterval(interval);
-  }, [currentSlide]);
+  return () => clearInterval(interval);
+}, []);
 
     return (
     <div className="relative w-full h-60 sm:h-80 lg:h-96 overflow-hidden bg-black">
@@ -108,7 +109,7 @@ export const BannerSlider = () => {
         className="absolute left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-all duration-200 hover:scale-110"
         disabled={isAnimating}
       >
-        <ChevronLeft size={24} />
+        <ChevronLeft size={18} />
       </button>
       
       <button
@@ -116,16 +117,16 @@ export const BannerSlider = () => {
         className="absolute right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-all duration-200 hover:scale-110"
         disabled={isAnimating}
       >
-        <ChevronRight size={24} />
+        <ChevronRight size={18} />
       </button>
 
       {/* Dots Indicator */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
+      <div className="absolute bottom-7 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
         {banners.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-200 ${
+            className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
               index === currentSlide
                 ? 'bg-white scale-125'
                 : 'bg-white/50 hover:bg-white/75'
@@ -133,8 +134,6 @@ export const BannerSlider = () => {
           />
         ))}
       </div>
-
-      <div className="absolute bottom-0 left-0 w-full h-10 bg-gradient-to-t from-black to-transparent" />
 
       
 
@@ -152,6 +151,17 @@ export const BannerSlider = () => {
         }
       `}</style>
       </div>
+
+      <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent flex items-end">
+        <div className=" flex w-auto rounded-full">
+          <Marquee className=" text-sm" pauseOnHover pauseOnClick>
+            <span className="font-bold  text-sm ml-3 bg-gradient-to-b from-yellow-100 to-yellow-500 bg-clip-text text-transparent">
+              🟢 วิธีคำนวนราคาทอง ราคาทองวันนี้ x 0.0656 x (% ทองจริง x น้ำหนักทอง) = ราคาทองที่จะได้รับ หน้าร้านอยู่ที่ลาดพร้าว 129 ไม่สะดวกมา โทรมาปรึกษากัน แล้วส่งพัสดุมาได้ ทางร้านยินดีดูแลให้ครับ
+            </span>
+          </Marquee>
+        </div>
+      </div>
+      
     </div>
   );
 }
