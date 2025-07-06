@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Printer, Plus, Trash2, Save, ChevronDown, ChevronLeft } from 'lucide-react';
-import { QuotationModel } from '../models/Quotations';
+import { QuotationModel } from '../app/models/Quotations';
 import { Input } from '@heroui/input';
 import moment from 'moment';
 

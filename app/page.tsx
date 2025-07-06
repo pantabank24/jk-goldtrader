@@ -25,7 +25,7 @@ import { BannerSlider } from "@/components/banner-slide";
 import Marquee from "react-fast-marquee";
 import { ChevronDown, ChevronLeft } from "lucide-react";
 import { QuotationModel } from "./models/Quotations";
-import QuotationComponent from "./quotation/page";
+import QuotationComponent from "../components/quotation";
 
 export default function Home() {
 
@@ -361,7 +361,7 @@ export default function Home() {
 
               
 
-              <div className=" flex w-full text-center flex-col justify-center rounded-2xl py-2 px-5  bg-[#14100b] my-2 ">
+              <div className=" flex w-96 text-center flex-col justify-center rounded-2xl py-2 px-5  bg-[#14100b] my-2 ">
                 <span className=" font-bold text-2xl bg-gradient-to-b from-yellow-300 to-yellow-900 bg-clip-text text-transparent mb-3  ">ทองคำเเท่ง 96.5%</span>
                 <div className=" grid grid-cols-2  gap-x-4">
                   <div className="bg-gradient-to-b from-[#710711] to-red-950 flex flex-col items-center py-5 rounded-2xl h-28 justify-center">
