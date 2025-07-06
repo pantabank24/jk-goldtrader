@@ -71,7 +71,7 @@ const QuotationComponent = ({items, onChange}: Props) => {
         </span>  
       </div>
       <div className=' flex flex-row mb-5 gap-2 max-md:flex-col'>
-         <Input placeholder='ชื่อลูกค้า' size="lg" className=" min-w-80 text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={cusName} onValueChange={(i) => setCusName(i)} />
+         <Input placeholder='ชื่อลูกค้า' size="lg" className=" min-w-80 text-base" type="text" inputMode="text" value={cusName} onValueChange={(i) => setCusName(i)} />
          <Input placeholder='เบอร์โทร' size="lg" className=" min-w-80 text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={cusTel} onValueChange={(i) => setCusTel(i)} />
         <button
           onClick={handlePrint}

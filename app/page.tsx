@@ -312,7 +312,7 @@ export default function Home() {
 
       {
         toggle
-          ? <QuotationComponent items={quotational} onChange={(i) => handleClosePreview(i)}/>
+          ? <div><QuotationComponent items={quotational} onChange={(i) => handleClosePreview(i)}/></div>
           : <div>
             <div className="inline-block  text-center justify-center w-full ">
                 <span className="text-3xl font-bold bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
