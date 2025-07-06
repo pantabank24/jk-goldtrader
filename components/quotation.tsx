@@ -66,8 +66,8 @@ const QuotationComponent = ({items, onChange}: Props) => {
             <span>ย้อนกลับ</span>
           </button>
         </div>
-        <span className="text-3xl font-bold bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
-          รีวิวใบเสนอราคา
+        <span className="text-3xl font-bold bg-gradient-to-b items-center justify-center flex from-white to-gray-500 bg-clip-text text-transparent">
+          พรีวิวใบเสนอราคา
         </span>  
       </div>
       <div className=' flex flex-row mb-5 gap-2 max-md:flex-col'>
@@ -75,7 +75,7 @@ const QuotationComponent = ({items, onChange}: Props) => {
          <Input placeholder='เบอร์โทร' size="lg" className=" min-w-80 text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={cusTel} onValueChange={(i) => setCusTel(i)} />
         <button
           onClick={handlePrint}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-xl  hover:bg-blue-700 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-b from-blue-500 to-blue-700 text-white rounded-xl  hover:bg-blue-700 transition-colors"
         >
           <Printer size={20} />
           พิมพ์
@@ -123,7 +123,6 @@ const QuotationComponent = ({items, onChange}: Props) => {
                 <th className="border border-gray-400 px-2 py-2 text-center text-sm font-semibold">น้ำหนัก</th>
                 <th className="border border-gray-400 px-2 py-2 text-center text-sm font-semibold">ต่อกรัม</th>
                 <th className="border border-gray-400 px-2 py-2 text-center text-sm font-semibold">จำนวนเงิน</th>
-                <th className="border border-gray-400 px-2 py-2 text-center text-sm font-semibold">หมายเหตุ</th>
               </tr>
             </thead>
             <tbody>
@@ -131,45 +130,22 @@ const QuotationComponent = ({items, onChange}: Props) => {
                 <tr key={index+1} className="hover:bg-gray-50">
                   <td className="border border-gray-400 px-2 py-2 text-center text-sm">{index + 1}</td>
                   <td className="border border-gray-400 px-2 py-2 text-center text-sm">
-                    <input
-                      type="number"
-                      value={item.goldPrice}
-                      className="w-full text-center text-sm border-none outline-none bg-transparent print:bg-transparent"
-                      step="0.01"
-                    />
+                    {item.goldPrice.toLocaleString()}
                   </td>
                   <td className="border border-gray-400 px-2 py-2 text-center text-sm">
-                    <input
-                      type="number"
-                      value={item.weightBaht}
-                      className="w-full text-center text-sm border-none outline-none bg-transparent print:bg-transparent"
-                      step="0.01"
-                    />
+                    {item.weightBaht.toLocaleString()}
                   </td>
                   <td className="border border-gray-400 px-2 py-2 text-center text-sm">
-                    <input
-                      type="number"
-                      value={item.percentage}
-                      className="w-full text-center text-sm border-none outline-none bg-transparent print:bg-transparent"
-                      step="0.01"
-                    />
+                    {item.percentage.toLocaleString()}
                   </td>
                   <td className="border border-gray-400 px-2 py-2 text-center text-sm">
-                    <input
-                      type="number"
-                      value={item.laborCost}
-                      className="w-full text-center text-sm border-none outline-none bg-transparent print:bg-transparent"
-                      step="0.01"
-                    />
+                    {item.laborCost.toLocaleString()}
                   </td>
                   <td className="border border-gray-400 px-2 py-2 text-center text-sm">
                     {item.costPerBaht.toLocaleString()}
                   </td>
                   <td className="border border-gray-400 px-2 py-2 text-center text-sm">
                     {item.totalAmount.toLocaleString()}
-                  </td>
-                  <td className="border border-gray-400 px-2 py-2 text-center text-sm">
-                    {item.remark}
                   </td>
                 </tr>
               ))}
@@ -184,7 +160,6 @@ const QuotationComponent = ({items, onChange}: Props) => {
                   <td className="border border-gray-400 px-2 py-2 text-center text-sm"></td>
                   <td className="border border-gray-400 px-2 py-2 text-center text-sm"></td>
                   <td className="border border-gray-400 px-2 py-2 text-center text-sm"></td>
-                  <td className="border border-gray-400 px-2 py-2 text-center text-sm print:hidden"></td>
                 </tr>
               ))}
             </tbody>

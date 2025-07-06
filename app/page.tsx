@@ -466,9 +466,11 @@ export default function Home() {
                   </div>
                 </div>
 
-                <Button onClick={handleSelectQuotation} radius="full" className="mt-5">
+                {
+                  isLoading == false ? (<Button onClick={handleSelectQuotation} radius="full" className="mt-5">
                   <div> + เพิ่มลงในใบเสนอราคา</div>
-                </Button>
+                </Button>) : null
+                }
               </div>
 
               <Button as="a" href="https://line.me/R/ti/p/@446pxqyk?ts=04201136&oat_content=url" className=" flex h-14 w-56 px-10 mt-5  bg-gradient-to-b from-green-500 to-green-700 " radius="full">
