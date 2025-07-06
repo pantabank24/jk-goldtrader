@@ -32,7 +32,7 @@ const QuotationComponent = ({items, onChange}: Props) => {
   };
 
   const calculateTotalWeight = () => {
-    return items.reduce((sum, item) => sum + (item.weightBaht || 0), 0) / 1000;
+    return items.reduce((sum, item) => sum + (item.laborCost || 0), 0);
   };
 
   const calculateGrandTotal = () => {
