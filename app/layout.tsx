@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     url: siteConfig.url,
     images: {
-      url: "https://jk-goldtrader-rhfc.vercel.app/images/jk-banner.jpg",
+      url: "https://jk-goldtrader.com/images/jk-banner.jpg",
       width: 1200,
       height: 630,
     }
