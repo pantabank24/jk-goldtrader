@@ -16,3 +16,36 @@
   font-size: 2.25rem !important;
 }
 }
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #print-section,
+  #print-section * {
+    visibility: visible;
+  }
+
+  #print-section {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* ลบพวก header/footer ที่ browser ใส่ให้ */
+  @page {
+    size: A6 portrait;
+    margin: 1cm;
+  }
+
+  /* ป้องกันสีพื้นหลังเบา ๆ ที่อาจมาจาก tailwind */
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: white !important;
+  }
+}
