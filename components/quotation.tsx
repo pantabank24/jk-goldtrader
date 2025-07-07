@@ -5,6 +5,7 @@ import { Printer, Plus, Trash2, Save, ChevronDown, ChevronLeft } from 'lucide-re
 import { QuotationModel } from '../app/models/Quotations';
 import { Input } from '@heroui/input';
 import moment from 'moment';
+import { Switch } from '@heroui/switch';
 
 interface Props {
   items: QuotationModel[],
@@ -13,6 +14,7 @@ interface Props {
 
 const QuotationComponent = ({items, onChange}: Props) => {
 
+  const [isSelected, setIsSelected] = React.useState(false);
   const [cusName, setCusName] = useState("");
   const [cusTel, setCusTel] = useState("");
 
@@ -70,6 +72,11 @@ const QuotationComponent = ({items, onChange}: Props) => {
           พรีวิวใบเสนอราคา
         </span>  
       </div>
+      <div className="flex flex-col gap-2 mb-5 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full px-2 py-2">
+          <Switch color='success' isSelected={isSelected} onValueChange={setIsSelected}>
+            หัวใบเสร็จ JK Goldtrader
+          </Switch>
+        </div>
       <div className=' flex flex-row mb-5 gap-2 max-md:flex-col'>
          <Input placeholder='ชื่อลูกค้า' size="lg" className=" min-w-80 text-base" type="text" inputMode="text" value={cusName} onValueChange={(i) => setCusName(i)} />
          <Input placeholder='เบอร์โทร' size="lg" className=" min-w-80 text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={cusTel} onValueChange={(i) => setCusTel(i)} />
@@ -81,21 +88,28 @@ const QuotationComponent = ({items, onChange}: Props) => {
           พิมพ์
         </button>
       </div>
+      
       {/* Document */}
       <div id="print-section" className="bg-white border border-gray-400 print:border-none text-black" >
         {/* Header */}
-        <div className="text-center py-6  border-gray-400">
-          <h1 className="text-2xl font-bold mb-2">{companyInfo.name}</h1>
-          <p className="text-lg font-semibold mb-2">{companyInfo.website}</p>
-          <p className="text-sm mb-2">{companyInfo.address}</p>
-        </div>
+        {
+          isSelected
+          ? <div>
+            <div className="text-center py-6  border-gray-400">
+              <h1 className="text-2xl font-bold mb-2">{companyInfo.name}</h1>
+              <p className="text-lg font-semibold mb-2">{companyInfo.website}</p>
+              <p className="text-sm mb-2">{companyInfo.address}</p>
+            </div>
 
-        <div className=' flex  flex-col ml-5 border-b'>
-          <p className="text-sm mb-2">{companyInfo.shopName}</p>
-          <p className="text-sm mb-2">{companyInfo.license}</p>
-          <p className="text-sm font-semibold">{companyInfo.taxId}</p>
-          <p></p>
-        </div>
+            <div className=' flex  flex-col ml-5 border-b'>
+              <p className="text-sm mb-2">{companyInfo.shopName}</p>
+              <p className="text-sm mb-2">{companyInfo.license}</p>
+              <p className="text-sm font-semibold">{companyInfo.taxId}</p>
+              <p></p>
+            </div>
+          </div>
+          : null
+        }
 
         {/* Title and Info */}
         <div className="p-4">

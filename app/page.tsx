@@ -111,7 +111,7 @@ export default function Home() {
             totalAmount: parseFloat(((goldPrice + parseFloat(plus == "" ? "0" : plus ?? "0")) * service * (parseFloat(percent) / 100) * parseFloat(gram ?? "0")).toFixed(2))
           })
         } else if (parseFloat(percent) > 30 && gram != null) {
-          calcs = (goldPrice + parseFloat(plus == "" ? "0" : plus ?? "0")) * service * (Math.floor(parseFloat(percent)) / 100) * parseFloat(gram ?? "0")
+          calcs = (goldPrice + parseFloat(plus == "" ? "0" : plus ?? "0")) * service * (parseFloat(percent) / 100) * parseFloat(gram ?? "0")
           setCurrentQuot({
             goldType: "ทองหลอม",
             goldPrice: goldPrice,
@@ -122,7 +122,7 @@ export default function Home() {
             totalAmount: parseFloat(((goldPrice + parseFloat(plus == "" ? "0" : plus ?? "0")) * service * (Math.floor(parseFloat(percent)) / 100) * parseFloat(gram ?? "0")).toFixed(2))
           })
         } else if (parseFloat(percent) < 30 && gram != null) {
-          calcs = goldPrice * service * (Math.floor(parseFloat(percent)) / 100) * parseFloat(gram ?? "0")
+          calcs = goldPrice * service * (parseFloat(percent) / 100) * parseFloat(gram ?? "0")
           setCurrentQuot({
             goldType: "ทองหลอม",
             goldPrice: goldPrice,
@@ -556,7 +556,10 @@ export default function Home() {
             {
               quotational.length > 0 ?
               <div className=" absolute sticky left-5 right-0 bottom-0 w-full md:w-96  bg-gradient-to-b from-[#710711] to-red-950 rounded-t-3xl py-4 px-5 transition-background">
-                <span className="font-bold text-xl">รายการออกใบเสนอราคา</span>
+                <div className="font-bold text-xl flex flex-row">
+                  <span className="bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent font-bold">รายการออกใบเสนอราคา</span>
+                  <div className=" bg-gradient-to-b from-blue-500/70 to-blue-700/70 px-3 ml-2 rounded-full text-sm flex items-center justify-center">{quotational.length} รายการ</div>
+                </div>
                 <button
                   onClick={() => setQuotational([])}
                   className="absolute right-6 top-7 transform -translate-y-1/2 z-20 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-all duration-200 hover:scale-110"
@@ -590,7 +593,10 @@ export default function Home() {
                             <span>{i.totalAmount}</span>
                           </div>
                         </div>
-                        <div className="bg-red-600/70 rounded-xl mt-2 flex items-center justify-center" onClick={()=>handleDropIndex(n)}>ลบ</div>
+                        <Button onPress={()=>handleDropIndex(n)}  className=" flex h-7 w-full px-10 mt-2 bg-gradient-to-b from-red-800 to-[#710711]" radius="lg">
+                          <div>ลบ</div>
+                        </Button>
+                        {/* <div className="bg-red-600/70 rounded-xl mt-2 flex items-center justify-center" onClick={()=>handleDropIndex(n)}>ลบ</div> */}
                       </div>
                     )
                   }
