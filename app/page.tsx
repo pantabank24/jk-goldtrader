@@ -576,26 +576,26 @@ export default function Home() {
     <div className={`${hidden ? 'opacity-0 scale-95 h-0 pointer-events-none' : 'opacity-100 scale-100'} transition-all duration-300 ease-in-out transform origin-bottom flex flex-col max-h-32 md:max-h-96 overflow-y-auto rounded-t-xl scrollbar-hide text-white mt-2 gap-y-2`}>
       {quotational.map((i, n) =>
         <div key={n} className="bg-[#14100b] rounded-lg px-2 py-2 transition-opacity duration-300 ease-in-out">
-          <div className="text-sm ml-2 font-bold">{i.goldType}</div>
-          <div className="grid grid-cols-5 text-sm">
-            <div className="flex flex-col items-center">
+          <div className="text-sm  font-bold pl-1">{n+1} : {i.goldType}</div>
+          <div className="grid grid-cols-5 text-sm gap-x-1">
+            <div className="flex flex-col items-center ">
               <span className="bg-gradient-to-b from-yellow-300 to-yellow-500 bg-clip-text text-transparent font-bold">ราคาทอง</span>
               <span>{i.goldPrice}</span>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center ">
               <span className="bg-gradient-to-b from-yellow-300 to-yellow-500 bg-clip-text text-transparent font-bold">ราคาบวก</span>
               <span>{i.weightBaht}</span>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center ">
               <span className="bg-gradient-to-b from-yellow-300 to-yellow-500 bg-clip-text text-transparent font-bold">% ซื้อ</span>
               <span>{i.percentage}</span>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center ">
               <span className="bg-gradient-to-b from-yellow-300 to-yellow-500 bg-clip-text text-transparent font-bold">น้ำหนัก</span>
               <span>{i.laborCost}</span>
             </div>
-            <div className="flex flex-col items-center">
-              <span className="bg-gradient-to-b from-yellow-300 to-yellow-500 bg-clip-text text-transparent font-bold">จำนวนเงิน</span>
+            <div className="flex flex-col items-center ">
+              <span className="bg-gradient-to-b from-yellow-300 to-yellow-500 bg-clip-text text-transparent font-bold">ทั้งหมด</span>
               <span>{i.totalAmount}</span>
             </div>
           </div>
