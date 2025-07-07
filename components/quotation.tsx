@@ -112,9 +112,9 @@ const QuotationComponent = ({items, onChange}: Props) => {
         }
 
         {/* Title and Info */}
-        <div className="p-4">
+        <div className="p-1">
           <h2 className="text-xl font-bold text-center mb-4">{quotationInfo.title}</h2>
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex justify-between items-center mb-1">
             <div>
               <p className="font-semibold">ชื่อลูกค้า: {cusName}</p>
               <p className="">เบอร์โทร: {cusTel}</p>
@@ -142,23 +142,23 @@ const QuotationComponent = ({items, onChange}: Props) => {
             <tbody>
               {items.map((item, index) => (
                 <tr key={index+1} className="hover:bg-gray-50">
-                  <td className="border border-gray-400 px-2 py-2 text-center text-sm">{index + 1}</td>
-                  <td className="border border-gray-400 px-2 py-2 text-center text-sm">
+                  <td className="border border-gray-400 px-2 text-center text-sm">{index + 1}</td>
+                  <td className="border border-gray-400 px-2 text-center text-sm">
                     {item.goldPrice.toLocaleString()}
                   </td>
-                  <td className="border border-gray-400 px-2 py-2 text-center text-sm">
+                  <td className="border border-gray-400 px-2  text-center text-sm">
                     {item.weightBaht.toLocaleString()}
                   </td>
-                  <td className="border border-gray-400 px-2 py-2 text-center text-sm">
+                  <td className="border border-gray-400 px-2  text-center text-sm">
                     {item.percentage.toLocaleString()}
                   </td>
-                  <td className="border border-gray-400 px-2 py-2 text-center text-sm">
+                  <td className="border border-gray-400 px-2  text-center text-sm">
                     {item.laborCost.toLocaleString()}
                   </td>
-                  <td className="border border-gray-400 px-2 py-2 text-center text-sm">
+                  <td className="border border-gray-400 px-2  text-center text-sm">
                     {item.costPerBaht.toLocaleString()}
                   </td>
-                  <td className="border border-gray-400 px-2 py-2 text-center text-sm">
+                  <td className="border border-gray-400 px-2 text-center text-sm">
                     {item.totalAmount.toLocaleString()}
                   </td>
                 </tr>
@@ -167,13 +167,13 @@ const QuotationComponent = ({items, onChange}: Props) => {
               {/* Empty rows for spacing */}
               {Array.from({ length: Math.max(0, 10 - items.length) }).map((_, index) => (
                 <tr key={`empty-${index}`}>
-                  <td className="border border-gray-400 px-2 py-2 text-center text-sm">{items.length + index + 1}</td>
-                  <td className="border border-gray-400 px-2 py-2 text-center text-sm"></td>
-                  <td className="border border-gray-400 px-2 py-2 text-center text-sm"></td>
-                  <td className="border border-gray-400 px-2 py-2 text-center text-sm"></td>
-                  <td className="border border-gray-400 px-2 py-2 text-center text-sm"></td>
-                  <td className="border border-gray-400 px-2 py-2 text-center text-sm"></td>
-                  <td className="border border-gray-400 px-2 py-2 text-center text-sm"></td>
+                  <td className="border border-gray-400 px-2 text-center text-sm">{items.length + index + 1}</td>
+                  <td className="border border-gray-400 px-2 text-center text-sm"></td>
+                  <td className="border border-gray-400 px-2 text-center text-sm"></td>
+                  <td className="border border-gray-400 px-2 text-center text-sm"></td>
+                  <td className="border border-gray-400 px-2 text-center text-sm"></td>
+                  <td className="border border-gray-400 px-2 text-center text-sm"></td>
+                  <td className="border border-gray-400 px-2 text-center text-sm"></td>
                 </tr>
               ))}
             </tbody>
@@ -185,19 +185,19 @@ const QuotationComponent = ({items, onChange}: Props) => {
           <div className="flex justify-end">
             <div className="w-80">
               <div className="border border-gray-400">
-                <div className="flex justify-between p-2 border-b border-gray-400">
+                <div className="flex justify-between p-1 border-b border-gray-400">
                   <span className="font-semibold">น้ำหนักรวม</span>
                   <span className="font-semibold">{calculateTotalWeight().toFixed(1)}</span>
                 </div>
-                <div className="flex justify-between p-2 border-b border-gray-400">
+                <div className="flex justify-between p-1 border-b border-gray-400">
                   <span className="font-semibold">รวมเป็นเงิน</span>
                   <span className="font-semibold">{calculateGrandTotal().toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between p-2">
+                <div className="flex justify-between p-1">
                   <span className="font-semibold">อื่น ๆ</span>
                   <span className="font-semibold"></span>
                 </div>
-                <div className="flex justify-between p-2 border-t border-gray-400">
+                <div className="flex justify-between p-1 border-t border-gray-400">
                   <span className="font-bold">จำนวนรวมทั้งสิ้น</span>
                   <span className="font-bold">{calculateGrandTotal().toLocaleString()}</span>
                 </div>
