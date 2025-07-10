@@ -14,6 +14,7 @@ import {
   Button,
   useDisclosure,
   CircularProgress,
+  addToast,
 } from "@heroui/react";
 import React, { useEffect, useState } from "react";
 import moment from "moment";
@@ -122,10 +123,10 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
             weightBaht: parseFloat(plus == "" ? "0" : plus ?? "0"),
             percentage: parseFloat(percent),
             laborCost: parseFloat(gram ?? "0"),
-            costPerBaht: parseFloat(((goldPrice + parseFloat(plus == "" ? "0" : plus ?? "0")) * service * (Math.floor(parseFloat(percent)) / 100)).toFixed(2)),
-            totalAmount: parseFloat(((goldPrice + parseFloat(plus == "" ? "0" : plus ?? "0")) * service * (Math.floor(parseFloat(percent)) / 100) * parseFloat(gram ?? "0")).toFixed(2))
+            costPerBaht: parseFloat(((goldPrice + parseFloat(plus == "" ? "0" : plus ?? "0")) * service * (parseFloat(percent) / 100)).toFixed(2)),
+            totalAmount: parseFloat(((goldPrice + parseFloat(plus == "" ? "0" : plus ?? "0")) * service * (parseFloat(percent) / 100) * parseFloat(gram ?? "0")).toFixed(2))
           })
-        } else if (parseFloat(percent) < 30 && gram != null) {
+        } else if (parseFloat(percent) <= 30 && gram != null) {
           calcs = goldPrice * service * (parseFloat(percent) / 100) * parseFloat(gram ?? "0")
           setCurrentQuot({
             goldType: "ทองหลอม",
@@ -133,8 +134,8 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
             weightBaht: parseFloat(plus == "" ? "0" : plus ?? "0"),
             percentage: parseFloat(percent),
             laborCost: parseFloat(gram ?? "0"),
-            costPerBaht: parseFloat((goldPrice * service * (Math.floor(parseFloat(percent)) / 100)).toFixed(2)),
-            totalAmount: parseFloat((goldPrice * service * (Math.floor(parseFloat(percent)) / 100) * parseFloat(gram ?? "0")).toFixed(2))
+            costPerBaht: parseFloat((goldPrice * service * (parseFloat(percent) / 100)).toFixed(2)),
+            totalAmount: parseFloat((goldPrice * service * (parseFloat(percent) / 100) * parseFloat(gram ?? "0")).toFixed(2))
           })
         }
         setCalc(calcs)
@@ -291,6 +292,18 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
     onOpen()
   }
 
+  const handleQuote = () => {
+    currentQuots(currentQuot)
+    addToast({
+          hideIcon: true,
+          title: "เพิ่มลงในใบเสนอราคาเรียบร้อย",
+          description: `คุณได้เพิ่มรายการ ${currentQuot?.goldType} ${currentQuot?.percentage}% น้ำหนัก ${currentQuot?.laborCost} กรัม ราคาประเมิน ${currentQuot?.totalAmount.toLocaleString()} บาท กรุณาตรวจสอบในเมนูใบเสนอราคา`,
+          variant: "flat",
+          color: "foreground",
+          radius: "lg"
+        })
+  }
+
 
   return (
     <section className="flex flex-col  gap-4 transition-all duration-300">
@@ -425,7 +438,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                       </div>
 
                       {
-                        isLoading == false ? (<Button onClick={() => currentQuots(currentQuot)} radius="full" className="mt-5">
+                        isLoading == false ? (<Button onClick={() => handleQuote()} radius="full" className="mt-5">
                         <div> + เพิ่มลงในใบเสนอราคา</div>
                       </Button>) : null
                       }

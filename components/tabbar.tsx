@@ -26,7 +26,7 @@ export const TabBars = ({tab, quotationQty, error}:Props) => {
     } 
 
     return (
-        <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pointer-events-none shadow-md bg-gradient-to-t from-black to-transparent w-full">
+        <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center pointer-events-none shadow-md bg-gradient-to-t from-black to-transparent w-full">
             <div className="pointer-events-auto relative bottom-4 ">
                 <Tabs
                     key="default"

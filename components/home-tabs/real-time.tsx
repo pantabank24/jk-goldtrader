@@ -38,12 +38,17 @@ export const RealTime = ({pricing, service}: Props) => {
       var goldList = [];
 
       for (let i = 100; i >= 1; i--) {
-        var calcs = (((pricing?.gold965.ask ?? 0) + parseFloat(plus == "" ? "0" : plus ?? "0")) * service * (i / 100) * parseFloat(gram === "" ? "1" : gram))
+        var calcs = 0;
+        if (i > 30) {
+          calcs = (((pricing?.gold965.ask ?? 0) + parseFloat(plus == "" ? "0" : plus ?? "0")) * service * (i / 100) * parseFloat(gram === "" ? "1" : gram))
+        } else {
+          calcs = (((pricing?.gold965.ask ?? 0)) * service * (i / 100) * parseFloat(gram === "" ? "1" : gram))
+        }
         goldList.push({
           percent: i,
-          gram: gram,
-          plus: plus,
-          value: calcs.toFixed(2)
+          gram: parseFloat(gram).toLocaleString(),
+          plus: i > 30 ?  parseFloat(plus).toLocaleString() : 0,
+          value: Math.floor(calcs).toLocaleString()
         })
       }
 
@@ -99,8 +104,9 @@ export const RealTime = ({pricing, service}: Props) => {
             </div>
 
 
-            <div className="px-2 w-96 mb-10">
+            <div className=" w-full mb-10">
               <Table
+                isStriped 
                 isHeaderSticky
                 aria-label="Example table with client side sorting"
                 classNames={{
@@ -110,10 +116,10 @@ export const RealTime = ({pricing, service}: Props) => {
                 className=" scrollbar-hide"
               >
                   <TableHeader>
-                    <TableColumn key="percent">เปอร์เซ็นต์ทอง</TableColumn>
-                    <TableColumn key="plus">ราคาบวก</TableColumn>
-                    <TableColumn key="gram">น้ำหนัก (กรัม)</TableColumn>
-                    <TableColumn key="value">ราคา</TableColumn>
+                    <TableColumn className=" text-xs text-center" key="percent">เปอร์เซ็นต์ทอง</TableColumn>
+                    <TableColumn className=" text-xs text-center" key="plus">ราคาบวก</TableColumn>
+                    <TableColumn className=" text-xs text-center" key="gram">น้ำหนัก (กรัม)</TableColumn>
+                    <TableColumn className=" text-xs text-center" key="value">ราคา</TableColumn>
                   </TableHeader>
                   <TableBody
                     items={gold}
@@ -121,7 +127,7 @@ export const RealTime = ({pricing, service}: Props) => {
                   >
                     {(item: any) => (
                       <TableRow key={item.percent}>
-                        {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
+                        {(columnKey) => <TableCell className=" text-lg text-center">{getKeyValue(item, columnKey)}</TableCell>}
                       </TableRow>
                     )}
                   </TableBody>

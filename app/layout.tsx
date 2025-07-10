@@ -82,16 +82,21 @@ export default function RootLayout({
                 <Button color="primary" variant="flat" as="a" radius="full" href="tel:0639325566">
                   โทร 063-932-5566 (จ่าคิง)
                 </Button>
-                <Button color="primary" variant="faded" as="a" radius="full"  target="_blank" href="https://maps.app.goo.gl/zFnoEgPjEydyLTQg6?g_st=il">
+                {/* <Button color="primary" variant="faded" as="a" radius="full"  target="_blank" href="https://maps.app.goo.gl/zFnoEgPjEydyLTQg6?g_st=il">
                   พิกัดร้าน : Google Maps
-                </Button>
+                </Button> */}
               </div>
               
               <div
                 className="flex items-center gap-1 text-current"
               >
                 <span className="text-default-600">Powered by</span>
-                <p className="text-primary">JK Goldtrader</p>
+                <p className=" font-bold bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent">© JK Goldtrader</p>
+              </div>
+              <div
+                className="flex items-center gap-1 text-current mb-10"
+              >
+                <p className="text-primary text-xs">Version 1.4 (July 11, 2025 Latest)</p>
               </div>
 
             </footer>
