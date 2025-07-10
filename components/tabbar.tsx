@@ -1,0 +1,66 @@
+"use client"
+
+import { addToast, Tab, Tabs, Toast } from "@heroui/react"
+
+interface Props {
+  tab: (i:string) => void
+  quotationQty: number
+  error?: any
+}
+
+export const TabBars = ({tab, quotationQty, error}:Props) => {
+
+    const handleChange = (key:string) => {
+      if (error && key === "check") {
+        addToast({
+          hideIcon: true,
+          title: "ไม่สามารถดำเนินการได้",
+          description: "ขณะนี้ตลาดทองอาจปิด จึงไม่สามารถตรวจราคาทองแบบเรียลไทม์ได้ ขออภัยในความไม่สะดวก",
+          variant: "flat",
+          color: "warning",
+          radius: "lg"
+        })
+      } else {
+        tab(key)
+      }
+    } 
+
+    return (
+        <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pointer-events-none shadow-md bg-gradient-to-t from-black to-transparent w-full">
+            <div className="pointer-events-auto relative bottom-4 ">
+                <Tabs
+                    key="default"
+                    aria-label="Tabs"
+                    color="warning"
+                    radius="full"
+                    size="lg"
+                    onSelectionChange={(i) => handleChange(i.toString())}
+                >
+                    <Tab key="home" title={
+                      <div className="text-sm whitespace-pre-line w-20">
+                       หน้าแรก
+                      </div>
+                    } />
+                    <Tab key="check" title={
+                      <div className="text-xs whitespace-pre-line w-20">
+                       {` ตรวจราคาทอง\nหลอมเรียลไทม์`}
+                      </div>
+                    }/>
+                    <Tab key="quot" title={
+                      <div className="text-xs whitespace-pre-line w-24 flex flex-row items-center justify-center">
+                       {` ใบเสนอราคา`}
+                       {
+                        quotationQty > 0 
+                        ? <div className=" bg-red-600 h-5 w-6 rounded-full ml-1">
+                          <div className=" text-sm text-white">{quotationQty}</div>
+                          </div>
+                        : null
+                       }
+                      </div>
+                    }/>
+                </Tabs>
+            </div>
+            </div>
+
+    )
+}

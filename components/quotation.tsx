@@ -57,7 +57,7 @@ const QuotationComponent = ({items, onChange}: Props) => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto mt-10 p-4 ">
+    <div className="max-w-5xl mx-auto mt-20 p-4 ">
       <div className="mb-6 flex gap-4 print:hidden flex-col">
         <div>
           <button
