@@ -332,7 +332,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                     </div>
                   </div>
                   : <div className=" flex flex-col items-center justify-center">
-                    <div className=" flex w-96 text-center flex-col justify-center rounded-2xl py-2 px-5  bg-[#14100b] my-2 ">
+                    <div className=" flex w-96 text-center flex-col justify-center rounded-2xl py-2 px-5 backdrop-blur-xl border border-white/20 bg-[#14100b] my-2 ">
                       <span className=" font-bold text-2xl bg-gradient-to-b from-yellow-300 to-yellow-900 bg-clip-text text-transparent mb-3  ">ทองคำเเท่ง 96.5%</span>
                       <div className=" grid grid-cols-2  gap-x-4">
                         <div className="bg-gradient-to-b from-[#710711] to-red-950 flex flex-col items-center py-5 rounded-2xl h-28 justify-center">
@@ -377,7 +377,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                       </span>
                     </div>
 
-                    <div className=" grid grid-cols-1 md:grid-cols-2 gap-x-10 bg-gray-200/10 px-10 py-5 rounded-3xl mt-5">
+                    <div className=" grid grid-cols-1 md:grid-cols-2 gap-x-10 backdrop-blur-xl border border-white/30 bg-white/10 px-10 py-5 rounded-3xl mt-5">
                       <div className=" gap-3 flex flex-col items-center">
                         <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">ประเภททอง</span>
                         <Select
@@ -386,6 +386,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                           className="min-w-80"
                           selectedKeys={option}
                           size="lg"
+                          classNames={{trigger: "backdrop-blur-xl border border-white/10 ", popoverContent: "backdrop-blur-xl border border-white/50 bg-white/10"}}
                         >
                           {goldTypes.map((item) => (
                             <SelectItem
@@ -400,7 +401,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                           option === "8" || option === "3" || option === "4"
                             ? <div className=" flex flex-col items-center">
                               <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">เปอร์เซ็นต์ทอง (%)</span>
-                              <Input size="lg" className=" min-w-80 text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={percent} onValueChange={(e) => validatePercentInput(e)} />
+                              <Input classNames={{inputWrapper: "backdrop-blur-xl border border-white/10 "}} size="lg" className=" min-w-80 text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={percent} onValueChange={(e) => validatePercentInput(e)} />
                             </div>
                             : null
                         }
@@ -409,13 +410,13 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                           option === "3"
                             ? <div className=" flex flex-col items-center">
                               <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">ราคาบวก</span>
-                              <Input size="lg" className=" min-w-80 text-base " step="1" type="text" inputMode="decimal" min="0" value={plus ?? ""} onValueChange={(e) => validatePlusInput(e)} />
+                              <Input classNames={{inputWrapper: "backdrop-blur-xl border border-white/10 ", }} size="lg" className=" min-w-80 text-base " step="1" type="text" inputMode="decimal" min="0" value={plus ?? ""} onValueChange={(e) => validatePlusInput(e)} />
                             </div>
                             : null
                         }
 
                         <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">น้ำหนักทอง (กรัม)</span>
-                        <Input size="lg" className=" min-w-80 text-base " step="1" type="text" inputMode="decimal" min="0" value={gram ?? ""} onValueChange={(e) => validateGramInput(e)} />
+                        <Input classNames={{inputWrapper: "backdrop-blur-xl border border-white/10 "}} size="lg" className=" min-w-80 text-base " step="1" type="text" inputMode="decimal" min="0" value={gram ?? ""} onValueChange={(e) => validateGramInput(e)} />
                       </div>
 
                       <div className="mt-8 flex">
@@ -438,7 +439,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                       </div>
 
                       {
-                        isLoading == false ? (<Button onClick={() => handleQuote()} radius="full" className="mt-5">
+                        isLoading == false ? (<Button onClick={() => handleQuote()} radius="full" className="mt-5 backdrop-blur-xl border border-white/20 bg-white/10">
                         <div> + เพิ่มลงในใบเสนอราคา</div>
                       </Button>) : null
                       }

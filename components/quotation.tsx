@@ -62,7 +62,7 @@ const QuotationComponent = ({items, onChange}: Props) => {
         <div>
           <button
             onClick={() => onChange(false)}
-            className=" transform -translate-y-1/2 z-20 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-all duration-200 hover:scale-110 flex flex-row items-center pr-4"
+            className=" transform -translate-y-1/2 z-20 backdrop-blur-xl border border-white/20 bg-white/20 text-white p-3 rounded-full transition-all duration-200 hover:scale-110 flex flex-row items-center pr-4"
           >
             <ChevronLeft size={20} />
             <span>ย้อนกลับ</span>
@@ -72,17 +72,17 @@ const QuotationComponent = ({items, onChange}: Props) => {
           พรีวิวใบเสนอราคา
         </span>  
       </div>
-      <div className="flex flex-col gap-2 mb-5 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full px-2 py-2">
+      <div className="flex flex-col gap-2 mb-5 backdrop-blur-xl border border-white/20 bg-white/20 hover:bg-white/30 rounded-full px-2 py-2">
           <Switch color='success' isSelected={isSelected} onValueChange={setIsSelected}>
             หัวใบเสร็จ JK Goldtrader
           </Switch>
         </div>
       <div className=' flex flex-row mb-5 gap-2 max-md:flex-col'>
-         <Input placeholder='ชื่อลูกค้า' size="lg" className=" min-w-80 text-base" type="text" inputMode="text" value={cusName} onValueChange={(i) => setCusName(i)} />
-         <Input placeholder='เบอร์โทร' size="lg" className=" min-w-80 text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={cusTel} onValueChange={(i) => setCusTel(i)} />
+         <Input placeholder='ชื่อลูกค้า' classNames={{inputWrapper:"backdrop-blur-xl border border-white/20 bg-white/20"}} size="lg" className=" min-w-80 text-base " type="text" inputMode="text" value={cusName} onValueChange={(i) => setCusName(i)} />
+         <Input placeholder='เบอร์โทร' classNames={{inputWrapper:"backdrop-blur-xl border border-white/20 bg-white/20"}} size="lg" className=" min-w-80 text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={cusTel} onValueChange={(i) => setCusTel(i)} />
         <button
           onClick={handlePrint}
-          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-b from-blue-500 to-blue-700 text-white rounded-xl  hover:bg-blue-700 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 backdrop-blur-xl border border-white/20 bg-blue-500/60 text-white rounded-xl  hover:bg-blue-700 transition-colors"
         >
           <Printer size={20} />
           พิมพ์
