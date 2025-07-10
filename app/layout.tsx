@@ -78,7 +78,7 @@ export default function RootLayout({
                   <span className="text-default-600 text-sm">ร้านเปิดทุกวัน 09:30-16:30 (แนะนำให้โทรนัดครับ)</span>
                 </div>
               </div>
-              <div className="  grid max-sm:grid-cols-1 grid-cols-2 gap-x-2 gap-y-2 my-2 ">
+              <div className="  grid grid-cols-1 gap-x-2 gap-y-2 my-2 ">
                 <Button color="primary" variant="flat" as="a" radius="full" href="tel:0639325566">
                   โทร 063-932-5566 (จ่าคิง)
                 </Button>
@@ -94,7 +94,7 @@ export default function RootLayout({
                 <p className=" font-bold bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent">© JK Goldtrader</p>
               </div>
               <div
-                className="flex items-center gap-1 text-current mb-10"
+                className="flex items-center gap-1 text-current mb-16"
               >
                 <p className="text-primary text-xs">Version 1.4 (July 11, 2025 Latest)</p>
               </div>
