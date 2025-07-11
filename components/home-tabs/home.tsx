@@ -333,10 +333,10 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                     </div>
                   </div>
                   : <div className=" flex flex-col items-center justify-center">
-                    <div className=" flex w-96 text-center flex-col justify-center rounded-2xl py-2 px-5 backdrop-blur-xl border border-yellow-300/20 bg-[#14100b] my-2 ">
+                    <div className=" flex w-96 text-center flex-col justify-center rounded-3xl py-2 px-5 backdrop-blur-xl border border-yellow-300/20 bg-gradient-to-b from-white/5 to-[#14100b]  my-2 ">
                       <span className=" font-bold text-2xl bg-gradient-to-b from-yellow-300 to-yellow-900 bg-clip-text text-transparent mb-3  ">ทองคำเเท่ง 96.5%</span>
                       <div className=" grid grid-cols-2  gap-x-4">
-                        <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-[#710711] to-red-950 flex flex-col items-center py-5 rounded-2xl h-28 justify-center">
+                        <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 flex flex-col items-center py-5 rounded-2xl h-28 justify-center">
                           {
                             isLoading
                               ? <CircularProgress aria-label="Loading..." color="warning" />
@@ -352,7 +352,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                               </div>)
                           }
                         </div>
-                        <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-[#710711] to-red-950 flex flex-col items-center py-5 rounded-2xl h-28 justify-center">
+                        <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 flex flex-col items-center py-5 rounded-2xl h-28 justify-center">
                           {
                             isLoading
                               ? <CircularProgress aria-label="Loading..." color="warning" />
@@ -372,12 +372,20 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
 
                       <div className=" flex w-full items-center justify-center gap-x-2 mt-2">
                         <div className={`bg-white/10 border-white/10 px-3 py-1 min-w-24 backdrop-blur-xl border  rounded-full flex flex-row items-center justify-center gap-x-2`}>
-                          <ArrowDown color={(data?.gold965.change_today ?? 0) < 0 ? 'red' : ''} size={14}/>
+                          {
+                            (data?.gold965.change_today ?? 0) > 0 
+                              ? <ArrowUp color={'#11ff00'} size={14}/>
+                              : <ArrowDown color={'red'} size={14}/>
+                          }
                           <div className="  font-bold text-xs">{data?.gold965.change_today}</div>
                         </div>
 
                         <div className={`bg-white/10 border-white/10 px-3 py-1 min-w-24 backdrop-blur-xl border rounded-full flex flex-row items-center justify-center gap-x-2`}>
-                          <ArrowUp color={(data?.gold965.change_yesterday ?? 0) < 0 ? '#ff0000' : '#11ff00'} size={14}/>
+                          {
+                            (data?.gold965.change_yesterday ?? 0) > 0 
+                              ? <ArrowUp color={'#11ff00'} size={14}/>
+                              : <ArrowDown color={'red'} size={14}/>
+                          }
                           <div className="  font-bold text-xs">วันนี้ {data?.gold965.change_yesterday}</div>
                         </div>
                       </div>
@@ -390,7 +398,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                       </span>
                     </div>
 
-                    <div className=" grid grid-cols-1 md:grid-cols-2 gap-x-10 backdrop-blur-xl border border-white/30 bg-white/10 px-10 py-5 rounded-3xl mt-5">
+                    <div className=" grid grid-cols-1 md:grid-cols-2 gap-x-10 backdrop-blur-xl border border-white/20 bg-gradient-to-b from-white/5 to-white/10 px-10 py-5 rounded-3xl mt-5">
                       <div className=" gap-3 flex flex-col items-center">
                         <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">ประเภททอง</span>
                         <Select
@@ -433,7 +441,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                       </div>
 
                       <div className="mt-8 flex">
-                        <div className=" flex flex-col w-full items-center justify-center backdrop-blur-xl border border-yellow-600/30  text-white bg-gradient-to-b from-orange-950 to-[#14100b] rounded-2xl py-5">
+                        <div className=" flex flex-col w-full items-center justify-center backdrop-blur-xl border border-white/20  text-white bg-gradient-to-b from-black/80 to-orange-950/70 rounded-2xl py-5">
                           <span className=" flex text-center">ราคาประเมิน</span>
                           <Skeleton isLoaded={!isLoading} className="rounded-lg">
                             <span className="bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold truncate text-3xl">{
@@ -452,9 +460,10 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                       </div>
 
                       {
-                        isLoading == false ? (<button
+                        isLoading == false ? (
+                      <button
                         onClick={() => handleQuote()}
-                        className=" mt-5 h-14 justify-center backdrop-blur-xl border border-white/20 bg-white/20 text-white  rounded-full transition-all duration-200 hover:scale-105 flex flex-row items-center pr-4"
+                        className=" mt-5 h-14 justify-center backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/5 to-white/10 text-white  rounded-full transition-all duration-200 hover:scale-105 flex flex-row items-center pr-4"
                       >
                         <FilePlus size={20} />
                         <span className=" pl-2">เพิ่มลงในใบเสนอราคา</span>
