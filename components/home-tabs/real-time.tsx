@@ -109,15 +109,6 @@ export const RealTime = ({pricing, service}: Props) => {
                 isStriped 
                 isHeaderSticky
                 aria-label="Example table with client side sorting"
-                classNames={{
-                  base: "max-h-[520px] lg:overflow-scroll bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl",
-                  table: "min-h-[420px]",
-                  thead: "bg-white/15 backdrop-blur-xl border-b border-white/20",
-                  tbody: "",
-                  th: "bg-white/15 backdrop-blur-xl text-white/90 font-semibold border-b border-white/20",
-                  td: "text-white/80 border-b border-white/10",
-                  tr: "hover:bg-white/10 data-[odd]:bg-white/5"
-                }}
                 className=" scrollbar-hide"
               >
                   <TableHeader>

@@ -63,10 +63,10 @@ const ModernNavbar = ({isTransparent}:Props) => {
           </div>
 
           {/* Social Links */}
-          <div className="flex items-center gap-4 bg-white/20 backdrop-blur px-3 py-2 rounded-full">
+          <div className="flex items-center gap-4 bg-white/20  backdrop-blur-sm border border-white/20 px-3 py-1 rounded-full">
             <a 
               href="https://www.facebook.com/profile.php?id=61570053279894" 
-              className="w-8 h-8 flex items-center justify-center rounded-full  hover:bg-white/20 transition-colors"
+              className="w-8 h-8 flex items-center justify-center rounded-full   hover:bg-white/20 transition-colors"
               target="_blank"
               rel="noopener noreferrer"
             >

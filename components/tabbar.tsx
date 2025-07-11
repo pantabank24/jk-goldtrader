@@ -39,7 +39,7 @@ export const TabBars = ({tab, quotationQty, error}:Props) => {
                       tab: "h-14",
                       tabList: "bg-white/10 backdrop-blur-xl border border-white/20 p-2 shadow-2xl",
                       tabContent: "text-white",
-                      cursor: "bg-gradient-to-r from-yellow-200 to-yellow-600 heigh-50"
+                      cursor: "bg-gradient-to-b from-yellow-200 to-yellow-600 heigh-50  backdrop-blur-xl border border-white/50"
                     }}
                 >
                     <Tab key="home" title={

@@ -23,7 +23,7 @@ import Image from "next/image";
 import { Image as HImage } from "@heroui/image";
 import { BannerSlider } from "@/components/banner-slide";
 import Marquee from "react-fast-marquee";
-import { ChevronDown, ChevronLeft, ChevronUp, Construction } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronUp, Construction, FilePlus, TicketPlus } from "lucide-react";
 import { PriceDto } from "@/app/models/Models";
 import { QuotationModel } from "@/app/models/Quotations";
 import QuotationComponent from "../quotation";
@@ -51,9 +51,9 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
   const [hidden, setHidden] = useState(false);
 
   const goldTypes = [
+    { key: "3", label: "ทองหลอม" },
     { key: "1", label: "ทองคำแท่ง 96.5%" },
     { key: "2", label: "ทองรูปพรรณ" },
-    { key: "3", label: "ทองหลอม" },
     { key: "4", label: "กรอบทอง/ตลับทอง" },
     { key: "5", label: "ทอง 9K" },
     { key: "6", label: "ทอง 14K" },
@@ -298,9 +298,10 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
           hideIcon: true,
           title: "เพิ่มลงในใบเสนอราคาเรียบร้อย",
           description: `คุณได้เพิ่มรายการ ${currentQuot?.goldType} ${currentQuot?.percentage}% น้ำหนัก ${currentQuot?.laborCost} กรัม ราคาประเมิน ${currentQuot?.totalAmount.toLocaleString()} บาท กรุณาตรวจสอบในเมนูใบเสนอราคา`,
-          variant: "flat",
-          color: "foreground",
-          radius: "lg"
+          radius: "lg",
+          classNames: {
+            icon: "backdrop-blur-xl border border-white/20"
+          }
         })
   }
 
@@ -332,14 +333,14 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                     </div>
                   </div>
                   : <div className=" flex flex-col items-center justify-center">
-                    <div className=" flex w-96 text-center flex-col justify-center rounded-2xl py-2 px-5 backdrop-blur-xl border border-white/20 bg-[#14100b] my-2 ">
+                    <div className=" flex w-96 text-center flex-col justify-center rounded-2xl py-2 px-5 backdrop-blur-xl border border-yellow-300/20 bg-[#14100b] my-2 ">
                       <span className=" font-bold text-2xl bg-gradient-to-b from-yellow-300 to-yellow-900 bg-clip-text text-transparent mb-3  ">ทองคำเเท่ง 96.5%</span>
                       <div className=" grid grid-cols-2  gap-x-4">
-                        <div className="bg-gradient-to-b from-[#710711] to-red-950 flex flex-col items-center py-5 rounded-2xl h-28 justify-center">
+                        <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-[#710711] to-red-950 flex flex-col items-center py-5 rounded-2xl h-28 justify-center">
                           {
                             isLoading
                               ? <CircularProgress aria-label="Loading..." color="warning" />
-                              : (<div className=" flex flex-col items-center">
+                              : (<div className=" flex flex-col items-center ">
                                 <span className=" font-normal text-sm text-yellow-500">ราคารับซื้อ</span>
                                 <span className=" text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold">
                                   {(data?.gold965.ask ?? 0).toLocaleString(`th-TH`, {
@@ -351,7 +352,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                               </div>)
                           }
                         </div>
-                        <div className="bg-gradient-to-b from-[#710711] to-red-950 flex flex-col items-center py-5 rounded-2xl h-28 justify-center">
+                        <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-[#710711] to-red-950 flex flex-col items-center py-5 rounded-2xl h-28 justify-center">
                           {
                             isLoading
                               ? <CircularProgress aria-label="Loading..." color="warning" />
@@ -420,7 +421,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                       </div>
 
                       <div className="mt-8 flex">
-                        <div className=" flex flex-col w-full items-center justify-center border-2 border-yellow-600 bg-gradient-to-b from-orange-950 to-[#14100b] rounded-2xl py-5">
+                        <div className=" flex flex-col w-full items-center justify-center backdrop-blur-xl border border-yellow-600/30  text-white bg-gradient-to-b from-orange-950 to-[#14100b] rounded-2xl py-5">
                           <span className=" flex text-center">ราคาประเมิน</span>
                           <Skeleton isLoaded={!isLoading} className="rounded-lg">
                             <span className="bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold truncate text-3xl">{
@@ -439,15 +440,21 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                       </div>
 
                       {
-                        isLoading == false ? (<Button onClick={() => handleQuote()} radius="full" className="mt-5 backdrop-blur-xl border border-white/20 bg-white/10">
-                        <div> + เพิ่มลงในใบเสนอราคา</div>
-                      </Button>) : null
+                        isLoading == false ? (<button
+                        onClick={() => handleQuote()}
+                        className=" mt-5 h-14 justify-center backdrop-blur-xl border border-white/20 bg-white/20 text-white  rounded-full transition-all duration-200 hover:scale-105 flex flex-row items-center pr-4"
+                      >
+                        <FilePlus size={20} />
+                        <span className=" pl-2">เพิ่มลงในใบเสนอราคา</span>
+                      </button>) : null
                       }
+
+                      
                     </div>
                   </div>
               }
 
-              <Button as="a" href="https://line.me/R/ti/p/@446pxqyk?ts=04201136&oat_content=url" className=" flex h-14 w-56 px-10 mt-5  bg-gradient-to-b from-green-500 to-green-700 " radius="full">
+              <Button as="a" href="https://line.me/R/ti/p/@446pxqyk?ts=04201136&oat_content=url" className=" hover:scale-105 backdrop-blur-xl border-2 border-white/20 flex h-14 w-56 px-10 mt-5  bg-gradient-to-b from-green-500 to-green-700 " radius="full">
                 <img alt="" width={40} src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/LINE_New_App_Icon_%282020-12%29.png/500px-LINE_New_App_Icon_%282020-12%29.png" />
                 <div>สนใจซื้อขาย คลิกที่นี่</div>
               </Button>
