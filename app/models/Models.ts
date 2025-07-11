@@ -7,4 +7,6 @@ export interface Gold965 {
     bid: number
     ask: number
     diff: any
+    change_today: number
+    change_yesterday: number
   }

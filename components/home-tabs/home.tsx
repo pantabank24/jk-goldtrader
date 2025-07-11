@@ -23,7 +23,7 @@ import Image from "next/image";
 import { Image as HImage } from "@heroui/image";
 import { BannerSlider } from "@/components/banner-slide";
 import Marquee from "react-fast-marquee";
-import { ChevronDown, ChevronLeft, ChevronUp, Construction, FilePlus, TicketPlus } from "lucide-react";
+import { ArrowDown, ArrowUp, ChevronDown, ChevronLeft, ChevronsDown, ChevronUp, Construction, FilePlus, TicketPlus } from "lucide-react";
 import { PriceDto } from "@/app/models/Models";
 import { QuotationModel } from "@/app/models/Quotations";
 import QuotationComponent from "../quotation";
@@ -370,8 +370,20 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                         </div>
                       </div>
 
+                      <div className=" flex w-full items-center justify-center gap-x-2 mt-2">
+                        <div className={`bg-white/10 border-white/10 px-3 py-1 min-w-24 backdrop-blur-xl border  rounded-full flex flex-row items-center justify-center gap-x-2`}>
+                          <ArrowDown color={(data?.gold965.change_today ?? 0) < 0 ? 'red' : ''} size={14}/>
+                          <div className="  font-bold text-xs">{data?.gold965.change_today}</div>
+                        </div>
+
+                        <div className={`bg-white/10 border-white/10 px-3 py-1 min-w-24 backdrop-blur-xl border rounded-full flex flex-row items-center justify-center gap-x-2`}>
+                          <ArrowUp color={(data?.gold965.change_yesterday ?? 0) < 0 ? '#ff0000' : '#11ff00'} size={14}/>
+                          <div className="  font-bold text-xs">วันนี้ {data?.gold965.change_yesterday}</div>
+                        </div>
+                      </div>
+
                       <span className=" font-normal text-xs mt-2 mb-1  flex flex-row  justify-center">
-                        อัปเดทล่าสุด :
+                        อัปเดท :
                         <Skeleton isLoaded={!isLoading} className="h-3  rounded-lg ml-2">
                           {moment(data?.timestamp).locale('th').format('D MMMM YYYY HH:mm')}
                         </Skeleton>
@@ -458,7 +470,20 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                 <img alt="" width={40} src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/LINE_New_App_Icon_%282020-12%29.png/500px-LINE_New_App_Icon_%282020-12%29.png" />
                 <div>สนใจซื้อขาย คลิกที่นี่</div>
               </Button>
+            </div>
 
+            <div className="inline-block text-center justify-center w-full mt-20 mb-7 flex flex-col">
+              <span className="text-3xl font-bold bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
+                กราฟทองตอนนี้
+              </span>
+            </div>
+
+            <div className=" flex w-full items-center justify-center px-5">
+              <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_8d6d1&symbol=FOREXCOM%3AXAUUSD&interval=1&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=0a0a0a&studies=[]&theme=dark&style=1&timezone=Asia%2FBangkok&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=th"
+                className=" flex w-full rounded-3xl lg:w-1/2"
+                height="500" 
+                scrolling="no">
+              </iframe>
             </div>
 
             <div className="relative flex w-full py-16 bg-white/5 mt-10 flex-col items-center px-5">
@@ -533,73 +558,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                 )}
               </ModalContent>
             </Modal>
-            
-            {
-//   quotational.length > 0 &&
-//   <div className="absolute sticky left-5 right-0 bottom-0 w-full md:w-96 bg-gradient-to-b from-[#710711] to-red-950 rounded-t-3xl py-4 px-5 transition-background duration-300 ease-in-out">
-//     <div className="font-bold text-xl flex flex-row">
-//       <span className="bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent font-bold">
-//         รายการออกใบเสนอราคา
-//       </span>
-//       <div className="bg-gradient-to-b from-blue-500/70 to-blue-700/70 px-3 ml-2 rounded-full text-sm flex items-center justify-center">
-//         {quotational.length} รายการ
-//       </div>
-//     </div>
-
-//     <button
-//       onClick={() => setHidden(!hidden)}
-//       className="absolute right-6 top-7 transform -translate-y-1/2 z-20 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-transform duration-200 hover:scale-110"
-//     >
-//       {!hidden ? <ChevronDown size={10} /> : <ChevronUp size={10} />}
-//     </button>
-
-//     <div className={`${hidden ? 'opacity-0 scale-95 h-0 pointer-events-none' : 'opacity-100 scale-100'} transition-all duration-300 ease-in-out transform origin-bottom flex flex-col max-h-32 md:max-h-96 overflow-y-auto rounded-t-xl scrollbar-hide text-white mt-2 gap-y-2`}>
-//       {quotational.map((i, n) =>
-//         <div key={n} className="bg-[#14100b] rounded-lg px-2 py-2 transition-opacity duration-300 ease-in-out">
-//           <div className="text-sm  font-bold pl-1">{n+1} : {i.goldType}</div>
-//           <div className="grid grid-cols-5 text-sm gap-x-1">
-//             <div className="flex flex-col items-center ">
-//               <span className="bg-gradient-to-b from-yellow-300 to-yellow-500 bg-clip-text text-transparent font-bold">ราคาทอง</span>
-//               <span>{i.goldPrice}</span>
-//             </div>
-//             <div className="flex flex-col items-center ">
-//               <span className="bg-gradient-to-b from-yellow-300 to-yellow-500 bg-clip-text text-transparent font-bold">ราคาบวก</span>
-//               <span>{i.weightBaht}</span>
-//             </div>
-//             <div className="flex flex-col items-center ">
-//               <span className="bg-gradient-to-b from-yellow-300 to-yellow-500 bg-clip-text text-transparent font-bold">% ซื้อ</span>
-//               <span>{i.percentage}</span>
-//             </div>
-//             <div className="flex flex-col items-center ">
-//               <span className="bg-gradient-to-b from-yellow-300 to-yellow-500 bg-clip-text text-transparent font-bold">น้ำหนัก</span>
-//               <span>{i.laborCost}</span>
-//             </div>
-//             <div className="flex flex-col items-center ">
-//               <span className="bg-gradient-to-b from-yellow-300 to-yellow-500 bg-clip-text text-transparent font-bold">ทั้งหมด</span>
-//               <span>{i.totalAmount}</span>
-//             </div>
-//           </div>
-//           <Button onPress={() => handleDropIndex(n)} className="flex h-7 w-full px-10 mt-2 bg-gradient-to-b from-red-800 to-[#710711] transition-transform duration-200 hover:scale-105" radius="lg">
-//             <div>ลบ</div>
-//           </Button>
-//         </div>
-//       )}
-//     </div>
-
-//     <div className={`${hidden ? 'hidden' : 'flex'} w-full items-end justify-end transition-opacity duration-300 ease-in-out`}>
-//       <Button className="mt-3 h-8 bg-gradient-to-b from-red-500 to-red-800 text-white font-bold mr-2 transition-transform duration-200 hover:scale-105" onPress={() => setQuotational([])}>
-//         ลบทั้งหมด
-//       </Button>
-//       <Button className="mt-3 h-8 bg-gradient-to-b from-yellow-500 to-yellow-600 text-amber-950 font-bold transition-transform duration-200 hover:scale-105" onPress={() => setToggle(true)}>
-//         ออกใบเสนอราคา
-//       </Button>
-//     </div>
-//   </div>
-}
-
           </div>
-
-
     </section>
   );
 }
