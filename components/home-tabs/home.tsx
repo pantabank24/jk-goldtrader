@@ -23,7 +23,7 @@ import Image from "next/image";
 import { Image as HImage } from "@heroui/image";
 import { BannerSlider } from "@/components/banner-slide";
 import Marquee from "react-fast-marquee";
-import { ArrowDown, ArrowUp, ChevronDown, ChevronLeft, ChevronsDown, ChevronUp, Construction, FilePlus, TicketPlus } from "lucide-react";
+import { ArrowDown, ArrowUp, ChevronDown, ChevronLeft, ChevronsDown, ChevronUp, Construction, Equal, FilePlus, TicketPlus } from "lucide-react";
 import { PriceDto } from "@/app/models/Models";
 import { QuotationModel } from "@/app/models/Quotations";
 import QuotationComponent from "../quotation";
@@ -375,7 +375,9 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                           {
                             (data?.gold965.change_today ?? 0) > 0 
                               ? <ArrowUp color={'#11ff00'} size={14}/>
-                              : <ArrowDown color={'red'} size={14}/>
+                              : (data?.gold965.change_today ?? 0) === 0
+                                ? <Equal color="#001eff" size={14}/>
+                                : <ArrowDown color={'red'} size={14}/>
                           }
                           <div className="  font-bold text-xs">{data?.gold965.change_today}</div>
                         </div>
@@ -384,7 +386,9 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                           {
                             (data?.gold965.change_yesterday ?? 0) > 0 
                               ? <ArrowUp color={'#11ff00'} size={14}/>
-                              : <ArrowDown color={'red'} size={14}/>
+                              : (data?.gold965.change_today ?? 0) === 0
+                                ? <Equal color="#001eff" size={14}/>
+                                : <ArrowDown color={'red'} size={14}/>
                           }
                           <div className="  font-bold text-xs">วันนี้ {data?.gold965.change_yesterday}</div>
                         </div>
