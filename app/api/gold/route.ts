@@ -28,11 +28,12 @@ export async function GET() {
       // ✅ หาแถวที่มี span.css-sprite-up → "วันนี้ +100"
       if ($(tds[0]).text().includes('วันนี้ ')) {
         changeFromYesterday = parseFloat($(tds[0]).text().replace(/[^\d.-]/g, ''));
+        changeToday = parseFloat($(tds[2]).text().replace(/,/g, ''));
       }
 
       // ✅ หาแถวสุดท้ายที่มี "-50"
-      if ($(tds[2]).text().includes('-')) {
-        changeToday = parseFloat($(tds[2]).text().replace(/,/g, ''));
+      if ($(tds[2]).text()) {
+        // changeToday = parseFloat($(tds[2]).text().replace(/,/g, ''));
       }
     });
 

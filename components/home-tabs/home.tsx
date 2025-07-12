@@ -38,7 +38,7 @@ interface Props {
 export const HomePages = ({data, isLoading, service, currentQuots, error}:Props) => {
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [option, setOption] = React.useState("1");
+  const [option, setOption] = React.useState("3");
   const [gram, setGram] = React.useState<string | null>("1");
   const [plus, setPlus] = React.useState<string | null>("0");
   const [percent, setPercent] = React.useState("90");
