@@ -27,7 +27,6 @@ import { ArrowDown, ArrowUp, ChevronDown, ChevronLeft, ChevronsDown, ChevronUp, 
 import { PriceDto } from "@/app/models/Models";
 import { QuotationModel } from "@/app/models/Quotations";
 import QuotationComponent from "../quotation";
-import PWAInstaller from "./PWAInstaller";
 
 interface Props {
     data?: PriceDto,
@@ -318,8 +317,6 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                 </span>
               </div>
 
-              <PWAInstaller />
-
             <div className=" flex flex-col mx-4 items-center">              
 
               {
@@ -577,7 +574,6 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
               </ModalContent>
             </Modal>
           </div>
-      
     </section>
   );
 }

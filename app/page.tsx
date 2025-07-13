@@ -10,7 +10,6 @@ import { Quotation } from "@/components/home-tabs/quotation";
 import { QuotationModel } from "./models/Quotations";
 import ModernNavbar from "@/components/navbar";
 import { Toast } from "@heroui/react";
-import PWAInstaller from "@/components/PWAInstaller";
 
 export default function Home() {
   const fetcher = (url: string) => fetch('/api/gold').then(res => res.json());
@@ -31,10 +30,8 @@ export default function Home() {
       setQuotational(i => i.filter((_, index) => index !== indexR))
     }
 
-
-
   return (
-    <section className="flex flex-col gap-4">
+    <section className="flex flex-col  gap-4">
       <ModernNavbar
         isTransparent={
           tab === "quot"
@@ -52,9 +49,6 @@ export default function Home() {
             ? <RealTime service={service} pricing={data}/>
             : <Quotation quotation={quotational} callback={(i) => setQuotational(i)}/>
       }
-
-
-      <PWAInstaller />
     </section>
   );
 }
