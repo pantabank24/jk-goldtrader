@@ -463,8 +463,6 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                         </div>
                       </div>
 
-                      
-
                       {
                         isLoading == false ? (
                       <button
