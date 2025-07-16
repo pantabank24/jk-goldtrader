@@ -12,6 +12,7 @@ import Image from "next/image";
 import ModernNavbar from "@/components/navbar";
 import AdPopup from "@/components/ad-popup";
 import { TabBars } from "@/components/tabbar";
+import AddToHomeScreenPrompt from "@/components/AddToHomeScreenPrompt";
 
 export const metadata: Metadata = {
   title: {
@@ -51,13 +52,29 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head />
+      <head>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#ffd700" />
+  <link rel="apple-touch-icon" href="/favicon.ico" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="description" content="แอปเทรดทองคำ JK Goldtrader Progressive Web App" />
+  <script dangerouslySetInnerHTML={{__html:`
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js');
+      });
+    }
+  `}} />
+</head>
       <title>JK Goldtrader | เช็คราคาทอง ตรวจราคาทอง ประเมินราคาทอง</title>
       <meta name="description" content="คำอธิบายของเว็บเพจนี้" />
       <body
         className={`min-h-screen bg-background font-sans antialiased ${fontKanit.variable}`}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+          <AddToHomeScreenPrompt />
           <div className="relative flex flex-col h-screen">
             <AdPopup/>
             <main className="">

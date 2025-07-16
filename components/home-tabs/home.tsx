@@ -27,6 +27,7 @@ import { ArrowDown, ArrowUp, ChevronDown, ChevronLeft, ChevronsDown, ChevronUp, 
 import { PriceDto } from "@/app/models/Models";
 import { QuotationModel } from "@/app/models/Quotations";
 import QuotationComponent from "../quotation";
+import AddToHomeScreenPrompt from "../AddToHomeScreenPrompt";
 
 interface Props {
     data?: PriceDto,
@@ -544,6 +545,8 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                 </iframe>
               </div>
             </div>
+
+            <AddToHomeScreenPrompt/>
 
             <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur" scrollBehavior="inside" placement="center">
               <ModalContent>
