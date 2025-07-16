@@ -111,7 +111,7 @@ const AddToHomeScreenPrompt: React.FC = () => {
       </div>
       <div className=' flex flex-row w-full gap-x-2'>
         <Button color="warning" className=' w-full backdrop-blur-xl border border-white/20 bg-white/10 rounded-xl text-red-500 mt-2' onClick={handleClose}>ไม่ต้องแสดงอีก</Button>
-        <Button  className=' w-full backdrop-blur-xl border border-white/20 bg-gradient-to-b from-white/10 to-blue-500/40 rounded-xl mt-2' onClick={handleClose}>เพิ่มเลย</Button>
+        <Button  className=' w-full backdrop-blur-xl border border-white/20 bg-gradient-to-b from-white/10 to-blue-500/40 rounded-xl mt-2' onClick={handleAddToHomeScreen}>เพิ่มเลย</Button>
       </div>
     </div>
   </div>
