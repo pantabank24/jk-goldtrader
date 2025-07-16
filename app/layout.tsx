@@ -74,7 +74,6 @@ export default function RootLayout({
         className={`min-h-screen bg-background font-sans antialiased ${fontKanit.variable}`}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <AddToHomeScreenPrompt />
           <div className="relative flex flex-col h-screen">
             <AdPopup/>
             <main className="">
