@@ -372,7 +372,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                       </div>
 
                       <div className=" flex w-full items-center justify-center gap-x-2 mt-2">
-                        <div className={`bg-white/10 border-white/10 px-3 py-1 min-w-24 backdrop-blur-xl border  rounded-full flex flex-row items-center justify-center gap-x-2`}>
+                        <div className={`bg-white/10 border-white/10 px-3 py-1 w-full backdrop-blur-xl border  rounded-full flex flex-row items-center justify-center gap-x-2`}>
                           {
                             (data?.gold965.change_today ?? 0) > 0 
                               ? <ArrowUp color={'#11ff00'} size={14}/>
@@ -381,7 +381,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                           <div className="  font-bold text-xs">{data?.gold965.change_today}</div>
                         </div>
 
-                        <div className={`bg-white/10 border-white/10 px-3 py-1 min-w-24 backdrop-blur-xl border rounded-full flex flex-row items-center justify-center gap-x-2`}>
+                        <div className={`bg-white/10 border-white/10 px-3 py-1 w-full backdrop-blur-xl border rounded-full flex flex-row items-center justify-center gap-x-2`}>
                           {
                             (data?.gold965.change_yesterday ?? 0) > 0 
                               ? <ArrowUp color={'#11ff00'} size={14}/>
@@ -546,7 +546,6 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
               </div>
             </div>
 
-            <AddToHomeScreenPrompt/>
 
             <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur" scrollBehavior="inside" placement="center">
               <ModalContent>

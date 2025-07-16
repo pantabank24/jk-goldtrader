@@ -34,7 +34,7 @@ export default function Home() {
     <section className="flex flex-col  gap-4">
       <ModernNavbar
         isTransparent={
-          tab === "quot"
+          tab === "quot" || tab === "check"
             ? false
             : true
         }

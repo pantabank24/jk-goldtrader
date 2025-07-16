@@ -37,7 +37,7 @@ export const RealTime = ({pricing, service}: Props) => {
       
       var goldList = [];
 
-      for (let i = 100; i >= 1; i--) {
+      for (let i = 100; i >= 21; i--) {
         var calcs = 0;
         if (i > 30) {
           calcs = (((pricing?.gold965.ask ?? 0) + parseFloat(plus == "" ? "0" : plus ?? "0")) * service * (i / 100) * parseFloat(gram === "" ? "1" : gram))
@@ -83,9 +83,9 @@ export const RealTime = ({pricing, service}: Props) => {
 
     return(
       <div className=" min-h-screen flex flex-col items-center ">
-          <BannerSlider />
+          {/* <BannerSlider /> */}
 
-          <div className="inline-block  text-center justify-center w-full my-5 ">
+          <div className="inline-block  text-center justify-center w-full mt-20 ">
             <span className="text-3xl font-bold bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
               ตรวจราคาหลอมแบบเรียลไทม์
             </span>
@@ -103,8 +103,21 @@ export const RealTime = ({pricing, service}: Props) => {
               </div>
             </div>
 
+            <div className=" grid grid-cols-5 gap-x-2 gap-y-2 w-full px-2">
+              {
+                gold?.map((i:any, n:any) => (
+                  <div key={n} className="  flex flex-col items-center backdrop-blur-xl border border-white/20 bg-white/10 rounded-xl px-1 pt-2">
+                    <div className="bg-gradient-to-b from-yellow-300 to-yellow-700 text-black w-full rounded-full flex items-center justify-center text-sm">
+                      <span>{i.percent} %</span>
+                    </div>
+                    <span className="text-sm">{i.value}</span>
+                  </div>
+                ))
+              }
+            </div>
 
-            <div className=" w-full mb-10 px-2">
+
+            {/* <div className=" w-full mb-10 px-2">
               <Table
                 isStriped 
                 isHeaderSticky
@@ -128,7 +141,7 @@ export const RealTime = ({pricing, service}: Props) => {
                     )}
                   </TableBody>
                 </Table>
-            </div>
+            </div> */}
           </div>
       </div>
     )
