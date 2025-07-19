@@ -10,6 +10,8 @@ import { Quotation } from "@/components/home-tabs/quotation";
 import { QuotationModel } from "./models/Quotations";
 import ModernNavbar from "@/components/navbar";
 import { Toast } from "@heroui/react";
+import QuotationTab from "@/components/quotation-tab";
+import QuotationComponent from "@/components/quotation";
 
 export default function Home() {
   const fetcher = (url: string) => fetch('/api/gold').then(res => res.json());
@@ -18,6 +20,8 @@ export default function Home() {
 
   const [tab, setTab] = React.useState<string>("home")
   const [quotational, setQuotational] = React.useState<QuotationModel[]>([])
+  const [quotTab, setQuottab] = React.useState<boolean>(true)
+  const [pQuot, setPQout] = React.useState<QuotationModel[]>([]);
 
   const handleSelectQuotation = (currentQuot?: QuotationModel) => {
     if (currentQuot != null)
@@ -28,6 +32,11 @@ export default function Home() {
 
     const handleDropIndex = (indexR:number) => {
       setQuotational(i => i.filter((_, index) => index !== indexR))
+    }
+
+    const handleSave = () => {
+      setPQout(quotational ?? [])
+      setQuotational([])
     }
 
   return (
@@ -43,12 +52,16 @@ export default function Home() {
       <TabBars error={error} quotationQty={quotational.length ?? 0} tab={(i) => setTab(i)}/>
 
       {
-        tab === "home"
+        pQuot.length > 0 
+        ? <QuotationComponent items={pQuot} onChange={() => setPQout([])}/>
+        : tab === "home"
           ? <HomePages error={error} currentQuots={(i) => handleSelectQuotation(i)} service={service} data={data} isLoading={isLoading}/>
           : tab === "check"
             ? <RealTime service={service} pricing={data}/>
             : <Quotation quotation={quotational} callback={(i) => setQuotational(i)}/>
       }
+
+      <QuotationTab isMinimized={quotTab} onMinimize={() => setQuottab(!quotTab)} quotation={quotational} callback={(i) => setQuotational(i)} trigger={() => handleSave()}/>
     </section>
   );
 }

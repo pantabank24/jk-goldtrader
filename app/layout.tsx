@@ -114,7 +114,7 @@ export default function RootLayout({
               <div
                 className="flex items-center gap-1 text-current mb-16"
               >
-                <p className="text-primary text-xs">Version 1.4 (July 11, 2025 Latest)</p>
+                <p className="text-primary text-xs">Version 1.4.2 (July 20, 2025 Latest)</p>
               </div>
 
             </footer>

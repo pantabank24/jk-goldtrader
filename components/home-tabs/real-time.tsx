@@ -1,148 +1,146 @@
+'use client';
+
 import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
-  getKeyValue,
-  Spinner,
-  Button,
   Input,
 } from "@heroui/react";
-import { BannerSlider } from "../banner-slide"
-import {useAsyncList} from "@react-stately/data";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { PriceDto } from "@/app/models/Models";
-import { QuotationModel } from "@/app/models/Quotations";
 
 interface Props {
-  pricing?: PriceDto
-  service: number
+  pricing?: PriceDto;
+  service: number;
 }
 
-export const RealTime = ({pricing, service}: Props) => {
+interface GoldItem {
+  percent: number;
+  gram: string;
+  plus: string | number;
+  value: string;
+}
 
-    const [page, setPage] = React.useState(1);
-    const [isLoading, setIsLoading] = React.useState(true);
-    const [gold, setGold] = React.useState<any>([]);
-    const [gram, setGram] = React.useState("1")
-    const [plus, setPlus] = React.useState("0")
+export const RealTime = ({ pricing, service }: Props) => {
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+  const [gold, setGold] = useState<GoldItem[]>([]);
+  const [gram, setGram] = useState("1");
+  const [plus, setPlus] = useState("0");
 
-    useEffect(() => {
-        CalculateGold()
-      }, [gram, plus])
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      calculateGold();
+    }, 200); // debounce 200ms
 
-    const CalculateGold = () => {
-      
-      var goldList = [];
+    return () => clearTimeout(timeout);
+  }, [gram, plus]);
 
-      for (let i = 100; i >= 21; i--) {
-        var calcs = 0;
-        if (i > 30) {
-          calcs = (((pricing?.gold965.ask ?? 0) + parseFloat(plus == "" ? "0" : plus ?? "0")) * service * (i / 100) * parseFloat(gram === "" ? "1" : gram))
-        } else {
-          calcs = (((pricing?.gold965.ask ?? 0)) * service * (i / 100) * parseFloat(gram === "" ? "1" : gram))
-        }
-        goldList.push({
-          percent: i,
-          gram: parseFloat(gram).toLocaleString(),
-          plus: i > 30 ?  parseFloat(plus).toLocaleString() : 0,
-          value: Math.floor(calcs).toLocaleString()
-        })
+  const parseSafeFloat = (val: string, fallback: number = 0): number => {
+    const parsed = parseFloat(val);
+    return isNaN(parsed) ? fallback : parsed;
+  };
+
+  const formatNumber = (val: number): string => {
+    return val.toLocaleString(undefined, { maximumFractionDigits: 2 });
+  };
+
+  const calculateGold = () => {
+    const g = parseSafeFloat(gram, 1);
+    const p = parseSafeFloat(plus, 0);
+    const askPrice = pricing?.gold965.ask ?? 0;
+    const safeService = service || 1;
+
+    const goldList: GoldItem[] = [];
+
+    for (let i = 100; i >= 21; i--) {
+      let baseValue = askPrice * safeService * (i / 100) * g;
+      if (i > 30) {
+        baseValue += p * safeService * (i / 100) * g;
       }
 
-      setGold(goldList)
+      goldList.push({
+        percent: i,
+        gram: formatNumber(g),
+        plus: i > 30 ? formatNumber(p) : 0,
+        value: Math.floor(baseValue).toLocaleString(),
+      });
     }
 
-    const validateGramInput = (i: string) => {
-    if (parseFloat(i) > 999999) {
-      i = '999999'
+    setGold(goldList);
+  };
+
+  const handleGramChange = (value: string) => {
+    if (parseSafeFloat(value) > 999999) value = '999999';
+    if (/^\d*\.?\d*$/.test(value)) {
+      setGram(parseSafeFloat(value) < 0 ? "1" : value);
     }
-    if (/^\d*\.?\d*$/.test(i)) {
-      if (parseInt(i) < 0) {
-        setGram("1")
-      } else {
-        setGram(i)
-      }
+  };
+
+  const handlePlusChange = (value: string) => {
+    if (parseSafeFloat(value) > 999999) value = '999999';
+    if (/^\d*\.?\d*$/.test(value)) {
+      setPlus(parseSafeFloat(value) < 0 ? "0" : value);
     }
-  }
+  };
 
-  const validatePlusInput = (i: string) => {
-    if (parseFloat(i) > 999999) {
-      i = '999999'
-    }
-    if (/^\d*\.?\d*$/.test(i)) {
-      if (parseInt(i) < 0) {
-        setPlus("0")
-      } else {
-        setPlus(i)
-      }
-    }
-  }
-
-    return(
-      <div className=" min-h-screen flex flex-col items-center ">
-          {/* <BannerSlider /> */}
-
-          <div className="inline-block  text-center justify-center w-full mt-20 ">
-            <span className="text-3xl font-bold bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
-              ตรวจราคาหลอมแบบเรียลไทม์
-            </span>
-          </div>
-
-          <div className=" flex flex-col lg:flex-row items-center lg:items-start ">
-            <div className=" grid lg:flex grid-cols-2 lg:flex-col gap-y-2 gap-x-2 px-2 my-5 justify-start">
-              <div className=" flex flex-col h-24 items-center backdrop-blur-xl border border-white/20 bg-white/10 rounded-3xl px-2 pt-2">
-                <span>น้ำหนัก (กรัม)</span>
-                <Input color="default" size="lg" className=" my-2  text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={gram} onValueChange={(e) => validateGramInput(e)} />
-              </div>
-              <div className=" flex flex-col h-24 items-center backdrop-blur-xl border border-white/20 bg-white/10 rounded-3xl px-2 pt-2">
-                <span>ราคาบวก</span>
-                <Input color="default" size="lg" className=" my-2 text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={plus} onValueChange={(e) => validatePlusInput(e)} />
-              </div>
-            </div>
-
-            <div className=" grid grid-cols-5 gap-x-2 gap-y-2 w-full px-2">
-              {
-                gold?.map((i:any, n:any) => (
-                  <div key={n} className="  flex flex-col items-center backdrop-blur-xl border border-white/20 bg-white/10 rounded-xl px-1 pt-2">
-                    <div className="bg-gradient-to-b from-yellow-300 to-yellow-700 text-black w-full rounded-full flex items-center justify-center text-sm">
-                      <span>{i.percent} %</span>
-                    </div>
-                    <span className="text-sm">{i.value}</span>
-                  </div>
-                ))
-              }
-            </div>
-
-
-            {/* <div className=" w-full mb-10 px-2">
-              <Table
-                isStriped 
-                isHeaderSticky
-                aria-label="Example table with client side sorting"
-                className=" scrollbar-hide"
-              >
-                  <TableHeader>
-                    <TableColumn className=" text-xs text-center" key="percent">เปอร์เซ็นต์ทอง</TableColumn>
-                    <TableColumn className=" text-xs text-center" key="plus">ราคาบวก</TableColumn>
-                    <TableColumn className=" text-xs text-center" key="gram">น้ำหนัก (กรัม)</TableColumn>
-                    <TableColumn className=" text-xs text-center" key="value">ราคา</TableColumn>
-                  </TableHeader>
-                  <TableBody
-                    items={gold}
-                    loadingContent={<Spinner label="Loading..." />}
-                  >
-                    {(item: any) => (
-                      <TableRow key={item.percent}>
-                        {(columnKey) => <TableCell className=" text-lg text-center">{getKeyValue(item, columnKey)}</TableCell>}
-                      </TableRow>
-                    )}
-                  </TableBody>
-                </Table>
-            </div> */}
-          </div>
+  return (
+    <div className="min-h-screen flex flex-col items-center">
+      <div className="inline-block text-center justify-center w-full mt-20">
+        <span className="text-3xl font-bold bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
+          ตรวจราคาหลอมแบบเรียลไทม์
+        </span>
       </div>
-    )
-}
+
+      <div className="flex flex-col items-center md:w-full md:px-5 xl:w-1/2">
+        <div className="grid lg:flex grid-cols-2 gap-y-2 gap-x-2 px-2 my-5 justify-start">
+          <div className="flex flex-col h-24 items-center backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 rounded-3xl px-2 pt-2">
+            <span>น้ำหนัก (กรัม)</span>
+            <Input
+              color="default"
+              classNames={{
+                inputWrapper: "bg-white/20 backdrop-blur",
+                input: "text-center",
+              }}
+              size="lg"
+              className="my-2 text-base"
+              type="text"
+              inputMode="decimal"
+              value={gram}
+              onValueChange={handleGramChange}
+            />
+          </div>
+          <div className="flex flex-col h-24 items-center backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 rounded-3xl px-2 pt-2">
+            <span>ราคาบวก</span>
+            <Input
+              color="default"
+              classNames={{
+                inputWrapper: "bg-white/20 backdrop-blur",
+                input: "text-center",
+              }}
+              size="lg"
+              className="my-2 text-base"
+              type="text"
+              inputMode="decimal"
+              value={plus}
+              onValueChange={handlePlusChange}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-5 md:grid-cols-10 gap-x-2 gap-y-2 w-full px-2">
+          {gold.map((item) => (
+            <div
+              key={item.percent}
+              className="flex flex-col items-center backdrop-blur-xl border border-white/20 bg-white/10 rounded-xl px-1 pt-2 md:h-16"
+            >
+              <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 w-full rounded-full flex items-center justify-center text-sm text-yellow-400">
+                <span>{item.percent} %</span>
+              </div>
+              <span className="text-sm h-full items-center justify-center flex">
+                {item.value}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};

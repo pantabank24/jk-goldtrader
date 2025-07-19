@@ -3,6 +3,7 @@
 import { addToast, Tab, Tabs, Toast } from "@heroui/react"
 import { ChartBar, House, NotepadText } from "lucide-react"
 import { useState, useEffect } from "react"
+import toast from "react-hot-toast"
 
 interface Props {
   tab: (i:string) => void
@@ -83,7 +84,7 @@ export const TabBars = ({tab, quotationQty, error}:Props) => {
                           {` ตรวจราคาทอง\nหลอมเรียลไทม์`}
                           </div>
                     }/>
-                    <Tab key="quot" title={
+                    <Tab className=" lg:hidden" key="quot" title={
                       isScrolled
                         ? quotationQty > 0 
                             ? <div className={`bg-red-600 rounded-full h-7 w-7`}>

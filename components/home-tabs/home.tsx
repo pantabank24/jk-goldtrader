@@ -28,6 +28,7 @@ import { PriceDto } from "@/app/models/Models";
 import { QuotationModel } from "@/app/models/Quotations";
 import QuotationComponent from "../quotation";
 import AddToHomeScreenPrompt from "../AddToHomeScreenPrompt";
+import toast, { Toaster } from "react-hot-toast";
 
 interface Props {
     data?: PriceDto,
@@ -46,10 +47,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
   const [calc, setCalc] = React.useState(0);
   const [blog, setBlog] = React.useState<any>();
   
-
-  const [toggle, setToggle] = useState(false)
   const [currentQuot, setCurrentQuot] = useState<QuotationModel>();
-  const [hidden, setHidden] = useState(false);
 
   const goldTypes = [
     { key: "3", label: "ทองหลอม" },
@@ -295,30 +293,40 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
 
   const handleQuote = () => {
     currentQuots(currentQuot)
-    addToast({
-          hideIcon: true,
-          title: "เพิ่มลงในใบเสนอราคาเรียบร้อย",
-          description: `คุณได้เพิ่มรายการ ${currentQuot?.goldType} ${currentQuot?.percentage}% น้ำหนัก ${currentQuot?.laborCost} กรัม ราคาประเมิน ${currentQuot?.totalAmount.toLocaleString()} บาท กรุณาตรวจสอบในเมนูใบเสนอราคา`,
-          radius: "lg",
-          classNames: {
-            icon: "backdrop-blur-xl border border-white/20"
-          }
-        })
+    toast.dismiss()
+    toast(`คุณได้เพิ่มรายการ ${currentQuot?.goldType} ${currentQuot?.percentage}% น้ำหนัก ${currentQuot?.laborCost} กรัม ราคาประเมิน ${currentQuot?.totalAmount.toLocaleString()} บาท กรุณาตรวจสอบในเมนูใบเสนอราคา`,
+      {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }
+    );
+    // addToast({
+    //       hideIcon: true,
+    //       title: "เพิ่มลงในใบเสนอราคาเรียบร้อย",
+    //       description: `คุณได้เพิ่มรายการ ${currentQuot?.goldType} ${currentQuot?.percentage}% น้ำหนัก ${currentQuot?.laborCost} กรัม ราคาประเมิน ${currentQuot?.totalAmount.toLocaleString()} บาท กรุณาตรวจสอบในเมนูใบเสนอราคา`,
+    //       radius: "lg",
+    //       classNames: {
+    //         icon: "backdrop-blur-xl border border-white/20"
+    //       }
+    //     })
   }
 
 
   return (
-    <section className="flex flex-col  gap-4 transition-all duration-300">
+    <section className="flex flex-col  gap-4 transition-all duration-300 ">
 
       <BannerSlider />
         <div>
-            <div className="inline-block  text-center justify-center w-full ">
+            <div className="inline-block  text-center justify-center mb-5 lg:mt-10 w-full ">
                 <span className="text-3xl font-bold bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
                   ประเมินราคาทองคำ
                 </span>
               </div>
 
-            <div className=" flex flex-col mx-4 items-center">              
+            <div className=" flex flex-col mx-4 items-center">         
 
               {
                 error 
@@ -333,8 +341,9 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                       </span>
                     </div>
                   </div>
-                  : <div className=" flex flex-col items-center justify-center">
-                    <div className=" flex w-96 text-center flex-col justify-center rounded-3xl py-2 px-5 backdrop-blur-xl border border-yellow-300/20 bg-gradient-to-b from-white/5 to-[#14100b]  my-2 ">
+                  : <div className=" flex flex-col lg:h-[650px]  lg:flex-row gap-x-4 gap-y-4 items-start justify-center">
+                    <div className=" flex flex-col h-full gap-y-4 w-full items-center">
+                      <div className=" flex w-96 text-center flex-col justify-center rounded-3xl py-2 px-5 backdrop-blur-xl border border-yellow-300/20 bg-gradient-to-b from-white/5 to-[#14100b]   ">
                       <span className=" font-bold text-2xl bg-gradient-to-b from-yellow-300 to-yellow-900 bg-clip-text text-transparent mb-3  ">ทองคำเเท่ง 96.5%</span>
                       <div className=" grid grid-cols-2  gap-x-4">
                         <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 flex flex-col items-center py-5 rounded-2xl h-28 justify-center">
@@ -399,7 +408,14 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                       </span>
                     </div>
 
-                    <div className=" grid grid-cols-1 md:grid-cols-2 gap-x-10 backdrop-blur-xl border border-white/20 bg-gradient-to-b from-white/5 to-white/10 px-10 py-5 rounded-3xl mt-5">
+                    <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_8d6d1&symbol=FOREXCOM%3AXAUUSD&interval=1&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=0a0a0a&studies=[]&theme=dark&style=1&timezone=Asia%2FBangkok&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=th"
+                      className=" flex w-full rounded-3xl h-full max-lg:hidden"
+                      height="500" 
+                      scrolling="no">
+                    </iframe>
+                    </div>
+
+                    <div className=" flex-1 flex flex-col h-full justify backdrop-blur-xl border border-white/20 bg-gradient-to-b from-white/5 to-white/10 px-10 py-5 rounded-3xl ">
                       <div className=" gap-3 flex flex-col items-center">
                         <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">ประเภททอง</span>
                         <Select
@@ -483,12 +499,13 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
             </div>
 
             <div className="inline-block text-center justify-center w-full mt-20 mb-7 flex flex-col">
+              
+            </div>
+
+            <div className=" lg:hidden flex flex-col gap-y-4 w-full items-center justify-center px-5">
               <span className="text-3xl font-bold bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
                 กราฟทองตอนนี้
               </span>
-            </div>
-
-            <div className=" flex w-full items-center justify-center px-5">
               <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_8d6d1&symbol=FOREXCOM%3AXAUUSD&interval=1&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=0a0a0a&studies=[]&theme=dark&style=1&timezone=Asia%2FBangkok&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=th"
                 className=" flex w-full rounded-3xl lg:w-1/2"
                 height="500" 
@@ -501,40 +518,26 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
               <span className="  text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold">บทความ</span>
               <span className=" mb-10 bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold ">ข่าวสารประชาสัมพันธ์จาก JK Goldtrader</span>
 
-              <div className={` grid items-start justify-center gap-x-4 gap-y-5 grid-cols-1 max-md:grid-cols-1`}>
+              <div className=" w-full lg:w-1/2">
                 {
                   blogs.map((i, index) => (
-                    <div key={index} className=" flex flex-col rounded-2xl border-yellow-600 border-2 bg-[#14100b] sm:w-96  ">
-                      <img
-                        className="h-64 w-full object-cover rounded-xl"
-                        alt="fischer"
-                        src={i.img}
-                      />
-
-                      <span className=" w-full px-5 text-2xl font-medium text-yellow-600 mt-2">{i.title}</span>
-                      <div className=" flex flex-row items-center gap-x-2 my-4 mx-4">
-                        <Image
-                          className=" rounded-full"
-                          alt="author"
-                          src={i.author_img}
-                          width={40}
-                          height={40}
-                        />
-                        <div className=" flex flex-col">
-                          <span>{i.author_name} (ผู้เขียน) </span>
-                          <span className=" text-xs">{moment(i.created_at).locale('th').format('D MMMM YYYY')}</span>
-                        </div>
-                      </div>
-                      <span className=" w-full h-full px-5 mb-5 text-sm whitespace-pre-line  line-clamp-6">{i.description}</span>
-                      <Button className=" mx-5 mb-5 bg-gradient-to-b from-yellow-500 to-yellow-700  font-bold" onPress={() => handleSetBlog(index)}>อ่านเพิ่มเติม</Button>
+                    <div key={index} className=" flex flex-col xl:flex-row rounded-2xl backdrop-blur-xl border border-white/20 bg-gradient-to-b from-white/5 to-white/10 items-center justify-center ">
+                    <img
+                       className="h-72 max-xl:w-full object-cover rounded-xl "
+                       alt="fischer"
+                       src={i.img}
+                     />
+                    <div className=" flex flex-col items-end justify-center py-4 px-4">
+                      <span className=" w-full h-full text-sm whitespace-pre-line ">{i.description}</span>
+                      <Button className="  font-bold backdrop-blur-xl border border-white/20 bg-gradient-to-b from-transparent to-yellow-500/50" onPress={() => handleSetBlog(index)}>อ่านเพิ่มเติม</Button>
+                     </div>
                     </div>
                   )
                   )
                 }
               </div>
-              <span className=" text-gray-500 mt-5 bg-white/20 px-5 py-2 rounded-full">ทั้งหมด {blogs.length} บทความ</span>
 
-              <div className=" w-full mt-20 md:mt-32 md:px-5 flex items-center justify-center flex-col">
+              <div className=" w-full lg:w-1/2 mt-20 md:mt-32  flex items-center justify-center flex-col">
                 <span className="  text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold mb-10">พิกัดร้าน</span>
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.1906687314067!2d100.64438107586528!3d13.767372496931236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d61e658c0eb4f%3A0xa6559716dcd55c86!2z4LiI4LmI4Liy4LiE4Li04LiHIOC4m-C4suC4geC4nuC4meC4seC4hw!5e0!3m2!1sen!2sth!4v1751569935480!5m2!1sen!2sth"
