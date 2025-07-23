@@ -10,6 +10,9 @@ const AdPopup = () => {
   const [isOpening, setIsOpening] = useState(false);
 
   useEffect(() => {
+    // รีเซ็ต scroll ทุกครั้งเมื่อ component mount
+    document.body.style.overflow = "";
+
     const hasClosed = localStorage.getItem("515444321");
     if (!hasClosed) {
       setShowPopup(true);
@@ -18,21 +21,25 @@ const AdPopup = () => {
       // delay เพื่อให้ transition ทำงานตอนเปิด popup
       setTimeout(() => {
         setIsOpening(true);
-      }, 10); // เล็กน้อยพอให้ DOM render ก่อน
+      }, 10);
     }
-
-    return () => {
-      document.body.style.overflow = "";
-    };
   }, []);
+
+  useEffect(() => {
+    // cleanup scroll ถ้า popup ปิด
+    if (!showPopup) {
+      document.body.style.overflow = "";
+    }
+  }, [showPopup]);
 
   const handleClose = (remember: boolean) => {
     if (remember) {
       localStorage.setItem("515444321", "true");
     }
-    document.body.style.overflow = "";
+
     setIsClosing(true);
     setIsOpening(false);
+
     setTimeout(() => {
       setShowPopup(false);
       setIsClosing(false);
