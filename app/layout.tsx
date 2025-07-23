@@ -53,21 +53,22 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <head>
-  <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#ffd700" />
-  <link rel="apple-touch-icon" href="/favicon.ico" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="description" content="แอปเทรดทองคำ JK Goldtrader Progressive Web App" />
-  <script dangerouslySetInnerHTML={{__html:`
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#ffd700" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="description" content="แอปเทรดทองคำ JK Goldtrader Progressive Web App" />
+        <script dangerouslySetInnerHTML={{
+          __html: `
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
         navigator.serviceWorker.register('/sw.js');
       });
     }
   `}} />
-</head>
+      </head>
       <title>JK Goldtrader | เช็คราคาทอง ตรวจราคาทอง ประเมินราคาทอง</title>
       <meta name="description" content="คำอธิบายของเว็บเพจนี้" />
       <body
@@ -75,11 +76,11 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen">
-            <AdPopup/>
-            <AddToHomeScreenPrompt/>
+            <AdPopup />
+            {/* <AddToHomeScreenPrompt/> */}
 
             <main className="">
-            {/* <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow"> */}
+              {/* <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow"> */}
               {children}
             </main>
             <footer className="w-full flex items-center justify-center py-10 flex-col bg-[#14100b]">
@@ -104,7 +105,7 @@ export default function RootLayout({
                   พิกัดร้าน : Google Maps
                 </Button> */}
               </div>
-              
+
               <div
                 className="flex items-center gap-1 text-current"
               >
