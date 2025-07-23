@@ -11,27 +11,15 @@ const AdPopup = () => {
   const [isClosing, setIsClosing] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
 
-  // ✅ รีเซ็ต scroll ทุกครั้งที่ component mount
   useEffect(() => {
     const hasClosed = localStorage.getItem(LOCALSTORAGE_KEY);
     if (!hasClosed) {
       setShowPopup(true);
       setTimeout(() => {
         setIsOpening(true);
-        document.body.style.overflow = "hidden"; // ✅ ต้องทำหลังเปิด
-      }, 10);
-    } else {
-      // ✅ ถ้าเคยปิดไว้แล้ว ก็ให้ reset scroll แน่นอน
-      document.body.style.overflow = ""; // 💥 critical fix
+      }, 10); // ให้ DOM render ก่อนค่อยเปิด transition
     }
   }, []);
-
-  // ✅ cleanup scroll ทันทีที่ popup ปิด
-  useEffect(() => {
-    if (!showPopup) {
-      document.body.style.overflow = "";
-    }
-  }, [showPopup]);
 
   const handleClose = (remember: boolean) => {
     if (remember) {
@@ -44,7 +32,7 @@ const AdPopup = () => {
     setTimeout(() => {
       setShowPopup(false);
       setIsClosing(false);
-    }, 300);
+    }, 300); // รอ animation จบ
   };
 
   const handleToggle = () => {
@@ -66,11 +54,15 @@ const AdPopup = () => {
       onClick={handleBackgroundClick}
       className={`fixed inset-0 z-50 bg-black backdrop-blur-sm bg-opacity-60 flex items-center justify-center transition-opacity duration-300 ${
         isClosing ? "opacity-0" : "opacity-100"
-      }`}
+      } touch-none overscroll-none`}
+      style={{
+        touchAction: "none",
+        overscrollBehavior: "none",
+      }}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`rounded-xl shadow-lg p-4 max-w-sm w-full relative transform transition-all duration-300 ${
+        className={`rounded-xl shadow-lg p-4 max-w-sm w-full relative transform transition-all duration-300 bg-white ${
           isClosing
             ? "opacity-0 scale-95"
             : isOpening
