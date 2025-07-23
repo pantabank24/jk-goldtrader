@@ -19,7 +19,9 @@ const AddToHomeScreenPrompt: React.FC = () => {
     const hasClosed = localStorage.getItem("22222211212");
     if (!hasClosed) {
       setShowPopup(true);
-      document.body.style.overflow = "hidden";
+      if (!/iphone|ipad|ipod/i.test(window.navigator.userAgent)) {
+        document.body.style.overflow = "hidden";
+      }
 
       // delay เพื่อให้ transition ทำงานตอนเปิด popup
       setTimeout(() => {
