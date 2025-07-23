@@ -21,34 +21,20 @@ const ModernNavbar = ({isTransparent}:Props) => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300  rounded-b-2xl  ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300  rounded-b-2xl  
+      ${
       isTransparent
-        ? isScrolled 
-          ? 'bg-[#710711]/80 backdrop-blur-lg shadow-lg' 
-          : 'bg-transparent'
+        ? '  bg-gradient-to-b from-[#710711] to-transparent'
         : 'bg-[#710711]/80 backdrop-blur-lg shadow-lg'
       
-    }`}>
+    }
+    `}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo Brand */}
           <div className="flex items-center gap-3">
             {
-              isTransparent
-                ? isScrolled 
-                  ? <div className=' flex flex-row items-center'>
-                      <img 
-                        src="/images/JKLOGO.png" 
-                        alt="logo" 
-                        className=" w-8"
-                      />
-                      <div className=' flex flex-col'>
-                        <span className="font-bold  text-xl ml-3 bg-gradient-to-b from-yellow-100 to-yellow-500 bg-clip-text text-transparent">จ่าคิง ปากพนัง</span>
-                        <span className="font-bold  text-xs ml-3 mt-[-5] bg-gradient-to-b from-yellow-100 to-yellow-600 bg-clip-text text-transparent">รับสกัดทอง รับซื้อทองคำ ทุกประเภท</span>
-                      </div>
-                    </div>
-                  : null
-                : <div className=' flex flex-row items-center'>
+              <div className=' flex flex-row items-center'>
                       <img 
                         src="/images/JKLOGO.png" 
                         alt="logo" 

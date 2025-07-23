@@ -70,6 +70,7 @@ export const TabBars = ({tab, quotationQty, error}:Props) => {
                       cursor: "bg-gradient-to-b from-yellow-200 to-yellow-600 heigh-50  backdrop-blur-xl border border-white/50"
                     }}
                 >
+                  
                     <Tab key="home" title={
                       isScrolled
                         ? <House color="white"/>

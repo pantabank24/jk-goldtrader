@@ -12,6 +12,7 @@ import ModernNavbar from "@/components/navbar";
 import { Toast } from "@heroui/react";
 import QuotationTab from "@/components/quotation-tab";
 import QuotationComponent from "@/components/quotation";
+import HomeV2 from "@/components/home-tabs/homev2";
 
 export default function Home() {
   const fetcher = (url: string) => fetch('/api/gold').then(res => res.json());
@@ -55,7 +56,10 @@ export default function Home() {
         pQuot.length > 0 
         ? <QuotationComponent items={pQuot} onChange={() => setPQout([])}/>
         : tab === "home"
-          ? <HomePages error={error} currentQuots={(i) => handleSelectQuotation(i)} service={service} data={data} isLoading={isLoading}/>
+          ? <div>
+            <HomeV2 error={error} currentQuots={(i) => handleSelectQuotation(i)} service={service} data={data} isLoading={isLoading}/>
+              <HomePages error={error} currentQuots={(i) => handleSelectQuotation(i)} service={service} data={data} isLoading={isLoading}/>
+          </div>
           : tab === "check"
             ? <RealTime service={service} pricing={data}/>
             : <Quotation quotation={quotational} callback={(i) => setQuotational(i)}/>

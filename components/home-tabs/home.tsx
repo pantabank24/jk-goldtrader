@@ -316,7 +316,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
 
 
   return (
-    <section className="flex flex-col  gap-4 transition-all duration-300 ">
+    <section className="flex flex-col  gap-4 transition-all duration-300 max-lg:hidden">
 
       <BannerSlider />
         <div>
