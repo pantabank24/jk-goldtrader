@@ -52,9 +52,8 @@ const AdPopup = () => {
   return (
     <div
       onClick={handleBackgroundClick}
-      className={`fixed inset-0 z-50 bg-black backdrop-blur-sm bg-opacity-60 flex items-center justify-center transition-opacity duration-300 ${
-        isClosing ? "opacity-0" : "opacity-100"
-      } touch-none overscroll-none`}
+      className={`fixed inset-0 z-50 bg-black backdrop-blur-sm bg-opacity-60 flex items-center justify-center transition-opacity duration-300 ${isClosing ? "opacity-0" : "opacity-100"
+        } touch-none overscroll-none`}
       style={{
         touchAction: "none",
         overscrollBehavior: "none",
@@ -62,16 +61,15 @@ const AdPopup = () => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`rounded-xl shadow-lg p-4 max-w-sm w-full relative transform transition-all duration-300 bg-white ${
-          isClosing
-            ? "opacity-0 scale-95"
-            : isOpening
+        className={`rounded-2xl shadow-lg p-4 max-w-sm w-full relative transform transition-all duration-300 border border-white/10 bg-white/10  ${isClosing
+          ? "opacity-0 scale-95"
+          : isOpening
             ? "opacity-100 scale-100"
             : "opacity-0 scale-95"
-        }`}
+          }`}
       >
         <img
-          src="/images/515444321_122134709534668442_6972218340899068794_n.jpg"
+          src="/images/ads-001.jpg"
           alt="โฆษณา"
           className="rounded-lg mb-4 w-full cursor-pointer"
         />
