@@ -3,30 +3,31 @@
 import { Checkbox } from "@heroui/react";
 import { useEffect, useState } from "react";
 
+const LOCALSTORAGE_KEY = "515444321";
+
 const AdPopup = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [isCheck, setIsCheck] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
 
+  // ✅ รีเซ็ต scroll ทุกครั้งที่ component mount
   useEffect(() => {
-    // รีเซ็ต scroll ทุกครั้งเมื่อ component mount
-    document.body.style.overflow = "";
-
-    const hasClosed = localStorage.getItem("515444321");
+    const hasClosed = localStorage.getItem(LOCALSTORAGE_KEY);
     if (!hasClosed) {
       setShowPopup(true);
-      document.body.style.overflow = "hidden";
-
-      // delay เพื่อให้ transition ทำงานตอนเปิด popup
       setTimeout(() => {
         setIsOpening(true);
+        document.body.style.overflow = "hidden"; // ✅ ต้องทำหลังเปิด
       }, 10);
+    } else {
+      // ✅ ถ้าเคยปิดไว้แล้ว ก็ให้ reset scroll แน่นอน
+      document.body.style.overflow = ""; // 💥 critical fix
     }
   }, []);
 
+  // ✅ cleanup scroll ทันทีที่ popup ปิด
   useEffect(() => {
-    // cleanup scroll ถ้า popup ปิด
     if (!showPopup) {
       document.body.style.overflow = "";
     }
@@ -34,7 +35,7 @@ const AdPopup = () => {
 
   const handleClose = (remember: boolean) => {
     if (remember) {
-      localStorage.setItem("515444321", "true");
+      localStorage.setItem(LOCALSTORAGE_KEY, "true");
     }
 
     setIsClosing(true);
