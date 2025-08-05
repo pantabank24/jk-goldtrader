@@ -341,7 +341,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                       </span>
                     </div>
                   </div>
-                  : <div className=" grid grid-cols-2  lg:grid-cols-5 gap-x-4 gap-y-4 items-start justify-center">
+                  : <div className=" grid grid-cols-2  lg:grid-cols-5 gap-x-4 gap-y-2 items-start justify-center">
                     <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_8d6d1&symbol=FOREXCOM%3AXAUUSD&interval=1&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=0a0a0a&studies=[]&theme=dark&style=1&timezone=Asia%2FBangkok&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=th"
                       className=" row-span-2 col-span-3 flex w-full rounded-3xl h-full max-lg:hidden"
                       height="500" 
@@ -349,7 +349,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                     </iframe>
                     <div className=" col-span-2 flex flex-col h-full gap-y-4 w-full items-center">
                       <div className=" flex w-full text-center flex-col justify-center rounded-3xl py-2 px-5 backdrop-blur-xl border border-yellow-300/20 bg-gradient-to-b from-white/5 to-[#14100b]   ">
-                      <span className=" font-bold text-2xl bg-gradient-to-b from-yellow-300 to-yellow-900 bg-clip-text text-transparent mb-3  ">ทองคำเเท่ง 96.5%</span>
+                      <span className=" font-bold text-2xl bg-gradient-to-b from-yellow-300 to-yellow-900 bg-clip-text text-transparent mb-1  ">ทองคำเเท่ง 96.5%</span>
                       <div className=" grid grid-cols-2  gap-x-4">
                         <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 flex flex-col items-center py-5 rounded-2xl h-20 justify-center">
                           {
@@ -441,7 +441,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                                  <Input 
                                    endContent={<div className=" text-xs">%</div>}
                                    label={<div className=' bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent font-bold'>เปอร์เซ็นต์ทอง (%)</div>}
-                                   classNames={{inputWrapper: "backdrop-blur-xl border border-white/10"}} size="sm" className=" w-full text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={percent} onValueChange={(e) => validatePercentInput(e)} />
+                                   classNames={{inputWrapper: "backdrop-blur-xl border border-white/10"}} size="lg" className=" w-full text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={percent} onValueChange={(e) => validatePercentInput(e)} />
                                </div>
                                : null
                            }
@@ -458,7 +458,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                                        inputWrapper: "backdrop-blur-xl border border-white/10",
                                        label: "text-red-500 !important", 
                                      }
-                                   } size="sm" className=" w-full  " step="1" type="text" inputMode="decimal" min="0" value={plus ?? ""} onValueChange={(e) => validatePlusInput(e)} />
+                                   } size="lg" className=" w-full  " step="1" type="text" inputMode="decimal" min="0" value={plus ?? ""} onValueChange={(e) => validatePlusInput(e)} />
                                </div>
                                : null
                            }
@@ -474,14 +474,14 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                                 inputWrapper: "backdrop-blur-xl border border-white/10",
                                 label: "text-red-500 !important", 
                               }
-                            } size="sm" className=" flex w-full  " step="1" type="text" inputMode="decimal" min="0" value={gram ?? ""} onValueChange={(e) => validateGramInput(e)} />
+                            } size="lg" className=" flex w-full  " step="1" type="text" inputMode="decimal" min="0" value={gram ?? ""} onValueChange={(e) => validateGramInput(e)} />
 
 
                            {
                              isLoading == false ? (
                              <button
                                onClick={() => handleQuote()}
-                               className=" w-full h-12 justify-center backdrop-blur-xl border  border-white/20 bg-gradient-to-b from-blue-700/5 to-blue-800/30 text-white  rounded-xl transition-all duration-200 hover:scale-105 flex flex-row items-center "
+                               className=" w-full h-16 justify-center backdrop-blur-xl border  border-white/20 bg-gradient-to-b from-blue-700/5 to-blue-800/30 text-white  rounded-xl transition-all duration-200 hover:scale-105 flex flex-row items-center "
                              >
                                <FilePlus size={20} />
                                <span className=" pl-2 text-xs">เพิ่มลงในใบเสนอราคา</span>
@@ -492,7 +492,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                          
                        </div>
                          
-                       <div className="mt-5 flex">
+                       <div className="mt-3 flex">
                          <div className=" flex flex-col w-full items-center justify-center backdrop-blur-xl border border-white/20  text-white bg-gradient-to-b from-black/80 to-orange-950/70 rounded-2xl py-3">
                            <span className=" flex text-center text-sm">ราคาประเมิน</span>
                            <Skeleton isLoaded={!isLoading} className="rounded-lg">
@@ -514,7 +514,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                   </div>
               }
 
-              <Button as="a" href="https://line.me/R/ti/p/@446pxqyk?ts=04201136&oat_content=url" className=" hover:scale-105 backdrop-blur-xl border-2 border-white/20 flex h-14 w-56 px-10 mt-5  bg-gradient-to-b from-green-500 to-green-700 " radius="full">
+              <Button as="a" href="https://line.me/R/ti/p/@446pxqyk?ts=04201136&oat_content=url" className=" hover:scale-105 backdrop-blur-xl border-2 border-white/20 flex h-14 w-56 px-10 mt-3  bg-gradient-to-b from-green-500 to-green-700 " radius="full">
                 <img alt="" width={40} src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/LINE_New_App_Icon_%282020-12%29.png/500px-LINE_New_App_Icon_%282020-12%29.png" />
                 <div>สนใจซื้อขาย คลิกที่นี่</div>
               </Button>
