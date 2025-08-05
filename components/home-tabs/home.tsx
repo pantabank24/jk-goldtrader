@@ -413,7 +413,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                     </iframe>
                     </div>
 
-                    <div className=" flex flex-col  w-full justify backdrop-blur-xl border border-white/20 bg-gradient-to-b from-white/5 to-white/10 px-3 py-4 rounded-3xl ">
+                    <div className=" flex flex-col  w-96 justify backdrop-blur-xl border border-white/20 bg-gradient-to-b from-white/5 to-white/10 px-3 py-4 rounded-3xl ">
                        <div className=" gap-3 flex flex-col items-center">
                          <Select
                            aria-label="เลือกประเภททอง"
