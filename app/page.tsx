@@ -39,6 +39,11 @@ export default function Home() {
       setQuotational([])
     }
 
+    const handleBackTab = () => {
+      setTab("home");
+      setPQout([]);
+    }
+
   return (
     <section className="flex flex-col  gap-4">
       <ModernNavbar
@@ -53,7 +58,7 @@ export default function Home() {
 
       {
         pQuot.length > 0 
-        ? <QuotationComponent items={pQuot} onChange={() => setPQout([])}/>
+        ? <QuotationComponent items={pQuot} onChange={() => handleBackTab()}/>
         : tab === "home"
           ? <HomePages error={error} currentQuots={(i) => handleSelectQuotation(i)} service={service} data={data} isLoading={isLoading}/>
           : tab === "check"

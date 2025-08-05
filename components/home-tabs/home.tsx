@@ -320,11 +320,11 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
 
       <BannerSlider />
         <div>
-            {/* <div className="inline-block  text-center justify-center mb-5 lg:mt-10 w-full ">
+            <div className="max-lg:hidden inline-block  text-center justify-center mb-5 lg:mt-10 w-full ">
                 <span className="text-3xl font-bold bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
                   ประเมินราคาทองคำ
                 </span>
-              </div> */}
+              </div>
 
             <div className=" flex flex-col mx-4 items-center">         
 
@@ -341,9 +341,14 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                       </span>
                     </div>
                   </div>
-                  : <div className=" flex flex-col lg:h-[650px]  lg:flex-row gap-x-4 gap-y-4 items-start justify-center">
-                    <div className=" flex flex-col h-full gap-y-4 w-full items-center">
-                      <div className=" flex w-96 text-center flex-col justify-center rounded-3xl py-2 px-5 backdrop-blur-xl border border-yellow-300/20 bg-gradient-to-b from-white/5 to-[#14100b]   ">
+                  : <div className=" grid grid-cols-2  lg:grid-cols-5 gap-x-4 gap-y-4 items-start justify-center">
+                    <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_8d6d1&symbol=FOREXCOM%3AXAUUSD&interval=1&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=0a0a0a&studies=[]&theme=dark&style=1&timezone=Asia%2FBangkok&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=th"
+                      className=" row-span-2 col-span-3 flex w-full rounded-3xl h-full max-lg:hidden"
+                      height="500" 
+                      scrolling="no">
+                    </iframe>
+                    <div className=" col-span-2 flex flex-col h-full gap-y-4 w-full items-center">
+                      <div className=" flex w-full text-center flex-col justify-center rounded-3xl py-2 px-5 backdrop-blur-xl border border-yellow-300/20 bg-gradient-to-b from-white/5 to-[#14100b]   ">
                       <span className=" font-bold text-2xl bg-gradient-to-b from-yellow-300 to-yellow-900 bg-clip-text text-transparent mb-3  ">ทองคำเเท่ง 96.5%</span>
                       <div className=" grid grid-cols-2  gap-x-4">
                         <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 flex flex-col items-center py-5 rounded-2xl h-20 justify-center">
@@ -405,15 +410,11 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                         </Skeleton>
                       </span>
                     </div>
-
-                    <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_8d6d1&symbol=FOREXCOM%3AXAUUSD&interval=1&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=0a0a0a&studies=[]&theme=dark&style=1&timezone=Asia%2FBangkok&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=th"
-                      className=" flex w-full rounded-3xl h-full max-lg:hidden"
-                      height="500" 
-                      scrolling="no">
-                    </iframe>
                     </div>
 
-                    <div className=" flex flex-col  w-96 justify backdrop-blur-xl border border-white/20 bg-gradient-to-b from-white/5 to-white/10 px-3 py-4 rounded-3xl ">
+                    
+
+                    <div className=" col-span-2 flex flex-col w-full justify backdrop-blur-xl border border-white/20 bg-gradient-to-b from-white/5 to-white/10 px-3 py-4 rounded-3xl ">
                        <div className=" gap-3 flex flex-col items-center">
                          <Select
                            aria-label="เลือกประเภททอง"
@@ -421,7 +422,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                            className="min-w-80"
                            selectedKeys={option}
                            size="md"
-                           classNames={{trigger: "backdrop-blur-xl border border-white/10", popoverContent: "backdrop-blur-xl border border-white/50 bg-white/10"}}
+                           classNames={{trigger: "backdrop-blur-xl border border-white/10 ", popoverContent: "backdrop-blur-xl border border-white/10 bg-black/30"}}
                          >
                            {goldTypes.map((item) => (
                              <SelectItem
@@ -463,7 +464,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                            }
                          </div>
 
-                         <div className={`flex items-center w-fulll gap-2`}>
+                         <div className={`flex items-center w-full gap-2`}>
                          
                            <Input 
                             endContent={<div className=" text-xs">กรัม</div>}
@@ -473,17 +474,17 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                                 inputWrapper: "backdrop-blur-xl border border-white/10",
                                 label: "text-red-500 !important", 
                               }
-                            } size="sm" className=" w-full  " step="1" type="text" inputMode="decimal" min="0" value={gram ?? ""} onValueChange={(e) => validateGramInput(e)} />
+                            } size="sm" className=" flex w-full  " step="1" type="text" inputMode="decimal" min="0" value={gram ?? ""} onValueChange={(e) => validateGramInput(e)} />
 
 
                            {
                              isLoading == false ? (
                              <button
                                onClick={() => handleQuote()}
-                               className=" w-32 h-12 justify-center backdrop-blur-xl border  border-white/20 bg-gradient-to-b from-black/5 to-white/10 text-white  rounded-xl transition-all duration-200 hover:scale-105 flex flex-row items-center "
+                               className=" w-full h-12 justify-center backdrop-blur-xl border  border-white/20 bg-gradient-to-b from-blue-700/5 to-blue-800/30 text-white  rounded-xl transition-all duration-200 hover:scale-105 flex flex-row items-center "
                              >
                                <FilePlus size={20} />
-                               {/* <span className=" pl-2 text-xs">เพิ่มลงในใบเสนอราคา</span> */}
+                               <span className=" pl-2 text-xs">เพิ่มลงในใบเสนอราคา</span>
                              </button>) : null
                            }
                          </div>
