@@ -56,7 +56,7 @@ export const BannerSlider = () => {
 }, []);
 
     return (
-    <div className="relative w-full h-60 sm:h-80 lg:h-96 overflow-hidden bg-black">
+    <div className="relative w-full h-52 sm:h-80 lg:h-96 overflow-hidden bg-black">
         <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat blur-lg transition-all duration-300"
               style={{ backgroundImage: `url(${banners[currentSlide].image})` }}

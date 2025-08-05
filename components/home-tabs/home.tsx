@@ -320,11 +320,11 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
 
       <BannerSlider />
         <div>
-            <div className="inline-block  text-center justify-center mb-5 lg:mt-10 w-full ">
+            {/* <div className="inline-block  text-center justify-center mb-5 lg:mt-10 w-full ">
                 <span className="text-3xl font-bold bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
                   ประเมินราคาทองคำ
                 </span>
-              </div>
+              </div> */}
 
             <div className=" flex flex-col mx-4 items-center">         
 
@@ -346,35 +346,33 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                       <div className=" flex w-96 text-center flex-col justify-center rounded-3xl py-2 px-5 backdrop-blur-xl border border-yellow-300/20 bg-gradient-to-b from-white/5 to-[#14100b]   ">
                       <span className=" font-bold text-2xl bg-gradient-to-b from-yellow-300 to-yellow-900 bg-clip-text text-transparent mb-3  ">ทองคำเเท่ง 96.5%</span>
                       <div className=" grid grid-cols-2  gap-x-4">
-                        <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 flex flex-col items-center py-5 rounded-2xl h-28 justify-center">
+                        <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 flex flex-col items-center py-5 rounded-2xl h-20 justify-center">
                           {
                             isLoading
                               ? <CircularProgress aria-label="Loading..." color="warning" />
                               : (<div className=" flex flex-col items-center ">
-                                <span className=" font-normal text-sm text-yellow-500">ราคารับซื้อ</span>
-                                <span className=" text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold">
+                                <span className=" font-normal text-sm text-yellow-500">ราคารับซื้อ (บาท)</span>
+                                <span className=" text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold flex flex-row">
                                   {(data?.gold965.ask ?? 0).toLocaleString(`th-TH`, {
                                     minimumFractionDigits: 0,
                                     maximumFractionDigits: 2,
                                   })}
                                 </span>
-                                <span className=" font-normal text-sm text-yellow-500">บาท</span>
                               </div>)
                           }
                         </div>
-                        <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 flex flex-col items-center py-5 rounded-2xl h-28 justify-center">
+                        <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 flex flex-col items-center py-5 rounded-2xl h-20 justify-center">
                           {
                             isLoading
                               ? <CircularProgress aria-label="Loading..." color="warning" />
                               : (<div className=" flex flex-col items-center">
-                                <span className=" font-normal text-sm text-yellow-500 ">ราคาขาย</span>
+                                <span className=" font-normal text-sm text-yellow-500 ">ราคาขาย (บาท)</span>
                                 <span className=" text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold">
                                   {(data?.gold965.bid ?? 0).toLocaleString(`th-TH`, {
                                     minimumFractionDigits: 0,
                                     maximumFractionDigits: 2,
                                   })}
                                 </span>
-                                <span className=" font-normal text-sm text-yellow-500">บาท</span>
                               </div>)
                           }
                         </div>
@@ -415,80 +413,103 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                     </iframe>
                     </div>
 
-                    <div className=" flex-1 flex flex-col h-full justify backdrop-blur-xl border border-white/20 bg-gradient-to-b from-white/5 to-white/10 px-10 py-5 rounded-3xl ">
-                      <div className=" gap-3 flex flex-col items-center">
-                        <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">ประเภททอง</span>
-                        <Select
-                          aria-label="เลือกประเภททอง"
-                          onChange={(e) => handleOptionChange(e)}
-                          className="min-w-80"
-                          selectedKeys={option}
-                          size="lg"
-                          classNames={{trigger: "backdrop-blur-xl border border-white/10 ", popoverContent: "backdrop-blur-xl border border-white/50 bg-white/10"}}
-                        >
-                          {goldTypes.map((item) => (
-                            <SelectItem
-                              key={item.key}
+                    <div className=" flex flex-col  w-full justify backdrop-blur-xl border border-white/20 bg-gradient-to-b from-white/5 to-white/10 px-3 py-4 rounded-3xl ">
+                       <div className=" gap-3 flex flex-col items-center">
+                         <Select
+                           aria-label="เลือกประเภททอง"
+                           onChange={(e) => handleOptionChange(e)}
+                           className="min-w-80"
+                           selectedKeys={option}
+                           size="md"
+                           classNames={{trigger: "backdrop-blur-xl border border-white/10", popoverContent: "backdrop-blur-xl border border-white/50 bg-white/10"}}
+                         >
+                           {goldTypes.map((item) => (
+                             <SelectItem
+                               key={item.key}
 
-                            >
-                              {item.label}
-                            </SelectItem>
-                          ))}
-                        </Select>
-                        {
-                          option === "8" || option === "3" || option === "4"
-                            ? <div className=" flex flex-col items-center">
-                              <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">เปอร์เซ็นต์ทอง (%)</span>
-                              <Input classNames={{inputWrapper: "backdrop-blur-xl border border-white/10 "}} size="lg" className=" min-w-80 text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={percent} onValueChange={(e) => validatePercentInput(e)} />
-                            </div>
-                            : null
-                        }
+                             >
+                               {item.label}
+                             </SelectItem>
+                           ))}
+                         </Select>
+                         <div className={`flex items-center w-full gap-2`}>
+                           {
+                             option === "8" || option === "3" || option === "4"
+                               ? <div className="flex-1">
+                                 {/* <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">เปอร์เซ็นต์ทอง (%)</span> */}
+                                 <Input 
+                                   endContent={<div className=" text-xs">%</div>}
+                                   label={<div className=' bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent font-bold'>เปอร์เซ็นต์ทอง (%)</div>}
+                                   classNames={{inputWrapper: "backdrop-blur-xl border border-white/10"}} size="sm" className=" w-full text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={percent} onValueChange={(e) => validatePercentInput(e)} />
+                               </div>
+                               : null
+                           }
 
-                        {
-                          option === "3"
-                            ? <div className=" flex flex-col items-center">
-                              <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">ราคาบวก</span>
-                              <Input classNames={{inputWrapper: "backdrop-blur-xl border border-white/10 ", }} size="lg" className=" min-w-80 text-base " step="1" type="text" inputMode="decimal" min="0" value={plus ?? ""} onValueChange={(e) => validatePlusInput(e)} />
-                            </div>
-                            : null
-                        }
+                           {
+                             option === "3"
+                               ? <div className="flex-1">
+                                 {/* <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">ราคาบวก</span> */}
+                                 <Input 
+                                   endContent={<div className=" text-xs">บาท</div>}
+                                   label={<div className=' bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent font-bold'>ราคาบวก</div>}
+                                   classNames={
+                                     {
+                                       inputWrapper: "backdrop-blur-xl border border-white/10",
+                                       label: "text-red-500 !important", 
+                                     }
+                                   } size="sm" className=" w-full  " step="1" type="text" inputMode="decimal" min="0" value={plus ?? ""} onValueChange={(e) => validatePlusInput(e)} />
+                               </div>
+                               : null
+                           }
+                         </div>
 
-                        <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">น้ำหนักทอง (กรัม)</span>
-                        <Input classNames={{inputWrapper: "backdrop-blur-xl border border-white/10 "}} size="lg" className=" min-w-80 text-base " step="1" type="text" inputMode="decimal" min="0" value={gram ?? ""} onValueChange={(e) => validateGramInput(e)} />
+                         <div className={`flex items-center w-fulll gap-2`}>
+                         
+                           <Input 
+                            endContent={<div className=" text-xs">กรัม</div>}
+                            label={<div className=' bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent font-bold'>น้ำหนักทอง</div>}
+                            classNames={
+                              {
+                                inputWrapper: "backdrop-blur-xl border border-white/10",
+                                label: "text-red-500 !important", 
+                              }
+                            } size="sm" className=" w-full  " step="1" type="text" inputMode="decimal" min="0" value={gram ?? ""} onValueChange={(e) => validateGramInput(e)} />
+
+
+                           {
+                             isLoading == false ? (
+                             <button
+                               onClick={() => handleQuote()}
+                               className=" w-32 h-12 justify-center backdrop-blur-xl border  border-white/20 bg-gradient-to-b from-black/5 to-white/10 text-white  rounded-xl transition-all duration-200 hover:scale-105 flex flex-row items-center "
+                             >
+                               <FilePlus size={20} />
+                               {/* <span className=" pl-2 text-xs">เพิ่มลงในใบเสนอราคา</span> */}
+                             </button>) : null
+                           }
+                         </div>
+                         
+                         
+                       </div>
+                         
+                       <div className="mt-5 flex">
+                         <div className=" flex flex-col w-full items-center justify-center backdrop-blur-xl border border-white/20  text-white bg-gradient-to-b from-black/80 to-orange-950/70 rounded-2xl py-3">
+                           <span className=" flex text-center text-sm">ราคาประเมิน</span>
+                           <Skeleton isLoaded={!isLoading} className="rounded-lg">
+                             <span className="bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold truncate text-3xl">{
+                               calc > 9999999
+                                 ? formatNumber(calc) + "บาท"
+                                 : calc.toLocaleString(`th-TH`, {
+                                   minimumFractionDigits: 0,
+                                   maximumFractionDigits: 2,
+                                 }) + " บาท"
+                             } </span>
+                           </Skeleton>
+                           
+                           {/* <span className=" font-normal text-xs mt-2">ประเมินราคาทองคำแบบเรียลไทม์ด้วยระบบอัตโนมัติ</span> */}
+                           <span className=" font-normal text-xs">อัพเดทราคาทุก 30 วินาที</span>
+                         </div>
+                       </div>
                       </div>
-
-                      <div className="mt-8 flex">
-                        <div className=" flex flex-col w-full items-center justify-center backdrop-blur-xl border border-white/20  text-white bg-gradient-to-b from-black/80 to-orange-950/70 rounded-2xl py-5">
-                          <span className=" flex text-center">ราคาประเมิน</span>
-                          <Skeleton isLoaded={!isLoading} className="rounded-lg">
-                            <span className="bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold truncate text-3xl">{
-                              calc > 9999999
-                                ? formatNumber(calc) + "บาท"
-                                : calc.toLocaleString(`th-TH`, {
-                                  minimumFractionDigits: 0,
-                                  maximumFractionDigits: 2,
-                                }) + " บาท"
-                            } </span>
-                          </Skeleton>
-
-                          <span className=" font-normal text-xs mt-2">ประเมินราคาทองคำแบบเรียลไทม์ด้วยระบบอัตโนมัติ</span>
-                          <span className=" font-normal text-xs">อัพเดทราคาทุก 30 วินาที</span>
-                        </div>
-                      </div>
-
-                      {
-                        isLoading == false ? (
-                      <button
-                        onClick={() => handleQuote()}
-                        className=" mt-5 h-14 justify-center backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/5 to-white/10 text-white  rounded-full transition-all duration-200 hover:scale-105 flex flex-row items-center pr-4"
-                      >
-                        <FilePlus size={20} />
-                        <span className=" pl-2">เพิ่มลงในใบเสนอราคา</span>
-                      </button>) : null
-                      }
-
-                      
-                    </div>
                   </div>
               }
 
