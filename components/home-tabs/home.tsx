@@ -29,6 +29,7 @@ import { QuotationModel } from "@/app/models/Quotations";
 import QuotationComponent from "../quotation";
 import AddToHomeScreenPrompt from "../AddToHomeScreenPrompt";
 import toast, { Toaster } from "react-hot-toast";
+import { number } from "framer-motion";
 
 interface Props {
     data?: PriceDto,
@@ -44,6 +45,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
   const [gram, setGram] = React.useState<string | null>("1");
   const [plus, setPlus] = React.useState<string | null>("0");
   const [percent, setPercent] = React.useState("90");
+  const [gPrice, setGPrice] = React.useState<string | null>();
   const [calc, setCalc] = React.useState(0);
   const [blog, setBlog] = React.useState<any>();
   
@@ -61,12 +63,8 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
   ];
 
   useEffect(() => {
-    calcPrice()
-  }, [data, gram, plus, percent, option])
-
-  const handleSelectionChange = (e: any) => {
-    setOption(e.target.value);
-  };
+    calcPrice();
+  }, [data, gram, plus, percent, option, gPrice])
 
   const calcPrice = () => {
 
@@ -74,8 +72,8 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
       setGram(null)
     }
 
-    var goldPrice = data?.gold965.ask ?? 0
-    var gramPrice = (data?.gold965.ask ?? 0) / 15.2;
+    var goldPrice = (gPrice ? parseFloat(gPrice) : null) ?? data?.gold965.bid ?? 0
+    var gramPrice = ((gPrice ? parseFloat(gPrice) : null) ?? data?.gold965.bid ?? 0) / 15.2;
     switch (option) {
       case "1":
         setCalc((gramPrice * parseFloat(gram ?? "0")))
@@ -97,8 +95,8 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
           weightBaht: 0,
           percentage: 96.5,
           laborCost: parseFloat(gram ?? "0"),
-          costPerBaht: parseFloat((goldPrice * service * 0.97).toFixed(2)),
-          totalAmount: parseFloat((goldPrice * service * 0.97 * parseFloat(gram ?? "0")).toFixed(2))
+          costPerBaht: parseFloat((goldPrice * service * 0.965).toFixed(2)),
+          totalAmount: parseFloat((goldPrice * service * 0.965 * parseFloat(gram ?? "0")).toFixed(2))
         })
         break;
       case "3":
@@ -222,6 +220,16 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
     }
   }
 
+  const validateGPriceInput = (i: string) => {
+    if (/^\d*\.?\d*$/.test(i)) {
+      if (parseInt(i) < 0) {
+        setGPrice("0")
+      } else {
+        setGPrice(i)
+      }
+    }
+  }
+
   const validateGramInput = (i: string) => {
     if (parseFloat(i) > 999999) {
       i = '999999'
@@ -276,14 +284,6 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
       img: "/images/fischer.png",
       created_at: "2025-05-11"
     },
-    // {
-    //   title: "🔥รู้ก่อนขายได้ตังค์เพิ่มอีกเยอะ🔥",
-    //   author_img: "/images/owner.png",
-    //   author_name: "จ่าคิง ปากพนัง",
-    //   description: "🟢 วิธีคำนวนราคาทอง 🟢 \nราคาทองวันนี้ x 0.0656 x (% ทองจริง x น้ำหนักทอง) = ราคาทองที่จะได้รับ \n\nหน้าร้านอยู่ที่ลาดพร้าว 129 ไม่สะดวกมา โทรมาปรึกษากัน แล้วส่งพัสดุมาได้ ทางร้านยินดีดูแลให้ครับ",
-    //   img: "/images/jk-manygold.png",
-    //   created_at: "2025-05-11"
-    // }
   ]
 
   const handleSetBlog = (index: number) => {
@@ -303,15 +303,6 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
         },
       }
     );
-    // addToast({
-    //       hideIcon: true,
-    //       title: "เพิ่มลงในใบเสนอราคาเรียบร้อย",
-    //       description: `คุณได้เพิ่มรายการ ${currentQuot?.goldType} ${currentQuot?.percentage}% น้ำหนัก ${currentQuot?.laborCost} กรัม ราคาประเมิน ${currentQuot?.totalAmount.toLocaleString()} บาท กรุณาตรวจสอบในเมนูใบเสนอราคา`,
-    //       radius: "lg",
-    //       classNames: {
-    //         icon: "backdrop-blur-xl border border-white/20"
-    //       }
-    //     })
   }
 
 
@@ -416,23 +407,35 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
 
                     <div className=" col-span-2 flex flex-col w-full justify backdrop-blur-xl border border-white/20 bg-gradient-to-b from-white/5 to-white/10 px-3 py-4 rounded-3xl ">
                        <div className=" gap-3 flex flex-col items-center">
-                         <Select
-                           aria-label="เลือกประเภททอง"
-                           onChange={(e) => handleOptionChange(e)}
-                           className="min-w-80"
-                           selectedKeys={option}
-                           size="md"
-                           classNames={{trigger: "backdrop-blur-xl border border-white/10 ", popoverContent: "backdrop-blur-xl border border-white/10 bg-black/30"}}
-                         >
-                           {goldTypes.map((item) => (
-                             <SelectItem
-                               key={item.key}
+                          <div className={`flex items-center w-full gap-2`}>
+                            <div className="flex-1">
+                              {/* <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">เปอร์เซ็นต์ทอง (%)</span> */}
+                              <Input 
+                                endContent={<div className=" text-xs">บาท</div>}
+                                label={<div className=' bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent font-bold'>ราคาทอง</div>}
+                                classNames={{inputWrapper: "backdrop-blur-xl border border-white/10"}} size="lg" className=" w-full text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={gPrice ?? data?.gold965.bid.toString()} onValueChange={(e) => validateGPriceInput(e)} />
+                            </div>
+                            <div className="flex-1">
+                              <Select
+                                onChange={(e) => handleOptionChange(e)}
+                                className=" w-full"
+                                selectedKeys={option}
+                                size="lg"
+                                label={<div className=' bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent font-bold'>เลือกประเภททอง</div>}
+                                classNames={{trigger: "backdrop-blur-xl border border-white/10 ", popoverContent: "backdrop-blur-xl border border-white/10 bg-black/30"}}
+                              >
+                                {goldTypes.map((item) => (
+                                  <SelectItem
+                                    key={item.key}
 
-                             >
-                               {item.label}
-                             </SelectItem>
-                           ))}
-                         </Select>
+                                  >
+                                    {item.label}
+                                  </SelectItem>
+                                ))}
+                              </Select>
+                            </div>
+                          </div>
+                         
                          <div className={`flex items-center w-full gap-2`}>
                            {
                              option === "8" || option === "3" || option === "4"
