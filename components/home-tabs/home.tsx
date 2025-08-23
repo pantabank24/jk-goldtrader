@@ -72,8 +72,8 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
       setGram(null)
     }
 
-    var goldPrice = (gPrice ? parseFloat(gPrice) : null) ?? data?.gold965.bid ?? 0
-    var gramPrice = ((gPrice ? parseFloat(gPrice) : null) ?? data?.gold965.bid ?? 0) / 15.2;
+    var goldPrice = (gPrice ? parseFloat(gPrice) : null) ?? data?.gold965.ask ?? 0
+    var gramPrice = ((gPrice ? parseFloat(gPrice) : null) ?? data?.gold965.ask ?? 0) / 15.2;
     switch (option) {
       case "1":
         setCalc((gramPrice * parseFloat(gram ?? "0")))
@@ -413,7 +413,7 @@ export const HomePages = ({data, isLoading, service, currentQuots, error}:Props)
                               <Input 
                                 endContent={<div className=" text-xs">บาท</div>}
                                 label={<div className=' bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent font-bold'>ราคาทอง</div>}
-                                classNames={{inputWrapper: "backdrop-blur-xl border border-white/10"}} size="lg" className=" w-full text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={gPrice ?? data?.gold965.bid.toString()} onValueChange={(e) => validateGPriceInput(e)} />
+                                classNames={{inputWrapper: "backdrop-blur-xl border border-white/10"}} size="lg" className=" w-full text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={gPrice ?? data?.gold965.ask.toString()} onValueChange={(e) => validateGPriceInput(e)} />
                             </div>
                             <div className="flex-1">
                               <Select
