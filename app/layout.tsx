@@ -109,13 +109,18 @@ export default function RootLayout({
               <div
                 className="flex items-center gap-1 text-current"
               >
-                <span className="text-default-600">Powered by</span>
-                <p className=" font-bold bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent">© JK Goldtrader</p>
+                <span className="text-default-600">Copyright</span>
+                <p className=" font-bold bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent">© 2025 JK Goldtrader</p>
+              </div>
+              <div
+                className="flex items-center gap-1 text-current"
+              >
+                <p className="text-primary text-xs">All Right Reserved | Powered by pantadevs</p>
               </div>
               <div
                 className="flex items-center gap-1 text-current mb-16"
               >
-                <p className="text-primary text-xs">Build 1.4.4 (August 22, 2025 Latest)</p>
+                <p className="text-primary text-xs">1.4.5 (August 25, 2025 Latest)</p>
               </div>
 
             </footer>

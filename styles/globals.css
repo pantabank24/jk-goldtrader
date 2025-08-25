@@ -18,6 +18,16 @@
 }
 
 @media print {
+  textarea, input {
+    border: none !important;
+    background: transparent !important;
+    outline: none !important;
+    resize: none !important;
+    box-shadow: none !important;
+  }
+}
+
+@media print {
   body * {
     visibility: hidden;
   }

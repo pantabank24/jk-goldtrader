@@ -6,6 +6,7 @@ import { QuotationModel } from '../app/models/Quotations';
 import { Input } from '@heroui/input';
 import moment from 'moment';
 import { Switch } from '@heroui/switch';
+import AutoResizeTextarea from './autoresizetextarea';
 
 interface Props {
   items: QuotationModel[],
@@ -56,8 +57,20 @@ const QuotationComponent = ({items, onChange}: Props) => {
     linkElement.click();
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement> | KeyboardEvent) => {
+    console.log("aaaaaaaa")
+  if (e.key === "ArrowDown") {
+    window.scrollBy({ top: 50, left: 0, behavior: "smooth" });
+    e.preventDefault(); // กันไม่ให้ cursor ขยับใน textarea
+  }
+  if (e.key === "ArrowUp") {
+    window.scrollBy({ top: -50, left: 0, behavior: "smooth" });
+    e.preventDefault();
+  }
+};
+
   return (
-    <div className="max-w-5xl mx-auto mt-20 p-4 ">
+    <div className=" w-full lg:max-w-5xl mx-auto mt-20 p-4 ">
       <div className="mb-6 flex gap-4 print:hidden flex-col">
         <div>
           <button
@@ -78,8 +91,8 @@ const QuotationComponent = ({items, onChange}: Props) => {
           </Switch>
         </div>
       <div className=' flex flex-row mb-5 gap-2 max-md:flex-col'>
-         <Input placeholder='ชื่อลูกค้า' classNames={{inputWrapper:"backdrop-blur-xl border border-white/20 bg-white/20"}} size="lg" className=" min-w-80 text-base " type="text" inputMode="text" value={cusName} onValueChange={(i) => setCusName(i)} />
-         <Input placeholder='เบอร์โทร' classNames={{inputWrapper:"backdrop-blur-xl border border-white/20 bg-white/20"}} size="lg" className=" min-w-80 text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={cusTel} onValueChange={(i) => setCusTel(i)} />
+         <Input onKeyDown={handleKeyDown} placeholder='ชื่อลูกค้า' classNames={{inputWrapper:"backdrop-blur-xl border border-white/20 bg-white/20"}} size="lg" className=" min-w-80 text-base " type="text" inputMode="text" value={cusName} onValueChange={(i) => setCusName(i)} />
+         <Input onKeyDown={handleKeyDown} placeholder='เบอร์โทร' classNames={{inputWrapper:"backdrop-blur-xl border border-white/20 bg-white/20"}} size="lg" className=" min-w-80 text-base" step="1" type="text" inputMode="decimal" min="0" max="100" value={cusTel} onValueChange={(i) => setCusTel(i)} />
         <button
           onClick={handlePrint}
           className="flex items-center gap-2 px-4 py-2 backdrop-blur-xl border border-white/20 bg-blue-500/60 text-white rounded-xl  hover:bg-blue-700 transition-colors"
@@ -137,6 +150,7 @@ const QuotationComponent = ({items, onChange}: Props) => {
                 <th className="border border-gray-400 px-2 py-2 text-center text-sm font-semibold">น้ำหนัก</th>
                 <th className="border border-gray-400 px-2 py-2 text-center text-sm font-semibold">ต่อกรัม</th>
                 <th className="border border-gray-400 px-2 py-2 text-center text-sm font-semibold">จำนวนเงิน</th>
+                <th className="border border-gray-400 px-2 py-2 text-center text-sm font-semibold">หมายเหตุ</th>
               </tr>
             </thead>
             <tbody>
@@ -161,6 +175,9 @@ const QuotationComponent = ({items, onChange}: Props) => {
                   <td className="border border-gray-400 px-2 text-center text-sm">
                     {item.totalAmount.toLocaleString()}
                   </td>
+                  <td className="border border-gray-400 px-2 text-center text-sm">
+                    <AutoResizeTextarea/>
+                  </td>
                 </tr>
               ))}
               
@@ -168,6 +185,7 @@ const QuotationComponent = ({items, onChange}: Props) => {
               {Array.from({ length: Math.max(0, 10 - items.length) }).map((_, index) => (
                 <tr key={`empty-${index}`}>
                   <td className="border border-gray-400 px-2 text-center text-sm">{items.length + index + 1}</td>
+                  <td className="border border-gray-400 px-2 text-center text-sm"></td>
                   <td className="border border-gray-400 px-2 text-center text-sm"></td>
                   <td className="border border-gray-400 px-2 text-center text-sm"></td>
                   <td className="border border-gray-400 px-2 text-center text-sm"></td>
