@@ -150,7 +150,7 @@ const QuotationComponent = ({items, onChange}: Props) => {
                 <th className="border border-gray-400 px-2 py-2 text-center text-sm font-semibold">น้ำหนัก</th>
                 <th className="border border-gray-400 px-2 py-2 text-center text-sm font-semibold">ต่อกรัม</th>
                 <th className="border border-gray-400 px-2 py-2 text-center text-sm font-semibold">จำนวนเงิน</th>
-                <th className="border border-gray-400 px-2 py-2 text-center text-sm font-semibold">หมายเหตุ</th>
+                <th className="border border-gray-400 px-2 py-2 text-center text-sm font-semibold w-10">หมายเหตุ</th>
               </tr>
             </thead>
             <tbody>

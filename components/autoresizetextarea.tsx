@@ -15,7 +15,8 @@ const AutoResizeTextarea = () => {
     <textarea
       ref={ref}
       onInput={handleInput}
-      className="flex-shrink-0 min-w-20 w-full bg-transparent scrollbar-hide resize-none overflow-hidden"
+        className="flex-shrink-0 min-w-32 w-full bg-transparent scrollbar-hide resize-none overflow-hidden
+             text-center"
       rows={1}
     />
   );
