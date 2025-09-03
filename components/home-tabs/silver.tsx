@@ -63,7 +63,7 @@ export const SilverPage = ({
 
   const [xagPrice, setXagPrice] = React.useState<string | null>();
   const [percent, setPercent] = React.useState("90");
-  const [gram, setGram] = React.useState<string | null>("1");
+  const [gram, setGram] = React.useState<string | null>("100");
   const [calc, setCalc] = React.useState(0);
 
   const [currentQuot, setCurrentQuot] = useState<QuotationModel>();
@@ -83,7 +83,7 @@ export const SilverPage = ({
     var cal =
       ((silverPrice - 2000) *
         (parseFloat(percent == "" ? "0" : percent) / 100) *
-        100) /
+        parseFloat(gram ?? "0")) /
       1000;
     setCalc(cal < 0 ? 0 : cal);
     setCurrentQuot({
