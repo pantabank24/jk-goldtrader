@@ -138,7 +138,7 @@ export default function RootLayout({
               </div>
               <div className="flex items-center gap-1 text-current mb-16">
                 <p className="text-primary text-xs">
-                  1.5 (September 3, 2025 Latest)
+                  1.5.1 (September 5, 2025 Latest)
                 </p>
               </div>
             </footer>
