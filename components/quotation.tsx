@@ -33,6 +33,7 @@ import {
   ModalHeader,
   Select,
   SelectItem,
+  Tooltip,
   useDisclosure,
 } from "@heroui/react";
 import { getLocalTimeZone, today } from "@internationalized/date";
@@ -41,6 +42,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useForm, Controller } from "react-hook-form";
 import { FormSchema, QuotForm } from "@/form/header-quot";
+import { fa } from "zod/v4/locales";
 
 interface Props {
   items: QuotationModel[];
@@ -49,6 +51,7 @@ interface Props {
 
 const QuotationComponent = ({ items, onChange }: Props) => {
   const [isSelected, setIsSelected] = React.useState(false);
+  const [roundSelected, setRoundSelected] = React.useState("ปัดลง");
   const [cusName, setCusName] = useState("");
   const [cusTel, setCusTel] = useState("");
   const [namePref, setNamePref] = useState(" ");
@@ -142,6 +145,25 @@ const QuotationComponent = ({ items, onChange }: Props) => {
     }
   };
 
+  const handleRounding = (val: number) => {
+    switch (roundSelected) {
+      case "ปัดลง":
+        return Math.floor(val).toLocaleString();
+        break;
+      case "ปัดขึ้น":
+        return Math.ceil(val).toLocaleString();
+        break;
+      case "ปัดปกติ":
+        return Math.round(val).toLocaleString();
+        break;
+      case "ไม่ปัด":
+        return val.toLocaleString();
+      default:
+        val.toLocaleString();
+        break;
+    }
+  };
+
   return (
     <div className=" w-full lg:w-1/2 mx-auto mt-14  ">
       <div className=" fixed z-50 top-[64px] w-screen lg:w-1/2 flex print:hidden flex-row items-center justify-between mb-20 px-4 pt-2">
@@ -162,13 +184,13 @@ const QuotationComponent = ({ items, onChange }: Props) => {
             <Printer size={20} />
             พิมพ์
           </button>
-          <Dropdown>
+          <Dropdown closeOnSelect={false}>
             <DropdownTrigger>
               <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-blue-600/50 to-green-500/50 text-white h-12 w-12 rounded-full items-center justify-center flex">
                 <Sparkles />
               </div>
             </DropdownTrigger>
-            <DropdownMenu aria-label="Static Actions">
+            <DropdownMenu aria-label="Static Actions" shouldFocusWrap={false}>
               <DropdownItem key="new">
                 <Select
                   className="max-w-xs"
@@ -179,6 +201,43 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                   <SelectItem key=" ">ราคา</SelectItem>
                   <SelectItem key="ทองคำ">ราคาทองคำ</SelectItem>
                   <SelectItem key="เงินแท่ง">ราคาเงินแท่ง</SelectItem>
+                </Select>
+              </DropdownItem>
+              <DropdownItem key="new">
+                <Select
+                  className="max-w-xs"
+                  label="ปัดเศษ"
+                  defaultSelectedKeys={[roundSelected]}
+                  onSelectionChange={(k) =>
+                    setRoundSelected(k.currentKey ?? "ปัดลง")
+                  }
+                  startContent={
+                    <Tooltip
+                      placement="bottom-end"
+                      content={
+                        <div className=" flex flex-col text-sm">
+                          <div>
+                            การปัดเศษ จะปัดเฉพาะราคาบวก, % ซื้อ, ต่อกรัม
+                            และน้ำหนัก
+                          </div>
+                          <div className=" text-xs text-white/50">
+                            (น้ำหนักจะมีเงื่อนไข หากน้ำหนักน้อยกว่า 90
+                            จะปัดเศษตามที่เลือก
+                          </div>
+                          <div className=" text-xs text-white/50">
+                            หากมากกว่า 90 จะไม่ปัดเศษ)
+                          </div>
+                        </div>
+                      }
+                    >
+                      ?
+                    </Tooltip>
+                  }
+                >
+                  <SelectItem key="ปัดลง">ปัดลง</SelectItem>
+                  <SelectItem key="ปัดขึ้น">ปัดขึ้น</SelectItem>
+                  <SelectItem key="ปัดปกติ">ปัดปกติ</SelectItem>
+                  <SelectItem key="ไม่ปัด">ไม่ปัด</SelectItem>
                 </Select>
               </DropdownItem>
               <DropdownItem key="date">
@@ -408,7 +467,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                     </td>
                   )}
                   <td className="border border-gray-400 px-2 text-center text-sm">
-                    {item.goldPrice.toLocaleString()}
+                    {handleRounding(item.goldPrice)}
                   </td>
                   {showPlus && (
                     <td className="border border-gray-400 px-2  text-center text-sm">
@@ -417,7 +476,9 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                   )}
                   {showPercent && (
                     <td className="border border-gray-400 px-2  text-center text-sm">
-                      {item.percentage.toLocaleString()}
+                      {item.percentage < 90
+                        ? handleRounding(item.percentage)
+                        : item.percentage}
                     </td>
                   )}
                   {showgram && (
@@ -427,7 +488,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                   )}
                   {showQty && (
                     <td className="border border-gray-400 px-2  text-center text-sm">
-                      {item.costPerBaht.toLocaleString()}
+                      {handleRounding(item.costPerBaht)}
                     </td>
                   )}
                   <td className="border border-gray-400 px-2 text-center text-sm">
