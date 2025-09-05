@@ -83,8 +83,7 @@ export const SilverPage = ({
     var cal =
       ((silverPrice / 1000) *
         (parseFloat(percent == "" ? "0" : percent) / 100) *
-        parseFloat(gram ?? "0")) /
-      1000;
+        parseFloat(gram ?? "0"));
     setCalc(cal < 0 ? 0 : cal);
     setCurrentQuot({
       goldType: "เงินแท่ง",
