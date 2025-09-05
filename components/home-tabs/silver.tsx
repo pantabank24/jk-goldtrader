@@ -81,10 +81,9 @@ export const SilverPage = ({
       (xagPrice ? parseFloat(xagPrice) : null) ?? data?.buy ?? 0;
 
     var cal =
-      ((silverPrice - 2000) *
+      ((silverPrice / 1000) *
         (parseFloat(percent == "" ? "0" : percent) / 100) *
-        parseFloat(gram ?? "0")) /
-      1000;
+        parseFloat(gram ?? "0"));
     setCalc(cal < 0 ? 0 : cal);
     setCurrentQuot({
       goldType: "เงินแท่ง",
@@ -351,9 +350,9 @@ export const SilverPage = ({
                         {calc > 9999999
                           ? formatNumber(calc) + "บาท"
                           : calc.toLocaleString(`th-TH`, {
-                              minimumFractionDigits: 0,
-                              maximumFractionDigits: 2,
-                            }) + " บาท"}{" "}
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 2,
+                          }) + " บาท"}{" "}
                       </span>
                     </Skeleton>
 
@@ -422,7 +421,7 @@ export const SilverPage = ({
                   </span>
                   <Button
                     className="  font-bold backdrop-blur-xl border border-white/20 bg-gradient-to-b from-transparent to-yellow-500/50"
-                    onPress={() => {}}
+                    onPress={() => { }}
                   >
                     อ่านเพิ่มเติม
                   </Button>
