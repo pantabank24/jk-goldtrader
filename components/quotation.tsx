@@ -51,21 +51,21 @@ interface Props {
 
 const QuotationComponent = ({ items, onChange }: Props) => {
   const [isSelected, setIsSelected] = React.useState(false);
-  const [roundSelected, setRoundSelected] = React.useState("ปัดลง");
+  const [roundSelected, setRoundSelected] = React.useState("ไม่ปัด");
   const [cusName, setCusName] = useState("");
   const [cusTel, setCusTel] = useState("");
   const [namePref, setNamePref] = useState(" ");
   const [date, setDate] = useState(
-    today(getLocalTimeZone()).subtract({ days: 1 })
+    today(getLocalTimeZone()).subtract({ days: 0 })
   );
 
   const [showSeq, setShowSeq] = React.useState(true);
-  const [showList, setShowList] = React.useState(false);
-  const [showPlus, setShowPlus] = React.useState(false);
+  const [showList, setShowList] = React.useState(true);
+  const [showPlus, setShowPlus] = React.useState(true);
   const [showPercent, setShowPercent] = React.useState(true);
   const [showgram, setShowGram] = React.useState(true);
   const [showQty, setShowQty] = React.useState(true);
-  const [showRemark, setShowRemark] = React.useState(true);
+  const [showRemark, setShowRemark] = React.useState(false);
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
