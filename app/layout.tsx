@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     url: siteConfig.url,
     images: {
-      url: "https://jk-goldtrader.com/images/jk-banner.jpg",
+      url: "https://jk-goldtrader.com/images/jk-banner2.jpg",
       width: 1200,
       height: 630,
     },
