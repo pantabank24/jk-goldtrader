@@ -50,11 +50,17 @@ export const RealTime: React.FC<Props> = ({ pricing, service }) => {
   const dGram = useDebounced(gram, 200);
   const dPlus = useDebounced(plus, 200);
 
-  const handleGramChange = (value: string) => {
-    if (!isNumericInput(value)) return;
-    // ไม่ให้เกิน 999999 และไม่ให้ติดลบ
-    const n = clampNumber(parseSafeFloat(value), 0, 999999);
-    setGram(value === "" ? "" : n.toString());
+  const handleGramChange = (i: string) => {
+    if (parseFloat(i) > 999999) {
+      i = "999999";
+    }
+    if (/^\d*\.?\d*$/.test(i)) {
+      if (parseInt(i) < 0) {
+        setGram("");
+      } else {
+        setGram(i);
+      }
+    }
   };
 
   const handlePlusChange = (value: string) => {
