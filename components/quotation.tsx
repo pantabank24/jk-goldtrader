@@ -77,23 +77,23 @@ const QuotationComponent = ({ items, onChange }: Props) => {
   } = useForm<QuotForm>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      name: "JK Goldtrader",
-      website: "WWW.JK-GOLDTRADER.COM",
+      name: "",
+      website: "",
       address:
-        "ตลาดพระเครื่องกรีนไลน์ บางกะปิ ลาดพร้าว 129 แขวงคลองจั่น เขตบางกะปิ 10240 โทร 0639325566",
-      shopName: "ร้านจ่าคิง ปากพนัง",
-      taxId: "1-8098-00097-66-1",
+        "",
+      shopName: "",
+      taxId: "",
     } as any,
   });
 
   const [companyInfo, setCI] = useState({
-    name: "JK Goldtrader",
-    website: "WWW.JK-GOLDTRADER.COM",
+    name: "",
+    website: "",
     address:
-      "ตลาดพระเครื่องกรีนไลน์ บางกะปิ ลาดพร้าว 129 แขวงคลองจั่น เขตบางกะปิ 10240 โทร 0639325566",
-    shopName: "ร้านจ่าคิง ปากพนัง",
-    license: "เลขประจำตัวผู้เสียภาษี",
-    taxId: "1-8098-00097-66-1",
+      "",
+    shopName: "",
+    license: "",
+    taxId: "",
   });
 
   const quotationInfo = {
@@ -586,6 +586,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                 >
                   <Input
                     size="lg"
+                    label="ชื่อร้าน/บริษัท"
                     onValueChange={(i) => {
                       var c = companyInfo;
                       c.name = i;
@@ -595,6 +596,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                   />
                   <Input
                     size="lg"
+                    label="รายละเอียดร้าน/บริษัท"
                     onValueChange={(i) => {
                       var c = companyInfo;
                       c.name = i;
@@ -604,6 +606,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                   />
                   <Input
                     size="lg"
+                    label="ที่อยู่ร้าน/บริษัท"
                     onValueChange={(i) => {
                       var c = companyInfo;
                       c.name = i;
@@ -613,6 +616,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                   />
                   <Input
                     size="lg"
+                    label="ชื่อผู้เสียภาษี"
                     onValueChange={(i) => {
                       var c = companyInfo;
                       c.name = i;
@@ -622,6 +626,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                   />
                   <Input
                     size="lg"
+                    label="หมายเลขผู้เสียภาษี"
                     onValueChange={(i) => {
                       var c = companyInfo;
                       c.name = i;

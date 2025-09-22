@@ -27,7 +27,7 @@ export const Quotation = ({ quotation, callback }: Props) => {
 
   const handleSave = () => {
     setPQout(quotation ?? []);
-    callback([]);
+    //callback([]);
   };
 
   return (

@@ -110,11 +110,10 @@ const QuotationTab: React.FC<ChatWindowProps> = ({
 
   return (
     <div
-      className={` max-lg:hidden fixed bottom-5 right-4 z-50 w-80  border-white/10 backdrop-blur-xl border rounded-xl shadow-2xl0 transition-all duration-300 ease-in-out ${
-        isMinimized
+      className={` max-lg:hidden fixed bottom-5 right-4 z-50 w-80  border-white/10 backdrop-blur-xl border rounded-xl shadow-2xl0 transition-all duration-300 ease-in-out ${isMinimized
           ? "h-12 bg-gradient-to-b from-red-200/20 to-yellow-400/20"
           : "h-[450px] max-h-[calc(100vh-20px)] bg-white/5"
-      }`}
+        }`}
     >
       {/* Header */}
       <div

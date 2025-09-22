@@ -45,7 +45,7 @@ export default function Home() {
 
   const handleSave = () => {
     setPQout(quotational ?? []);
-    setQuotational([]);
+    //setQuotational([]);
   };
 
   const handleBackTab = () => {

@@ -14,32 +14,19 @@ import {
   Button,
   useDisclosure,
   CircularProgress,
-  addToast,
 } from "@heroui/react";
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import useSWR from "swr";
-import Image from "next/image";
-import { Image as HImage } from "@heroui/image";
 import { BannerSlider } from "@/components/banner-slide";
-import Marquee from "react-fast-marquee";
 import {
   ArrowDown,
   ArrowUp,
-  ChevronDown,
-  ChevronLeft,
-  ChevronsDown,
-  ChevronUp,
   Construction,
   FilePlus,
-  TicketPlus,
 } from "lucide-react";
 import { PriceDto } from "@/app/models/Models";
 import { QuotationModel } from "@/app/models/Quotations";
-import QuotationComponent from "../quotation";
-import AddToHomeScreenPrompt from "../AddToHomeScreenPrompt";
-import toast, { Toaster } from "react-hot-toast";
-import { number } from "framer-motion";
+import toast from "react-hot-toast";
 import { blogs } from "@/app/blog/blogs";
 
 interface Props {
@@ -122,87 +109,33 @@ export const HomePages = ({
         break;
       case "3":
         var calcs = 0;
-        if (parseFloat(percent) > 99 && gram != null) {
-          calcs =
-            (goldPrice + parseFloat(plus == "" ? "0" : (plus ?? "0"))) *
-            service *
-            (parseFloat(percent) / 100) *
-            parseFloat(gram ?? "0");
-          setCurrentQuot({
-            goldType: "ทองหลอม",
-            goldPrice: goldPrice,
-            weightBaht: parseFloat(plus == "" ? "0" : (plus ?? "0")),
-            percentage: parseFloat(percent),
-            laborCost: parseFloat(gram ?? "0"),
-            costPerBaht: parseFloat(
-              (
-                (goldPrice + parseFloat(plus == "" ? "0" : (plus ?? "0"))) *
-                service *
-                (parseFloat(percent) / 100)
-              ).toFixed(2)
-            ),
-            totalAmount: parseFloat(
-              (
-                (goldPrice + parseFloat(plus == "" ? "0" : (plus ?? "0"))) *
-                service *
-                (parseFloat(percent) / 100) *
-                parseFloat(gram ?? "0")
-              ).toFixed(2)
-            ),
-          });
-        } else if (parseFloat(percent) > 30 && gram != null) {
-          calcs =
-            (goldPrice + parseFloat(plus == "" ? "0" : (plus ?? "0"))) *
-            service *
-            (parseFloat(percent) / 100) *
-            parseFloat(gram ?? "0");
-          setCurrentQuot({
-            goldType: "ทองหลอม",
-            goldPrice: goldPrice,
-            weightBaht: parseFloat(plus == "" ? "0" : (plus ?? "0")),
-            percentage: parseFloat(percent),
-            laborCost: parseFloat(gram ?? "0"),
-            costPerBaht: parseFloat(
-              (
-                (goldPrice + parseFloat(plus == "" ? "0" : (plus ?? "0"))) *
-                service *
-                (parseFloat(percent) / 100)
-              ).toFixed(2)
-            ),
-            totalAmount: parseFloat(
-              (
-                (goldPrice + parseFloat(plus == "" ? "0" : (plus ?? "0"))) *
-                service *
-                (parseFloat(percent) / 100) *
-                parseFloat(gram ?? "0")
-              ).toFixed(2)
-            ),
-          });
-        } else if (parseFloat(percent) <= 30 && gram != null) {
-          calcs =
-            goldPrice *
-            service *
-            (parseFloat(percent) / 100) *
-            parseFloat(gram ?? "0");
-          setCurrentQuot({
-            goldType: "ทองหลอม",
-            goldPrice: goldPrice,
-            weightBaht: parseFloat(plus == "" ? "0" : (plus ?? "0")),
-            percentage: parseFloat(percent),
-            laborCost: parseFloat(gram ?? "0"),
-            costPerBaht: parseFloat(
-              (goldPrice * service * (parseFloat(percent) / 100)).toFixed(2)
-            ),
-            totalAmount: parseFloat(
-              (
-                goldPrice *
-                service *
-                (parseFloat(percent) / 100) *
-                parseFloat(gram ?? "0")
-              ).toFixed(2)
-            ),
-          });
-        }
+        calcs =
+          (goldPrice + parseFloat(plus == "" ? "0" : (plus ?? "0"))) *
+          service *
+          (parseFloat(percent) / 100) *
+          parseFloat(gram ?? "0");
+        setCurrentQuot({
+          goldType: "ทองหลอม",
+          goldPrice: goldPrice,
+          weightBaht: parseFloat(plus == "" ? "0" : (plus ?? "0")),
+          percentage: parseFloat(percent),
+          laborCost: parseFloat(gram ?? "0"),
+          costPerBaht: parseFloat(
+            (
+              (goldPrice + parseFloat(plus == "" ? "0" : (plus ?? "0"))) *
+              service *
+              (parseFloat(percent) / 100)
+            ).toFixed(2)
+          ),
+          totalAmount: parseFloat(
+            (
+              (goldPrice + parseFloat(plus == "" ? "0" : (plus ?? "0"))) *
+              service *
+              (parseFloat(percent) / 100) *
+              parseFloat(gram ?? "0")
+            ).toFixed(2)
+          ),
+        });
         setCalc(calcs);
         break;
       case "4":
@@ -648,9 +581,9 @@ export const HomePages = ({
                         {calc > 9999999
                           ? formatNumber(calc) + "บาท"
                           : calc.toLocaleString(`th-TH`, {
-                              minimumFractionDigits: 0,
-                              maximumFractionDigits: 2,
-                            }) + " บาท"}{" "}
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 2,
+                          }) + " บาท"}{" "}
                       </span>
                     </Skeleton>
 
