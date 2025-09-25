@@ -94,7 +94,7 @@ export const HomePages = ({
         });
         break;
       case "2":
-        setCalc(goldPrice * service * 0.97 * parseFloat(gram ?? "0"));
+        setCalc(goldPrice * service * 0.965 * parseFloat(gram ?? "0"));
         setCurrentQuot({
           goldType: "ทองรูปพรรณ",
           goldPrice: goldPrice,

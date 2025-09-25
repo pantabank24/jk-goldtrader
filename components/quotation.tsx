@@ -97,7 +97,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
   });
 
   const quotationInfo = {
-    title: "ใบเสร็จ ซื้อ ขาย",
+    title: "ใบรับซื้อทองคำเก่า",
     customerName: "ลูกค้า คุณวิชัย สุนิคำ",
     date: "6/07/2568",
   };
