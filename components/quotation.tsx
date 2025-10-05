@@ -11,6 +11,7 @@ import {
   Sparkle,
   Sparkles,
   SquarePen,
+  ImageDown,
 } from "lucide-react";
 import { QuotationModel } from "../app/models/Quotations";
 import { Input } from "@heroui/input";
@@ -43,6 +44,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import { FormSchema, QuotForm } from "@/form/header-quot";
 import { fa } from "zod/v4/locales";
+import html2canvas from "html2canvas";
 
 interface Props {
   items: QuotationModel[];
@@ -79,8 +81,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
     defaultValues: {
       name: "",
       website: "",
-      address:
-        "",
+      address: "",
       shopName: "",
       taxId: "",
     } as any,
@@ -89,15 +90,14 @@ const QuotationComponent = ({ items, onChange }: Props) => {
   const [companyInfo, setCI] = useState({
     name: "",
     website: "",
-    address:
-      "",
+    address: "",
     shopName: "",
     license: "",
     taxId: "",
   });
 
   const quotationInfo = {
-    title: "ใบรับซื้อทองคำเก่า",
+    title: "ใบรับซื้อทองคำเก่า/ใบสำคัญจ่าย",
     customerName: "ลูกค้า คุณวิชัย สุนิคำ",
     date: "6/07/2568",
   };
@@ -117,6 +117,54 @@ const QuotationComponent = ({ items, onChange }: Props) => {
 
   const handlePrint = () => {
     window.print();
+  };
+
+  const mmToPx = (mm: number, dpi = 300) => Math.round((mm / 25.4) * dpi);
+
+  const handleDownloadImage = async () => {
+    const el = document.getElementById("print-section");
+    if (!el) return;
+
+    // ตั้งค่ากระดาษที่ต้องการ (ตัวอย่าง A4 แนวตั้ง 300 DPI)
+    const dpi = 300;
+    const targetW = mmToPx(70, dpi); // 2480
+    const targetH = mmToPx(99, dpi); // 3508
+
+    // รอฟอนต์/รูปให้โหลดครบ
+    await document.fonts?.ready?.catch(() => {});
+
+    const canvas = await html2canvas(el, {
+      // สำคัญ: ไม่ให้ html2canvasสเกลซ้ำ
+      scale: 1,
+
+      // กำหนดพื้นที่เรนเดอร์ให้เท่าขนาดที่ต้องการ
+      width: targetW,
+      height: targetH,
+      windowWidth: targetW,
+      windowHeight: targetH,
+
+      backgroundColor: "#fff",
+      useCORS: true,
+
+      // ปรับขนาด element ในโดมที่ถูก clone ก่อนแคป
+      onclone: (doc) => {
+        const clone = doc.getElementById("print-section") as HTMLElement | null;
+        if (clone) {
+          // บังคับขนาดเป๊ะตรงตามเป้าหมาย
+          clone.style.width = `${targetW}px`;
+          clone.style.height = `${targetH}px`;
+
+          // กันเนื้อหา overflow ถ้าจำเป็น
+          clone.style.boxSizing = "border-box";
+        }
+      },
+    });
+
+    const dataUrl = canvas.toDataURL("image/png");
+    const a = document.createElement("a");
+    a.href = dataUrl;
+    a.download = "A4-300dpi.png";
+    a.click();
   };
 
   const handleSave = () => {
@@ -183,6 +231,12 @@ const QuotationComponent = ({ items, onChange }: Props) => {
           >
             <Printer size={20} />
             พิมพ์
+          </button>
+          <button
+            onClick={handleDownloadImage}
+            className=" backdrop-blur-xl border w-12 h-12 justify-center border-white/20 bg-gradient-to-b from-purple-500/60 to-purple-500/50 text-white p-3 rounded-full transition-all duration-200 hover:scale-110 flex flex-row items-center "
+          >
+            <ImageDown size={20} />
           </button>
           <Dropdown closeOnSelect={false}>
             <DropdownTrigger>
@@ -565,6 +619,62 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                   <span className="font-bold">
                     {calculateGrandTotal().toLocaleString()}
                   </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className=" flex flex-col text-sm gap-y-2 mt-12">
+            <div className=" flex flex-row gap-x-4">
+              <div className=" w-12 flex flex-row justify-end">ชำระโดย</div>
+              <div className=" flex flex-col gap-y-2">
+                <Checkbox>
+                  <div className=" text-black text-sm">
+                    เงินสด
+                    ......................................................................
+                  </div>
+                </Checkbox>
+                <Checkbox>
+                  <div className=" text-black text-sm">
+                    เช็ค / บัตร / เงินโอน ธนาคาร
+                    ......................................................................
+                  </div>
+                </Checkbox>
+              </div>
+            </div>
+            <div className=" flex flex-row max-md:overflow-x-scroll gap-x-4">
+              <div className=" flex flex-row gap-x-4">
+                <div className=" w-12 flex flex-row justify-end">เลขที่</div>
+                <div className=" ">
+                  ...................................................................
+                </div>
+              </div>
+              <div className=" flex flex-row">
+                ลงวันที่
+                .........................................................
+              </div>
+              <div className=" flex flex-row">
+                จำนวนเงิน
+                .......................................................
+              </div>
+            </div>
+            <div className=" flex flex-row indent-16">
+              ข้าพเจ้าขอรับรองว่าเป็นสมบัติของข้าพเจ้าโดยแท้จริง
+              และขอรับรองว่าของที่นำมาขายนั้นเป็นของที่บริสุทธิ์
+              ถ้าหากเป็นของทุจริตแล้ว ข้าพเจ้าขอรับผิดชอบทั้งสิ้น
+              และได้อ่านทบทวนเรียบร้อยแล้วจึงลงนามไว้เป็นหลักฐาน
+            </div>
+            <div className=" flex flex-row justify-end mt-8">
+              <div className=" flex flex-col w-80 gap-y-12">
+                <div className=" flex flex-row justify-start">
+                  ลงชื่อ
+                  ...........................................................................
+                  ผู้ขาย/ผู้รับเงิน
+                </div>
+                <div className=" flex flex-row justify-start">
+                  ลงชื่อ
+                  ...........................................................................
+                  ผู้ซื้อ/ผู้รับสินค้า
                 </div>
               </div>
             </div>
