@@ -121,9 +121,9 @@ export const SilverPage = ({
 
   const validatePercentInput = (i: string) => {
     if (/^\d*\.?\d*$/.test(i)) {
-      if (parseInt(i) > 100) {
-        setPercent("100");
-      } else if (parseInt(i) < 0) {
+      if (parseInt(i) > 999) {
+        setPercent("999");
+      } else if (parseInt(i) < 0 || i == "") {
         setPercent("");
       } else {
         setPercent(i);
