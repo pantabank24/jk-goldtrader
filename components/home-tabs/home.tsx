@@ -224,7 +224,7 @@ export const HomePages = ({
       if (parseInt(i) > 999) {
         setPercent("999");
       } else if (parseInt(i) < 0 || i == "") {
-        setPercent("0");
+        setPercent("");
       } else {
         setPercent(i);
       }
