@@ -6,6 +6,8 @@ import {
   Calculator,
   ChartBar,
   Coins,
+  Diamond,
+  DiscAlbum,
   House,
   Layers,
   NotepadText,
@@ -116,12 +118,12 @@ export const TabBars = ({ tab, quotationQty, error }: Props) => {
             key="platinum"
             title={
               isScrolled ? (
-                <Coins />
+                <DiscAlbum />
               ) : (
                 <div
                   className={`whitespace-pre-line w-7 ${isScrolled ? "text-xs" : "text-sm"} flex flex-col items-center text-white`}
                 >
-                  <Coins size={20} />
+                  <DiscAlbum size={20} />
                   <div className=" text-[7px]">แพลตินัม</div>
                 </div>
               )
@@ -131,12 +133,12 @@ export const TabBars = ({ tab, quotationQty, error }: Props) => {
             key="palladium"
             title={
               isScrolled ? (
-                <Coins />
+                <Diamond />
               ) : (
                 <div
                   className={`whitespace-pre-line w-7 ${isScrolled ? "text-xs" : "text-sm"} flex flex-col items-center text-white`}
                 >
-                  <Coins size={20} />
+                  <Diamond size={20} />
                   <div className=" text-[10px]">แพลเลเดียม</div>
                 </div>
               )
