@@ -14,6 +14,8 @@ import QuotationTab from "@/components/quotation-tab";
 import QuotationComponent from "@/components/quotation";
 import { SilverPage } from "@/components/home-tabs/silver";
 import { XAGModel } from "./models/XAG-Model";
+import { PlatinumPage } from "@/components/home-tabs/platinum";
+import { PalladiumPage } from "@/components/home-tabs/palladium";
 
 export default function Home() {
   const fetcher = (url: string) => fetch("/api/gold").then((res) => res.json());
@@ -83,6 +85,20 @@ export default function Home() {
           currentQuots={(i) => handleSelectQuotation(i)}
           service={service}
           data={xagData}
+          isLoading={isLoading}
+        />
+      ) : tab === "platinum" ? (
+        <PlatinumPage
+          error={error}
+          currentQuots={(i) => handleSelectQuotation(i)}
+          service={service}
+          isLoading={isLoading}
+        />
+      ) : tab === "palladium" ? (
+        <PalladiumPage
+          error={error}
+          currentQuots={(i) => handleSelectQuotation(i)}
+          service={service}
           isLoading={isLoading}
         />
       ) : tab === "check" ? (

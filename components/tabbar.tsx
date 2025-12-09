@@ -63,9 +63,8 @@ export const TabBars = ({ tab, quotationQty, error }: Props) => {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center pointer-events-none shadow-md bg-gradient-to-t from-black to-transparent w-full">
       <div
-        className={`pointer-events-auto relative bottom-4 transition-all duration-300 flex items-center justify-center gap-x-2 ${
-          isScrolled ? "scale-75" : "scale-100"
-        }`}
+        className={`pointer-events-auto relative bottom-4 transition-all duration-300 flex items-center justify-center gap-x-2 ${isScrolled ? "scale-75" : "scale-100"
+          }`}
       >
         <Tabs
           key="default"
@@ -75,7 +74,7 @@ export const TabBars = ({ tab, quotationQty, error }: Props) => {
           size={isScrolled ? "md" : "lg"}
           onSelectionChange={(i) => handleChange(i.toString())}
           classNames={{
-            tab: isScrolled ? "h-10" : "h-14",
+            tab: isScrolled ? "h-10" : "h-12",
             tabList:
               "bg-white/10 backdrop-blur-xl border border-white/20 p-2 shadow-2xl",
             tabContent: "text-white",
@@ -90,10 +89,10 @@ export const TabBars = ({ tab, quotationQty, error }: Props) => {
                 <Calculator />
               ) : (
                 <div
-                  className={`whitespace-pre-line w-16 ${isScrolled ? "text-xs" : "text-sm"} flex flex-col items-center text-white`}
+                  className={`whitespace-pre-line w-7 ${isScrolled ? "text-xs" : "text-sm"} flex flex-col items-center text-white`}
                 >
-                  <Calculator />
-                  <div className=" text-xs">คำนวณทอง</div>
+                  <Calculator size={20} />
+                  <div className=" text-[10px]">ทอง</div>
                 </div>
               )
             }
@@ -105,10 +104,40 @@ export const TabBars = ({ tab, quotationQty, error }: Props) => {
                 <Coins />
               ) : (
                 <div
-                  className={`whitespace-pre-line w-16 ${isScrolled ? "text-xs" : "text-sm"} flex flex-col items-center text-white`}
+                  className={`whitespace-pre-line w-7 ${isScrolled ? "text-xs" : "text-sm"} flex flex-col items-center text-white`}
                 >
-                  <Coins />
-                  <div className=" text-xs">คำนวณเงิน</div>
+                  <Coins size={20} />
+                  <div className=" text-[10px]">เงิน</div>
+                </div>
+              )
+            }
+          />
+          <Tab
+            key="platinum"
+            title={
+              isScrolled ? (
+                <Coins />
+              ) : (
+                <div
+                  className={`whitespace-pre-line w-7 ${isScrolled ? "text-xs" : "text-sm"} flex flex-col items-center text-white`}
+                >
+                  <Coins size={20} />
+                  <div className=" text-[7px]">แพลตินัม</div>
+                </div>
+              )
+            }
+          />
+          <Tab
+            key="palladium"
+            title={
+              isScrolled ? (
+                <Coins />
+              ) : (
+                <div
+                  className={`whitespace-pre-line w-7 ${isScrolled ? "text-xs" : "text-sm"} flex flex-col items-center text-white`}
+                >
+                  <Coins size={20} />
+                  <div className=" text-[10px]">แพลเลเดียม</div>
                 </div>
               )
             }
@@ -120,10 +149,10 @@ export const TabBars = ({ tab, quotationQty, error }: Props) => {
                 <ChartBar color="white" />
               ) : (
                 <div
-                  className={` w-16 ${isScrolled ? "text-xs" : "text-xs"} flex flex-col items-center text-white`}
+                  className={` w-7 ${isScrolled ? "text-xs" : "text-xs"} flex flex-col items-center text-white`}
                 >
-                  <ChartBar color="white" />
-                  <div className=" text-[10px]">{` ทองหลอมเรียลไทม์`}</div>
+                  <ChartBar color="white" size={20} />
+                  <div className=" text-[10px]">{` ทองหลอม`}</div>
                 </div>
               )
             }
@@ -163,7 +192,7 @@ export const TabBars = ({ tab, quotationQty, error }: Props) => {
             )
           ) : (
             <div
-              className={` relative whitespace-pre-line w-16 h-16 bg-white/10 backdrop-blur-xl border border-white/20 p-2 shadow-2xl rounded-full flex flex-row items-center justify-center ${isScrolled ? "text-xs" : "text-xs"}`}
+              className={` relative whitespace-pre-line w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/20 p-2 shadow-2xl rounded-full flex flex-row items-center justify-center ${isScrolled ? "text-xs" : "text-xs"}`}
             >
               <Layers />
               {quotationQty > 0 ? (
