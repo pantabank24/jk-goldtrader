@@ -65,8 +65,9 @@ export const TabBars = ({ tab, quotationQty, error }: Props) => {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center pointer-events-none shadow-md bg-gradient-to-t from-black to-transparent w-full">
       <div
-        className={`pointer-events-auto relative bottom-4 transition-all duration-300 flex items-center justify-center gap-x-2 ${isScrolled ? "scale-75" : "scale-100"
-          }`}
+        className={`pointer-events-auto relative bottom-4 transition-all duration-300 flex items-center justify-center gap-x-2 ${
+          isScrolled ? "scale-75" : "scale-100"
+        }`}
       >
         <Tabs
           key="default"
@@ -159,58 +160,42 @@ export const TabBars = ({ tab, quotationQty, error }: Props) => {
               )
             }
           />
-          {/* <Tab className=" lg:hidden" key="quot" title={
-                      isScrolled
-                        ? quotationQty > 0 
-                            ? <div className={`bg-red-600 rounded-full h-7 w-7`}>
-                               <div className={`text-white text-lg`}>{quotationQty}</div>
-                              </div>
-                            : <NotepadText color="white"/>
-                        : <div className={`whitespace-pre-line w-24 flex flex-row items-center justify-center ${isScrolled ? 'text-xs' : 'text-xs'}`}>
-                            {` ใบเสนอราคา`}
-                            {
-                              quotationQty > 0 
-                            ? <div className={`bg-red-600 rounded-full ml-1 ${isScrolled ? 'h-4 w-5' : 'h-5 w-6'}`}>
-                                  <div className={`text-white ${isScrolled ? 'text-xs' : 'text-sm'}`}>{quotationQty}</div>
-                                  </div>
-                                : null
-                            }
-                          </div>
-                    }/> */}
-        </Tabs>
-
-        <div onClick={() => handleChange("quote")} className=" lg:hidden">
-          {isScrolled ? (
-            quotationQty > 0 ? (
-              <div
-                className={`bg-red-600 flex items-center justify-center backdrop-blur-xl border border-white/20 rounded-full h-12 w-12`}
-              >
-                <div className={`text-white text-xl`}>{quotationQty}</div>
-              </div>
-            ) : (
-              <div className=" bg-white/10 flex items-center justify-center backdrop-blur-xl border border-white/20 rounded-full h-12 w-12">
-                <Layers />
-              </div>
-            )
-          ) : (
-            <div
-              className={` relative whitespace-pre-line w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/20 p-2 shadow-2xl rounded-full flex flex-row items-center justify-center ${isScrolled ? "text-xs" : "text-xs"}`}
-            >
-              <Layers />
-              {quotationQty > 0 ? (
-                <div
-                  className={` absolute  top-0 right-0 bg-red-600 rounded-full ml-1 flex items-center justify-center ${isScrolled ? "h-4 w-5" : "h-5 w-5"}`}
-                >
+          <Tab
+            key="quote"
+            title={
+              isScrolled ? (
+                quotationQty > 0 ? (
                   <div
-                    className={`text-white ${isScrolled ? "text-xs" : "text-sm"}`}
+                    className={`bg-red-600 flex items-center justify-center backdrop-blur-xl border border-white/20 rounded-full h-5 w-5`}
                   >
-                    {quotationQty}
+                    <div className={`text-white text-xl`}>{quotationQty}</div>
                   </div>
+                ) : (
+                  <div className=" bg-white/10 flex items-center justify-center backdrop-blur-xl border border-white/20 rounded-full h-12 w-12">
+                    <Layers />
+                  </div>
+                )
+              ) : (
+                <div
+                  className={` relative whitespace-pre-line w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/20 p-2 shadow-2xl rounded-full flex flex-row items-center justify-center ${isScrolled ? "text-xs" : "text-xs"}`}
+                >
+                  <Layers />
+                  {quotationQty > 0 ? (
+                    <div
+                      className={` absolute  top-0 right-0 bg-red-600 rounded-full ml-1 flex items-center justify-center ${isScrolled ? "h-4 w-5" : "h-5 w-5"}`}
+                    >
+                      <div
+                        className={`text-white ${isScrolled ? "text-xs" : "text-sm"}`}
+                      >
+                        {quotationQty}
+                      </div>
+                    </div>
+                  ) : null}
                 </div>
-              ) : null}
-            </div>
-          )}
-        </div>
+              )
+            }
+          />
+        </Tabs>
       </div>
     </div>
   );

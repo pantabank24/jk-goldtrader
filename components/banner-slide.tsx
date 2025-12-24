@@ -10,18 +10,19 @@ export const BannerSlider = () => {
   const banners = [
     {
       id: 1,
-      title: "",
-      subtitle: "",
-      image: "/images/jk-banner.jpg",
-      imageMb: "/images/jk-banner2.jpg",
-      gradient: "",
+      title: "ลบพบุรีเช็คทอง",
+      subtitle:
+        "เช็คทองเงินนาคฟรี X-Ray ยิง % ไถ่ถอนตั๋วจำนำให้ราคาสูง \n 0639289393",
+      image: "/images/banner1.png",
+      imageMb: "/images/banner1.png",
+      gradient: "bg-black/30",
     },
     {
       id: 2,
-      title: "รับซื้อทองคำ",
-      subtitle: "ให้ราคาสูงที่สุด จ่ายสดหน้าร้าน",
-      image: "/images/banner2.jpg",
-      imageMb: "/images/banner2.jpg",
+      title: "รับซื้อเศษทองเงินนาค",
+      subtitle: "กรอบพระชำรุดฉีกขาดทุกสภาพ เครื่องประดับต่าง ๆ",
+      image: "/images/banner2.png",
+      imageMb: "/images/banner2.png",
       gradient: "bg-black/30",
     },
   ];
@@ -95,12 +96,12 @@ export const BannerSlider = () => {
               {/* Content */}
               <div className="relative z-10 flex items-center justify-center h-full text-white">
                 <div className="text-center max-w-4xl px-6">
-                  <h1 className="text-5xl md:text-7xl font-bold  tracking-tight">
+                  <h1 className="text-4xl md:text-7xl font-bold  tracking-tight">
                     <span className="block opacity-0 animate-[slideUp_0.8s_ease-out_0.3s_forwards] bg-gradient-to-b from-yellow-200 to-yellow-700 bg-clip-text text-transparent">
                       {banner.title}
                     </span>
                   </h1>
-                  <p className="text-xl md:text-2xl font-light opacity-90 opacity-0 animate-[slideUp_0.8s_ease-out_0.6s_forwards]">
+                  <p className="text-md font-light opacity-90  animate-[slideUp_0.8s_ease-out_0.6s_forwards]">
                     {banner.subtitle}
                   </p>
                 </div>

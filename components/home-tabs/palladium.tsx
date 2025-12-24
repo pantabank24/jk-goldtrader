@@ -42,6 +42,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { number } from "framer-motion";
 import { blogs } from "@/app/blog/blogs";
 import { formatNumber } from "@/app/utils/format-number";
+import { HomeBody } from "../homeBody";
 
 interface Props {
   isLoading: boolean;
@@ -77,9 +78,9 @@ export const PalladiumPage = ({
     var PalladiumPrice = XPDPrice == "" ? 0 : parseFloat(XPDPrice ?? "0");
 
     var cal =
-      ((PalladiumPrice / 1000) *
-        (parseFloat(percent == "" ? "0" : percent) / 100) *
-        parseFloat(gram ?? "0"));
+      (PalladiumPrice / 1000) *
+      (parseFloat(percent == "" ? "0" : percent) / 100) *
+      parseFloat(gram ?? "0");
     setCalc(cal < 0 ? 0 : cal);
     setCurrentQuot({
       goldType: "แพลเลเดียม",
@@ -168,7 +169,6 @@ export const PalladiumPage = ({
             </div>
           ) : (
             <div className=" grid grid-cols-2  lg:grid-cols-5 gap-x-4 gap-y-2 items-start justify-center">
-
               <iframe
                 src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_palladium&symbol=OANDA%3AXPDUSD&interval=1&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=0a0a0a&studies=[]&theme=dark&style=1&timezone=Asia%2FBangkok&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=th"
                 className=" row-span-2 col-span-3 flex w-full rounded-3xl h-full max-lg:hidden"
@@ -181,8 +181,6 @@ export const PalladiumPage = ({
                   แพลเลเดียม
                 </span>
               </div>
-
-
 
               <div className=" col-span-2 flex flex-col w-full justify backdrop-blur-xl border border-white/20 bg-gradient-to-b from-white/5 to-white/10 px-3 py-4 rounded-3xl ">
                 <div className=" gap-3 flex flex-col items-center">
@@ -278,9 +276,9 @@ export const PalladiumPage = ({
                         {calc > 9999999
                           ? formatNumber(calc) + "บาท"
                           : calc.toLocaleString(`th-TH`, {
-                            minimumFractionDigits: 0,
-                            maximumFractionDigits: 2,
-                          }) + " บาท"}{" "}
+                              minimumFractionDigits: 0,
+                              maximumFractionDigits: 2,
+                            }) + " บาท"}{" "}
                       </span>
                     </Skeleton>
 
@@ -311,66 +309,7 @@ export const PalladiumPage = ({
 
         <div className="inline-block text-center justify-center w-full mt-10 mb-7 flex flex-col"></div>
 
-        <div className=" lg:hidden flex flex-col gap-y-4 w-full items-center justify-center px-5">
-          <span className="text-3xl font-bold bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
-            กราฟแพลเลเดียมตอนนี้
-          </span>
-          <iframe
-            src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_palladium&symbol=OANDA%3AXPDUSD&interval=1&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=0a0a0a&studies=[]&theme=dark&style=1&timezone=Asia%2FBangkok&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=th"
-            className="flex w-full rounded-3xl lg:w-1/2"
-            height="500"
-            scrolling="no"
-          ></iframe>
-        </div>
-
-        <div className="relative flex w-full py-16 bg-white/5 mt-10 flex-col items-center px-5">
-          <div className="absolute top-0 left-0 w-full h-10 bg-gradient-to-t from-transparent to-black" />
-          <span className="  text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold">
-            บทความ
-          </span>
-          <span className=" mb-10 bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold ">
-            ข่าวสารประชาสัมพันธ์จาก JK Goldtrader
-          </span>
-
-          <div className=" w-full lg:w-1/2">
-            {blogs.map((i, index) => (
-              <div
-                key={index}
-                className=" flex flex-col xl:flex-row rounded-2xl backdrop-blur-xl border border-white/20 bg-gradient-to-b from-white/5 to-white/10 items-center justify-center "
-              >
-                <img
-                  className="h-72 max-xl:w-full object-cover rounded-xl "
-                  alt="fischer"
-                  src={i.img}
-                />
-                <div className=" flex flex-col items-end justify-center py-4 px-4">
-                  <span className=" w-full h-full text-sm whitespace-pre-line ">
-                    {i.description}
-                  </span>
-                  <Button
-                    className="  font-bold backdrop-blur-xl border border-white/20 bg-gradient-to-b from-transparent to-yellow-500/50"
-                    onPress={() => { }}
-                  >
-                    อ่านเพิ่มเติม
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className=" w-full lg:w-1/2 mt-20 md:mt-32  flex items-center justify-center flex-col">
-            <span className="  text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold mb-10">
-              พิกัดร้าน
-            </span>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.1906687314067!2d100.64438107586528!3d13.767372496931236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d61e658c0eb4f%3A0xa6559716dcd55c86!2z4LiI4LmI4Liy4LiE4Li04LiHIOC4m-C4suC4geC4nuC4meC4seC4hw!5e0!3m2!1sen!2sth!4v1751569935480!5m2!1sen!2sth"
-              width="600"
-              height="450"
-              loading="lazy"
-              className=" rounded-3xl w-full"
-            ></iframe>
-          </div>
-        </div>
+        <HomeBody />
 
         <Modal
           isOpen={isOpen}

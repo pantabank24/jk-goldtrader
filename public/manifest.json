@@ -1,11 +1,11 @@
 {
-  "name": "เช็คราคาทอง JK",
-  "short_name": "เช็คราคาทอง JK",
+  "name": "Watchara Gold",
+  "short_name": "Watchara Gold",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ffd700",
-  "description": "แอปเทรดทองคำแบบ PWA",
+  "description": "Watchara Gold",
   "icons": [
     {
       "src": "/icon-192x192.png",

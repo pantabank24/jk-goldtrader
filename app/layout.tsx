@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     url: siteConfig.url,
     images: {
-      url: "https://jk-goldtrader.com/images/jk-banner2.jpg",
+      url: "https://watcharagold.com/images/banner2.png",
       width: 1200,
       height: 630,
     },
@@ -64,7 +64,7 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta
           name="description"
-          content="แอปเทรดทองคำ JK Goldtrader Progressive Web App"
+          content="แอปเทรดทองคำ Watchara Gold Progressive Web App"
         />
         <script
           dangerouslySetInnerHTML={{
@@ -78,7 +78,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <title>JK Goldtrader | เช็คราคาทอง ตรวจราคาทอง ประเมินราคาทอง</title>
+      <title>Watchara Gold | เช็คราคาทอง ตรวจราคาทอง ประเมินราคาทอง</title>
       <meta name="description" content="คำอธิบายของเว็บเพจนี้" />
       <body
         className={`min-h-screen bg-background font-sans antialiased ${fontKanit.variable}`}
@@ -94,19 +94,17 @@ export default function RootLayout({
             </main>
             <footer className="w-full flex items-center justify-center py-10 flex-col bg-[#14100b]">
               <div className=" flex flex-row gap-x-2">
-                <Image
-                  className=" rounded-full"
+                <img
+                  className=" rounded-full w-12 h-12 object-cover"
                   alt="jkChill"
-                  src="/images/owner.png"
-                  width={50}
-                  height={50}
+                  src="/images/watcharapf.png"
                 />
                 <div className=" flex flex-col">
                   <span className="text-default-600 text-lg bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold">
-                    JK Goldtrader by จ่าคิง ปากพนัง
+                    วัชระเช็คทอง ลบพบุรีเช็คทอง
                   </span>
                   <span className="text-default-600 text-sm">
-                    ร้านเปิดทุกวัน 09:30-16:30 (แนะนำให้โทรนัดครับ)
+                    ร้านเปิดทุกวัน (ยกเว้นวันพฤหัส ฯ) 09:00-19:30
                   </span>
                 </div>
               </div>
@@ -116,9 +114,9 @@ export default function RootLayout({
                   variant="flat"
                   as="a"
                   radius="full"
-                  href="tel:0639325566"
+                  href="tel:0639289393"
                 >
-                  โทร 063-932-5566 (จ่าคิง)
+                  โทร 0639289393
                 </Button>
                 {/* <Button color="primary" variant="faded" as="a" radius="full"  target="_blank" href="https://maps.app.goo.gl/zFnoEgPjEydyLTQg6?g_st=il">
                   พิกัดร้าน : Google Maps
@@ -128,7 +126,7 @@ export default function RootLayout({
               <div className="flex items-center gap-1 text-current">
                 <span className="text-default-600">Copyright</span>
                 <p className=" font-bold bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent">
-                  © 2025 JK Goldtrader
+                  © 2025 Watchara Gold
                 </p>
               </div>
               <div className="flex items-center gap-1 text-current">
