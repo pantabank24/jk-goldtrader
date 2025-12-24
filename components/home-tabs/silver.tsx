@@ -81,9 +81,9 @@ export const SilverPage = ({
       (xagPrice ? parseFloat(xagPrice) : null) ?? data?.buy ?? 0;
 
     var cal =
-      ((silverPrice / 1000) *
-        (parseFloat(percent == "" ? "0" : percent) / 100) *
-        parseFloat(gram ?? "0"));
+      (silverPrice / 1000) *
+      (parseFloat(percent == "" ? "0" : percent) / 100) *
+      parseFloat(gram ?? "0");
     setCalc(cal < 0 ? 0 : cal);
     setCurrentQuot({
       goldType: "เงินแท่ง",
@@ -350,9 +350,9 @@ export const SilverPage = ({
                         {calc > 9999999
                           ? formatNumber(calc) + "บาท"
                           : calc.toLocaleString(`th-TH`, {
-                            minimumFractionDigits: 0,
-                            maximumFractionDigits: 2,
-                          }) + " บาท"}{" "}
+                              minimumFractionDigits: 0,
+                              maximumFractionDigits: 2,
+                            }) + " บาท"}{" "}
                       </span>
                     </Skeleton>
 
@@ -389,7 +389,7 @@ export const SilverPage = ({
           </span>
           <iframe
             src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_8d6d1&symbol=FOREXCOM%3AXAUUSD&interval=1&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=0a0a0a&studies=[]&theme=dark&style=1&timezone=Asia%2FBangkok&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=th"
-            className=" flex w-full rounded-3xl lg:w-1/2"
+            className=" flex w-full rounded-3xl lg:w-1/2 pointer-events-none"
             height="500"
             scrolling="no"
           ></iframe>
@@ -421,7 +421,7 @@ export const SilverPage = ({
                   </span>
                   <Button
                     className="  font-bold backdrop-blur-xl border border-white/20 bg-gradient-to-b from-transparent to-yellow-500/50"
-                    onPress={() => { }}
+                    onPress={() => {}}
                   >
                     อ่านเพิ่มเติม
                   </Button>
@@ -439,7 +439,7 @@ export const SilverPage = ({
               width="600"
               height="450"
               loading="lazy"
-              className=" rounded-3xl w-full"
+              className=" rounded-3xl w-full pointer-events-none"
             ></iframe>
           </div>
         </div>

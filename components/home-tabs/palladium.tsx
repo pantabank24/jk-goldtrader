@@ -77,9 +77,9 @@ export const PalladiumPage = ({
     var PalladiumPrice = XPDPrice == "" ? 0 : parseFloat(XPDPrice ?? "0");
 
     var cal =
-      ((PalladiumPrice / 1000) *
-        (parseFloat(percent == "" ? "0" : percent) / 100) *
-        parseFloat(gram ?? "0"));
+      (PalladiumPrice / 1000) *
+      (parseFloat(percent == "" ? "0" : percent) / 100) *
+      parseFloat(gram ?? "0");
     setCalc(cal < 0 ? 0 : cal);
     setCurrentQuot({
       goldType: "แพลเลเดียม",
@@ -168,7 +168,6 @@ export const PalladiumPage = ({
             </div>
           ) : (
             <div className=" grid grid-cols-2  lg:grid-cols-5 gap-x-4 gap-y-2 items-start justify-center">
-
               <iframe
                 src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_palladium&symbol=OANDA%3AXPDUSD&interval=1&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=0a0a0a&studies=[]&theme=dark&style=1&timezone=Asia%2FBangkok&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=th"
                 className=" row-span-2 col-span-3 flex w-full rounded-3xl h-full max-lg:hidden"
@@ -181,8 +180,6 @@ export const PalladiumPage = ({
                   แพลเลเดียม
                 </span>
               </div>
-
-
 
               <div className=" col-span-2 flex flex-col w-full justify backdrop-blur-xl border border-white/20 bg-gradient-to-b from-white/5 to-white/10 px-3 py-4 rounded-3xl ">
                 <div className=" gap-3 flex flex-col items-center">
@@ -278,9 +275,9 @@ export const PalladiumPage = ({
                         {calc > 9999999
                           ? formatNumber(calc) + "บาท"
                           : calc.toLocaleString(`th-TH`, {
-                            minimumFractionDigits: 0,
-                            maximumFractionDigits: 2,
-                          }) + " บาท"}{" "}
+                              minimumFractionDigits: 0,
+                              maximumFractionDigits: 2,
+                            }) + " บาท"}{" "}
                       </span>
                     </Skeleton>
 
@@ -317,7 +314,7 @@ export const PalladiumPage = ({
           </span>
           <iframe
             src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_palladium&symbol=OANDA%3AXPDUSD&interval=1&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=0a0a0a&studies=[]&theme=dark&style=1&timezone=Asia%2FBangkok&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=th"
-            className="flex w-full rounded-3xl lg:w-1/2"
+            className="flex w-full rounded-3xl lg:w-1/2 pointer-events-none"
             height="500"
             scrolling="no"
           ></iframe>
@@ -349,7 +346,7 @@ export const PalladiumPage = ({
                   </span>
                   <Button
                     className="  font-bold backdrop-blur-xl border border-white/20 bg-gradient-to-b from-transparent to-yellow-500/50"
-                    onPress={() => { }}
+                    onPress={() => {}}
                   >
                     อ่านเพิ่มเติม
                   </Button>
@@ -367,7 +364,7 @@ export const PalladiumPage = ({
               width="600"
               height="450"
               loading="lazy"
-              className=" rounded-3xl w-full"
+              className=" rounded-3xl w-full pointer-events-none"
             ></iframe>
           </div>
         </div>

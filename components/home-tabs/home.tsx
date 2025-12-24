@@ -18,12 +18,7 @@ import {
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { BannerSlider } from "@/components/banner-slide";
-import {
-  ArrowDown,
-  ArrowUp,
-  Construction,
-  FilePlus,
-} from "lucide-react";
+import { ArrowDown, ArrowUp, Construction, FilePlus } from "lucide-react";
 import { PriceDto } from "@/app/models/Models";
 import { QuotationModel } from "@/app/models/Quotations";
 import toast from "react-hot-toast";
@@ -581,9 +576,9 @@ export const HomePages = ({
                         {calc > 9999999
                           ? formatNumber(calc) + "บาท"
                           : calc.toLocaleString(`th-TH`, {
-                            minimumFractionDigits: 0,
-                            maximumFractionDigits: 2,
-                          }) + " บาท"}{" "}
+                              minimumFractionDigits: 0,
+                              maximumFractionDigits: 2,
+                            }) + " บาท"}{" "}
                       </span>
                     </Skeleton>
 
@@ -620,7 +615,7 @@ export const HomePages = ({
           </span>
           <iframe
             src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_8d6d1&symbol=FOREXCOM%3AXAUUSD&interval=1&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=0a0a0a&studies=[]&theme=dark&style=1&timezone=Asia%2FBangkok&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=th"
-            className=" flex w-full rounded-3xl lg:w-1/2"
+            className=" flex w-full rounded-3xl lg:w-1/2 pointer-events-none"
             height="500"
             scrolling="no"
           ></iframe>
@@ -670,7 +665,7 @@ export const HomePages = ({
               width="600"
               height="450"
               loading="lazy"
-              className=" rounded-3xl w-full"
+              className=" rounded-3xl w-full pointer-events-none"
             ></iframe>
           </div>
         </div>
