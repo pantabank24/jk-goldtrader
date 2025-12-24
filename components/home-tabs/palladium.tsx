@@ -309,7 +309,7 @@ export const PalladiumPage = ({
 
         <div className="inline-block text-center justify-center w-full mt-10 mb-7 flex flex-col"></div>
 
-        <HomeBody />
+        <HomeBody pageType="palladium" />
 
         <Modal
           isOpen={isOpen}
