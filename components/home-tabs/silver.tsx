@@ -384,7 +384,7 @@ export const SilverPage = ({
 
         <div className="inline-block text-center justify-center w-full mt-20 mb-7 flex flex-col"></div>
 
-        <HomeBody />
+        <HomeBody pageType="silver" />
 
         <Modal
           isOpen={isOpen}
