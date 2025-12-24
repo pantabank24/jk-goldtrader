@@ -38,7 +38,7 @@ import {
   useDisclosure,
 } from "@heroui/react";
 import { getLocalTimeZone, today } from "@internationalized/date";
-import { z } from "zod";
+import { json, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useForm, Controller } from "react-hook-form";
@@ -211,6 +211,23 @@ const QuotationComponent = ({ items, onChange }: Props) => {
         break;
     }
   };
+
+  const grouped: QuotationModel[] = Object.values(
+    items.reduce<Record<string, QuotationModel>>((acc, cur) => {
+      if (!acc[cur.goldType]) {
+        acc[cur.goldType] = { ...cur };
+      } else {
+        acc[cur.goldType].laborCost += cur.laborCost;
+        acc[cur.goldType].goldPrice += cur.goldPrice;
+
+        // ถ้าต้องการรวมเพิ่ม
+        acc[cur.goldType].weightBaht += cur.weightBaht;
+        acc[cur.goldType].totalAmount += cur.totalAmount;
+      }
+
+      return acc;
+    }, {})
+  );
 
   return (
     <div className=" w-full lg:w-1/2 mx-auto mt-14  ">
@@ -594,31 +611,59 @@ const QuotationComponent = ({ items, onChange }: Props) => {
         </div>
 
         {/* Summary */}
-        <div className="p-4">
-          <div className="flex justify-end">
-            <div className="w-80">
-              <div className="border border-gray-400">
-                <div className="flex justify-between p-1 border-b border-gray-400">
-                  <span className="font-semibold">น้ำหนักรวม</span>
-                  <span className="font-semibold">
-                    {calculateTotalWeight().toFixed(1)}
-                  </span>
-                </div>
-                <div className="flex justify-between p-1 border-b border-gray-400">
-                  <span className="font-semibold">รวมเป็นเงิน</span>
-                  <span className="font-semibold">
-                    {calculateGrandTotal().toLocaleString()}
-                  </span>
-                </div>
-                <div className="flex justify-between p-1">
-                  <span className="font-semibold">อื่น ๆ</span>
-                  <span className="font-semibold"></span>
-                </div>
-                <div className="flex justify-between p-1 border-t border-gray-400">
-                  <span className="font-bold">จำนวนรวมทั้งสิ้น</span>
-                  <span className="font-bold">
-                    {calculateGrandTotal().toLocaleString()}
-                  </span>
+        <div className="pt-4">
+          <div className=" grid grid-cols-2">
+            <div className="flex justify-start">
+              <table className=" w-full">
+                <thead>
+                  <tr>
+                    <th className="border border-gray-400">รายการ</th>
+                    <th className="border border-gray-400">น้ำหนัก</th>
+                    <th className="border border-gray-400">ราคา</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {grouped?.map((item) => (
+                    <tr key={item.goldType}>
+                      <td className="border border-gray-400 text-center">
+                        {item.goldType}
+                      </td>
+                      <td className="border border-gray-400 text-center">
+                        {item.laborCost.toFixed(1)}
+                      </td>
+                      <td className="border border-gray-400 text-center">
+                        {item.goldPrice.toFixed(1)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="flex justify-end">
+              <div className="w-80">
+                <div className="border border-gray-400">
+                  <div className="flex justify-between p-1 border-b border-gray-400">
+                    <span className="font-semibold">น้ำหนักรวม</span>
+                    <span className="font-semibold">
+                      {calculateTotalWeight().toFixed(1)}
+                    </span>
+                  </div>
+                  <div className="flex justify-between p-1 border-b border-gray-400">
+                    <span className="font-semibold">รวมเป็นเงิน</span>
+                    <span className="font-semibold">
+                      {calculateGrandTotal().toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="flex justify-between p-1">
+                    <span className="font-semibold">อื่น ๆ</span>
+                    <span className="font-semibold"></span>
+                  </div>
+                  <div className="flex justify-between p-1 border-t border-gray-400">
+                    <span className="font-bold">จำนวนรวมทั้งสิ้น</span>
+                    <span className="font-bold">
+                      {calculateGrandTotal().toLocaleString()}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -642,7 +687,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                 </Checkbox>
               </div>
             </div>
-            <div className=" flex flex-row max-md:overflow-x-scroll gap-x-4">
+            <div className=" flex flex-row max-md:overflow-hidden gap-x-4">
               <div className=" flex flex-row gap-x-4">
                 <div className=" w-12 flex flex-row justify-end">เลขที่</div>
                 <div className=" ">
