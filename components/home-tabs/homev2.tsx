@@ -638,7 +638,7 @@ const HomeV2 = ({ data, isLoading, service, currentQuots, error }: Props) => {
               <div className=" flex flex-row gap-x-2">
                 <Button
                   as="a"
-                  href="https://line.me/R/ti/p/@446pxqyk?ts=04201136&oat_content=url"
+                  href="https://line.me/ti/p/WzG-DAXzmL"
                   className=" w-full hover:scale-105 backdrop-blur-xl border-2 border-white/20 flex h-14  mt-5  bg-gradient-to-b from-green-500 to-green-700 text-xs"
                   radius="full"
                 >
