@@ -294,7 +294,7 @@ export const PlatinumPage = ({
 
           <Button
             as="a"
-            href="https://line.me/R/ti/p/@446pxqyk?ts=04201136&oat_content=url"
+            href="https://line.me/R/ti/p/@314qjtdh"
             className=" hover:scale-105 backdrop-blur-xl border-2 border-white/20 flex h-14 w-56 px-10 mt-3  bg-gradient-to-b from-green-500 to-green-700 "
             radius="full"
           >

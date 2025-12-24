@@ -64,7 +64,7 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta
           name="description"
-          content="แอปเทรดทองคำ Watchara Gold Progressive Web App"
+          content="แอปเทรดทองคำ ร้านชินราชา Progressive Web App"
         />
         <script
           dangerouslySetInnerHTML={{
@@ -78,7 +78,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <title>Watchara Gold | เช็คราคาทอง ตรวจราคาทอง ประเมินราคาทอง</title>
+      <title>ร้านชินราชา | เช็คราคาทอง ตรวจราคาทอง ประเมินราคาทอง</title>
       <meta name="description" content="คำอธิบายของเว็บเพจนี้" />
       <body
         className={`min-h-screen bg-background font-sans antialiased ${fontKanit.variable}`}
@@ -93,17 +93,12 @@ export default function RootLayout({
             </main>
             <footer className="w-full flex items-center justify-center py-10 flex-col bg-[#14100b]">
               <div className=" flex flex-row gap-x-2">
-                <img
-                  className=" rounded-full w-12 h-12 object-cover"
-                  alt="jkChill"
-                  src="/images/watcharapf.png"
-                />
-                <div className=" flex flex-col">
+                <div className=" flex flex-col items-center">
                   <span className="text-default-600 text-lg bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold">
-                    วัชระเช็คทอง ลบพบุรีเช็คทอง
+                    ร้านชินราชา
                   </span>
                   <span className="text-default-600 text-sm">
-                    ร้านเปิดทุกวัน (ยกเว้นวันพฤหัส ฯ) 09:00-19:30
+                    ร้านเปิดทุกวัน 09:00-18:00
                   </span>
                 </div>
               </div>
@@ -113,9 +108,9 @@ export default function RootLayout({
                   variant="flat"
                   as="a"
                   radius="full"
-                  href="tel:0639289393"
+                  href="tel:0850291035"
                 >
-                  โทร 0639289393
+                  โทร 085-0291035 / 095-6756239
                 </Button>
                 {/* <Button color="primary" variant="faded" as="a" radius="full"  target="_blank" href="https://maps.app.goo.gl/zFnoEgPjEydyLTQg6?g_st=il">
                   พิกัดร้าน : Google Maps
@@ -125,7 +120,7 @@ export default function RootLayout({
               <div className="flex items-center gap-1 text-current">
                 <span className="text-default-600">Copyright</span>
                 <p className=" font-bold bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent">
-                  © 2025 Watchara Gold
+                  © 2025 ร้านชินราชา
                 </p>
               </div>
               <div className="flex items-center gap-1 text-current">

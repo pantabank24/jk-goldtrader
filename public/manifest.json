@@ -1,11 +1,11 @@
 {
-  "name": "Watchara Gold",
-  "short_name": "Watchara Gold",
+  "name": "ร้านชินราชา",
+  "short_name": "ร้านชินราชา",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ffd700",
-  "description": "Watchara Gold",
+  "description": "ร้านชินราชา",
   "icons": [
     {
       "src": "/icon-192x192.png",

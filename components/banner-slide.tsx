@@ -10,19 +10,21 @@ export const BannerSlider = () => {
   const banners = [
     {
       id: 1,
-      title: "ลบพบุรีเช็คทอง",
-      subtitle:
-        "เช็คทองเงินนาคฟรี X-Ray ยิง % ไถ่ถอนตั๋วจำนำให้ราคาสูง \n 0639289393",
+      title: "ร้านชินราชา",
+      subtitle: "รับเช็คเปอร์เซ็นต์ทอง รับซื้อทองคำทุกประเภท",
+      thirdTitle: "085-0291035 / 095-6756239",
       image: "/images/banner1.png",
       imageMb: "/images/banner1.png",
       gradient: "bg-black/30",
     },
     {
       id: 2,
-      title: "รับซื้อเศษทองเงินนาค",
-      subtitle: "กรอบพระชำรุดฉีกขาดทุกสภาพ เครื่องประดับต่าง ๆ",
-      image: "/images/banner2.png",
-      imageMb: "/images/banner2.png",
+      title: "รับซื้อเศษทอง",
+      subtitle:
+        "รอบพระ พระทองคำ ทองรูปพรรณ ทองเค ทองเก่า เข็มขัดนาค เครื่องเงิน รับซื้อตั๋วจำนำ ให้ราคาสูง เช็คเบื้องต้น หลอมทอง ฟรี บริการตรวจเช็คเปอร์เซ็นต์ทอง พร้อมใบแสดงผล",
+      thirdTitle: "",
+      image: "/images/banner1.png",
+      imageMb: "/images/banner1.png",
       gradient: "bg-black/30",
     },
   ];
@@ -103,6 +105,9 @@ export const BannerSlider = () => {
                   </h1>
                   <p className="text-md font-light opacity-90  animate-[slideUp_0.8s_ease-out_0.6s_forwards]">
                     {banner.subtitle}
+                  </p>
+                  <p className="text-md font-light opacity-90  animate-[slideUp_0.8s_ease-out_0.6s_forwards]">
+                    {banner.thirdTitle}
                   </p>
                 </div>
               </div>

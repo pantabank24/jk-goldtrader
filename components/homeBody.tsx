@@ -22,7 +22,7 @@ export const HomeBody = () => {
           บทความ
         </span>
         <span className=" mb-10 bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold ">
-          ข่าวสารประชาสัมพันธ์จาก Watchara Gold
+          ข่าวสารประชาสัมพันธ์จาก ร้านชินราชา
         </span>
 
         <div className=" w-full lg:w-1/2">
@@ -52,11 +52,30 @@ export const HomeBody = () => {
         </div>
 
         <div className=" w-full lg:w-1/2 mt-20 md:mt-32  flex items-center justify-center flex-col">
-          <span className="  text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold mb-10">
+          <span className="  text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold mb-2">
             พิกัดร้าน
           </span>
+          <span className="  text-md bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold text-start">
+            สาขาตลาดทิพย์เนตรเชียงใหม่
+          </span>
+          <span className="  text-md bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold text-start mb-5">
+            เปิดทุกวัน 09.00 น. - 18.00 น.
+          </span>
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3857.4665896633646!2d100.63190850000001!3d14.799048699999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311e01945ed2e861%3A0x9426eab3dcbf6c31!2z4Lil4Lie4Lia4Li44Lij4Li14LmA4LiK4LmH4LiE4LiX4Lit4LiH4LmA4LiH4Li04LiZ4LiZ4Liy4LiEKOC4p-C4seC4iuC4o-C4sOC5gOC4iuC5h-C4hOC4l-C4reC4hzEwMCUp4Lii4Li04LiHJeC4l-C4reC4hyB4LXJheeC4l-C4reC4hyDguKvguKXguK3guKHguJfguK3guIfguYDguIfguLTguJnguJnguLLguIQg4Lij4Lix4Lia4LiL4Li34LmJ4Lit4LmD4Lir4LmJ4Lij4Liy4LiE4Liy4Liq4Li54LiHIOC4m-C4o-C4sOC5gOC4oeC4tOC4meC4o-C4suC4hOC4suC4l-C4reC4hyjguJ_guKPguLUp!5e0!3m2!1sen!2sth!4v1766588300361!5m2!1sen!2sth"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d236.09388863310835!2d98.9804231!3d18.775759!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30da312d919f5271%3A0x63520f1bc331561f!2z4Lij4LmJ4Liy4LiZ4LiK4Li04LiZ4Lij4Liy4LiK4LiyIOC5gOC4iuC4teC4ouC4h-C5g-C4q-C4oeC5iCDguKPguLHguJrguYDguIrguYfguITguYDguJvguK3guKPguYzguYDguIvguYfguJnguJfguK3guIcg4Lij4Lix4Lia4LiL4Li34LmJ4Lit4LiX4Lit4LiHIOC4meC4suC4hCDguYDguIfguLTguJkg4Lie4Lij4Liw4LmA4LiE4Lij4Li34LmI4Lit4LiH!5e0!3m2!1sen!2sth!4v1766590936290!5m2!1sen!2sth"
+            width="600"
+            height="450"
+            loading="lazy"
+            className=" rounded-3xl w-full"
+          ></iframe>
+          <span className="  text-md bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold text-start mt-5">
+            สาขาตลาดจตุจักร ลำพูน (ทางเข้าตลาด ใกล้พระพรหม)
+          </span>
+          <span className="  text-md bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold text-start mb-5">
+            เปิดทุกวัน 09.30 น. - 18.00 น.
+          </span>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3782.3340198028964!2d99.036664!3d18.558974000000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTjCsDMzJzMyLjMiTiA5OcKwMDInMTIuMCJF!5e0!3m2!1sen!2sth!4v1766591056115!5m2!1sen!2sth"
             width="600"
             height="450"
             loading="lazy"
