@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     url: siteConfig.url,
     images: {
-      url: "https://watcharagold.com/images/banner2.png",
+      url: "https://kkgold.com/images/banner2.png",
       width: 1200,
       height: 630,
     },
@@ -64,7 +64,7 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta
           name="description"
-          content="แอปเทรดทองคำ Watchara Gold Progressive Web App"
+          content="แอปเทรดทองคำ KK หลอมทอง Progressive Web App"
         />
         <script
           dangerouslySetInnerHTML={{
@@ -78,7 +78,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <title>Watchara Gold | เช็คราคาทอง ตรวจราคาทอง ประเมินราคาทอง</title>
+      <title>KK หลอมทอง | เช็คราคาทอง ตรวจราคาทอง ประเมินราคาทอง</title>
       <meta name="description" content="คำอธิบายของเว็บเพจนี้" />
       <body
         className={`min-h-screen bg-background font-sans antialiased ${fontKanit.variable}`}
@@ -96,14 +96,14 @@ export default function RootLayout({
                 <img
                   className=" rounded-full w-12 h-12 object-cover"
                   alt="jkChill"
-                  src="/images/watcharapf.png"
+                  src="/images/JKLOGO.png"
                 />
                 <div className=" flex flex-col">
                   <span className="text-default-600 text-lg bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold">
-                    วัชระเช็คทอง ลบพบุรีเช็คทอง
+                    KK หลอมทองหาดใหญ่
                   </span>
                   <span className="text-default-600 text-sm">
-                    ร้านเปิดทุกวัน (ยกเว้นวันพฤหัส ฯ) 09:00-19:30
+                    เปิดวันจันทร์-เสาร์ เวลา 9.00 - 18.00
                   </span>
                 </div>
               </div>
@@ -113,9 +113,9 @@ export default function RootLayout({
                   variant="flat"
                   as="a"
                   radius="full"
-                  href="tel:0639289393"
+                  href="tel:0648282624"
                 >
-                  โทร 0639289393
+                  โทร 0648282624
                 </Button>
                 {/* <Button color="primary" variant="faded" as="a" radius="full"  target="_blank" href="https://maps.app.goo.gl/zFnoEgPjEydyLTQg6?g_st=il">
                   พิกัดร้าน : Google Maps
@@ -125,7 +125,7 @@ export default function RootLayout({
               <div className="flex items-center gap-1 text-current">
                 <span className="text-default-600">Copyright</span>
                 <p className=" font-bold bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent">
-                  © 2025 Watchara Gold
+                  © 2025 KK หลอมทอง
                 </p>
               </div>
               <div className="flex items-center gap-1 text-current">

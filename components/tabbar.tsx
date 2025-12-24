@@ -63,9 +63,9 @@ export const TabBars = ({ tab, quotationQty, error }: Props) => {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center pointer-events-none shadow-md bg-gradient-to-t from-black to-transparent w-full">
+    <div className="fixed bottom-0 left-0 right-0 z-[9999] flex justify-center shadow-md bg-gradient-to-t from-black to-transparent w-full">
       <div
-        className={`pointer-events-auto relative bottom-4 transition-all duration-300 flex items-center justify-center gap-x-2 ${
+        className={`relative bottom-4 transition-all duration-300 flex items-center justify-center gap-x-2 ${
           isScrolled ? "scale-75" : "scale-100"
         }`}
       >

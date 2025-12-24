@@ -10,7 +10,7 @@ export const HomeBody = () => {
         </span>
         <iframe
           src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_8d6d1&symbol=FOREXCOM%3AXAUUSD&interval=1&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=0a0a0a&studies=[]&theme=dark&style=1&timezone=Asia%2FBangkok&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=th"
-          className=" flex w-full rounded-3xl lg:w-1/2"
+          className=" flex w-full rounded-3xl lg:w-1/2 relative z-0 pointer-events-none"
           height="500"
           scrolling="no"
         ></iframe>
@@ -22,7 +22,7 @@ export const HomeBody = () => {
           บทความ
         </span>
         <span className=" mb-10 bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold ">
-          ข่าวสารประชาสัมพันธ์จาก Watchara Gold
+          ข่าวสารประชาสัมพันธ์จาก KK หลอมทอง
         </span>
 
         <div className=" w-full lg:w-1/2">
@@ -56,11 +56,11 @@ export const HomeBody = () => {
             พิกัดร้าน
           </span>
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3857.4665896633646!2d100.63190850000001!3d14.799048699999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311e01945ed2e861%3A0x9426eab3dcbf6c31!2z4Lil4Lie4Lia4Li44Lij4Li14LmA4LiK4LmH4LiE4LiX4Lit4LiH4LmA4LiH4Li04LiZ4LiZ4Liy4LiEKOC4p-C4seC4iuC4o-C4sOC5gOC4iuC5h-C4hOC4l-C4reC4hzEwMCUp4Lii4Li04LiHJeC4l-C4reC4hyB4LXJheeC4l-C4reC4hyDguKvguKXguK3guKHguJfguK3guIfguYDguIfguLTguJnguJnguLLguIQg4Lij4Lix4Lia4LiL4Li34LmJ4Lit4LmD4Lir4LmJ4Lij4Liy4LiE4Liy4Liq4Li54LiHIOC4m-C4o-C4sOC5gOC4oeC4tOC4meC4o-C4suC4hOC4suC4l-C4reC4hyjguJ_guKPguLUp!5e0!3m2!1sen!2sth!4v1766588300361!5m2!1sen!2sth"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.1385511240396!2d100.4832685!3d6.992958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x304d2900676a2e5b%3A0x8de82dc653f1f271!2zS0sg4Lir4Lil4Lit4Lih4LiX4Lit4LiH4Lir4Liy4LiU4LmD4Lir4LiN4LmIIOC4guC5ieC4suC4h-C5gOC4i-C4meC4l-C4o-C4seC4peC5gOC4n-C4quC4leC4tOC4p-C4seC4peC4q-C4suC4lOC5g-C4q-C4jeC5iA!5e0!3m2!1sen!2sth!4v1766598349637!5m2!1sen!2sth"
             width="600"
             height="450"
             loading="lazy"
-            className=" rounded-3xl w-full"
+            className=" rounded-3xl w-full relative z-0 pointer-events-none"
           ></iframe>
         </div>
       </div>

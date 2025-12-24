@@ -638,7 +638,7 @@ const HomeV2 = ({ data, isLoading, service, currentQuots, error }: Props) => {
               <div className=" flex flex-row gap-x-2">
                 <Button
                   as="a"
-                  href="https://line.me/ti/p/WzG-DAXzmL"
+                  href="https://lin.ee/XukDRz8"
                   className=" w-full hover:scale-105 backdrop-blur-xl border-2 border-white/20 flex h-14  mt-5  bg-gradient-to-b from-green-500 to-green-700 text-xs"
                   radius="full"
                 >
@@ -687,7 +687,7 @@ const HomeV2 = ({ data, isLoading, service, currentQuots, error }: Props) => {
               บทความ
             </span>
             <span className=" mb-10 bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold ">
-              ข่าวสารประชาสัมพันธ์จาก Watchara Gold
+              ข่าวสารประชาสัมพันธ์จาก KK หลอมทอง
             </span>
 
             <div className=" w-full lg:w-1/2">
@@ -741,7 +741,7 @@ const HomeV2 = ({ data, isLoading, service, currentQuots, error }: Props) => {
               />
               <div className=" flex flex-col">
                 <span className="text-default-600 text-lg bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold">
-                  Watchara Gold by จ่าคิง ปากพนัง
+                  KK หลอมทอง by จ่าคิง ปากพนัง
                 </span>
                 <span className="text-default-600 text-sm">
                   ร้านเปิดทุกวัน 09:30-16:30 (แนะนำให้โทรนัดครับ)
@@ -764,7 +764,7 @@ const HomeV2 = ({ data, isLoading, service, currentQuots, error }: Props) => {
             </div>
             <div className="flex items-center gap-1 text-current">
               <p className=" font-bold bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent">
-                © 2025 Watchara Gold
+                © 2025 KK หลอมทอง
               </p>
             </div>
             <div className="flex items-center gap-1 text-current mb-16">

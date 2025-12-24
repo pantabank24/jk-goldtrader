@@ -330,7 +330,7 @@ export const HomePages = ({
             <div className=" grid grid-cols-2  lg:grid-cols-5 gap-x-4 gap-y-2 items-start justify-center">
               <iframe
                 src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_8d6d1&symbol=FOREXCOM%3AXAUUSD&interval=1&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=0a0a0a&studies=[]&theme=dark&style=1&timezone=Asia%2FBangkok&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=th"
-                className=" row-span-2 col-span-3 flex w-full rounded-3xl h-full max-lg:hidden"
+                className=" row-span-2 col-span-3 flex w-full rounded-3xl h-full max-lg:hidden relative z-0 pointer-events-none"
                 height="500"
                 scrolling="no"
               ></iframe>
@@ -340,7 +340,7 @@ export const HomePages = ({
                     ทองคำเเท่ง 96.5%
                   </span>
                   <div className=" grid grid-cols-2  gap-x-4">
-                    <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 flex flex-col items-center py-5 rounded-2xl h-20 justify-center">
+                    <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-[#0f2443] flex flex-col items-center py-5 rounded-2xl h-20 justify-center">
                       {isLoading ? (
                         <CircularProgress
                           aria-label="Loading..."
@@ -360,7 +360,7 @@ export const HomePages = ({
                         </div>
                       )}
                     </div>
-                    <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 flex flex-col items-center py-5 rounded-2xl h-20 justify-center">
+                    <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-[#0f2443] flex flex-col items-center py-5 rounded-2xl h-20 justify-center">
                       {isLoading ? (
                         <CircularProgress
                           aria-label="Loading..."
@@ -595,7 +595,7 @@ export const HomePages = ({
 
           <Button
             as="a"
-            href="https://line.me/ti/p/WzG-DAXzmL"
+            href="https://lin.ee/XukDRz8"
             className=" hover:scale-105 backdrop-blur-xl border-2 border-white/20 flex h-14 w-56 px-10 mt-3  bg-gradient-to-b from-green-500 to-green-700 "
             radius="full"
           >

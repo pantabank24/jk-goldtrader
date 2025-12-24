@@ -97,7 +97,7 @@ const AddToHomeScreenPrompt: React.FC = () => {
               />
             </div>
             <span className=" font-semibold mr-4">
-              เพิ่ม Watchara Gold ลงหน้าจอหลักบน iOS: กด{" "}
+              เพิ่ม KK หลอมทอง ลงหน้าจอหลักบน iOS: กด{" "}
               <span className="inline-block px-1">แชร์</span>{" "}
               <svg
                 className="inline w-5 h-5 align-text-bottom"
@@ -151,7 +151,7 @@ const AddToHomeScreenPrompt: React.FC = () => {
               />
             </div>
             <span className=" font-semibold mr-4">
-              เพิ่ม Watchara Gold ลงหน้าจอหลักเพื่อเข้าใช้งานสะดวกยิ่งขึ้น!
+              เพิ่ม KK หลอมทอง ลงหน้าจอหลักเพื่อเข้าใช้งานสะดวกยิ่งขึ้น!
             </span>
           </div>
           <div className=" flex flex-row w-full gap-x-2">

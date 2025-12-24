@@ -22,12 +22,12 @@ const ModernNavbar = ({ isTransparent }: Props) => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300    ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300     ${
         isTransparent
           ? isScrolled
-            ? "bg-[#fd4333]/80 backdrop-blur-lg shadow-lg"
+            ? "bg-[#0f2443]/80 backdrop-blur-lg shadow-lg border-b border-yellow-500"
             : "bg-transparent"
-          : "bg-[#fd4333]/80 backdrop-blur-lg shadow-lg"
+          : "bg-[#0f2443]/80 backdrop-blur-lg shadow-lg border-b border-yellow-500"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,10 +40,10 @@ const ModernNavbar = ({ isTransparent }: Props) => {
                   <img src="/images/JKLOGO.png" alt="logo" className=" w-8" />
                   <div className=" flex flex-col">
                     <span className="font-bold  text-xl ml-3 bg-gradient-to-b from-yellow-100 to-yellow-500 bg-clip-text text-transparent">
-                      วัชระเช็คทอง
+                      KK หลอมทองหาดใหญ่
                     </span>
                     <span className="font-bold  text-xs ml-3 mt-[-5] bg-gradient-to-b from-yellow-100 to-yellow-600 bg-clip-text text-transparent">
-                      เช็คทอง 100% ไถ่ถอนตั๋วโรงรับจำนำ
+                      รับซื้อ - หลอม ทอง เงิน นาค
                     </span>
                   </div>
                 </div>
@@ -53,10 +53,10 @@ const ModernNavbar = ({ isTransparent }: Props) => {
                 <img src="/images/JKLOGO.png" alt="logo" className=" w-8" />
                 <div className=" flex flex-col">
                   <span className="font-bold  text-xl ml-3 bg-gradient-to-b from-yellow-100 to-yellow-500 bg-clip-text text-transparent">
-                    วัชระเช็คทอง
+                    KK หลอมทองหาดใหญ่
                   </span>
                   <span className="font-bold  text-xs ml-3 mt-[-5] bg-gradient-to-b from-yellow-100 to-yellow-600 bg-clip-text text-transparent">
-                    เช็คทอง 100% ไถ่ถอนตั๋วโรงรับจำนำ
+                    รับซื้อ - หลอม ทอง เงิน นาค
                   </span>
                 </div>
               </div>
@@ -66,7 +66,7 @@ const ModernNavbar = ({ isTransparent }: Props) => {
           {/* Social Links */}
           <div className="flex items-center gap-4 bg-white/20  backdrop-blur-sm border border-white/20 px-3 py-1 rounded-full">
             <a
-              href="https://www.facebook.com/profile.php?id=100063958781297"
+              href="https://www.facebook.com/kkgoldhatyai"
               className="w-8 h-8 flex items-center justify-center rounded-full   hover:bg-white/20 transition-colors"
               target="_blank"
               rel="noopener noreferrer"
@@ -78,7 +78,7 @@ const ModernNavbar = ({ isTransparent }: Props) => {
               />
             </a>
             <a
-              href="https://line.me/ti/p/WzG-DAXzmL"
+              href="https://lin.ee/XukDRz8"
               className="w-8 h-8 flex items-center justify-center rounded-full  hover:bg-white/20 transition-colors"
               target="_blank"
               rel="noopener noreferrer"

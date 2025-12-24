@@ -10,19 +10,10 @@ export const BannerSlider = () => {
   const banners = [
     {
       id: 1,
-      title: "ลบพบุรีเช็คทอง",
-      subtitle:
-        "เช็คทองเงินนาคฟรี X-Ray ยิง % ไถ่ถอนตั๋วจำนำให้ราคาสูง \n 0639289393",
+      title: "KK หลอมทองหาดใหญ่",
+      subtitle: "รับซื้อ หลอมทอง เงิน นาค ไม่หักเปอร์เซ็น ไม่คิดค่าบริการใดๆ",
       image: "/images/banner1.png",
       imageMb: "/images/banner1.png",
-      gradient: "bg-black/30",
-    },
-    {
-      id: 2,
-      title: "รับซื้อเศษทองเงินนาค",
-      subtitle: "กรอบพระชำรุดฉีกขาดทุกสภาพ เครื่องประดับต่าง ๆ",
-      image: "/images/banner2.png",
-      imageMb: "/images/banner2.png",
       gradient: "bg-black/30",
     },
   ];

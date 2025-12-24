@@ -1,9 +1,9 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Watchara Gold | เช็คราคาทอง ตรวจราคาทอง ประเมินราคาทอง",
+  name: "KK หลอมทอง | เช็คราคาทอง ตรวจราคาทอง ประเมินราคาทอง",
   url: "https://watcharagold.com/",
-  description: "Watchara Gold ตรวจราคาทอง เช็คราคาทอง ประเมินราคาทองได้ที่นี่ | รับซื้อทองคำทุกประเภท โทร 0639289393 หรือเดินทางมาที่ร้าน https://maps.app.goo.gl/msZZVXprEYpYWU3z5",
+  description: "KK หลอมทอง ตรวจราคาทอง เช็คราคาทอง ประเมินราคาทองได้ที่นี่ | รับซื้อทองคำทุกประเภท โทร 0639289393 หรือเดินทางมาที่ร้าน https://maps.app.goo.gl/msZZVXprEYpYWU3z5",
   navItems: [
   ],
   navMenuItems: [
@@ -41,7 +41,7 @@ export const siteConfig = {
     },
   ],
   links: {
-    line: "https://line.me/ti/p/WzG-DAXzmL",
-    facebook: "https://www.facebook.com/profile.php?id=100063958781297"
+    line: "https://lin.ee/XukDRz8",
+    facebook: "https://www.facebook.com/kkgoldhatyai"
   },
 };

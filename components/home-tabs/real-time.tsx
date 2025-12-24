@@ -118,7 +118,7 @@ export const RealTime: React.FC<Props> = ({ pricing, service }) => {
       <div className="flex flex-col items-center md:w-full md:px-5 xl:w-1/2">
         {/* Inputs */}
         <div className="grid lg:flex grid-cols-2 gap-y-2 gap-x-2 px-2 my-5 justify-start">
-          <div className="flex flex-col h-24 items-center backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 rounded-3xl px-2 pt-2">
+          <div className="flex flex-col h-24 items-center backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-[#0f2443] rounded-3xl px-2 pt-2">
             <span>น้ำหนัก (กรัม)</span>
             <Input
               color="default"
@@ -137,7 +137,7 @@ export const RealTime: React.FC<Props> = ({ pricing, service }) => {
             />
           </div>
 
-          <div className="flex flex-col h-24 items-center backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 rounded-3xl px-2 pt-2">
+          <div className="flex flex-col h-24 items-center backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-[#0f2443] rounded-3xl px-2 pt-2">
             <span>ราคาบวก</span>
             <Input
               color="default"
@@ -171,7 +171,7 @@ export const RealTime: React.FC<Props> = ({ pricing, service }) => {
               key={item.percent}
               className="flex flex-col items-center backdrop-blur-xl border border-white/20 bg-white/10 rounded-xl px-1 pt-2 md:h-16"
             >
-              <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 w-full rounded-full flex items-center justify-center text-sm text-yellow-400">
+              <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-[#0f2443] w-full rounded-full flex items-center justify-center text-sm text-yellow-400">
                 <span>{item.percent} %</span>
               </div>
               <span className="text-sm h-full items-center justify-center flex">

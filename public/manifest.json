@@ -1,11 +1,11 @@
 {
-  "name": "Watchara Gold",
-  "short_name": "Watchara Gold",
+  "name": "KK หลอมทอง",
+  "short_name": "KK หลอมทอง",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ffd700",
-  "description": "Watchara Gold",
+  "description": "KK หลอมทอง",
   "icons": [
     {
       "src": "/icon-192x192.png",

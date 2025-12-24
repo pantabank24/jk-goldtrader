@@ -185,7 +185,7 @@ export const SilverPage = ({
                     แท่งเงิน 99.99%
                   </span>
                   <div className=" grid grid-cols-2  gap-x-4">
-                    <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 flex flex-col items-center py-5 rounded-2xl h-20 justify-center">
+                    <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-[#0f2443] flex flex-col items-center py-5 rounded-2xl h-20 justify-center">
                       {isLoading ? (
                         <CircularProgress
                           aria-label="Loading..."
@@ -205,7 +205,7 @@ export const SilverPage = ({
                         </div>
                       )}
                     </div>
-                    <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-red-900 flex flex-col items-center py-5 rounded-2xl h-20 justify-center">
+                    <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-[#0f2443] flex flex-col items-center py-5 rounded-2xl h-20 justify-center">
                       {isLoading ? (
                         <CircularProgress
                           aria-label="Loading..."
@@ -369,7 +369,7 @@ export const SilverPage = ({
 
           <Button
             as="a"
-            href="https://line.me/ti/p/WzG-DAXzmL"
+            href="https://lin.ee/XukDRz8"
             className=" hover:scale-105 backdrop-blur-xl border-2 border-white/20 flex h-14 w-56 px-10 mt-3  bg-gradient-to-b from-green-500 to-green-700 "
             radius="full"
           >
