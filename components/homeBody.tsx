@@ -10,7 +10,7 @@ export const HomeBody = ({ pageType }: Props) => {
     <div>
       <div className=" lg:hidden flex flex-col gap-y-4 w-full items-center justify-center px-5">
         <span className="text-3xl font-bold bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
-          กราฟทองตอนนี้
+          กราฟตอนนี้
         </span>
         <iframe
           src={
