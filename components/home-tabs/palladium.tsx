@@ -77,7 +77,7 @@ export const PalladiumPage = ({
     var PalladiumPrice = XPDPrice == "" ? 0 : parseFloat(XPDPrice ?? "0");
 
     var cal =
-      (PalladiumPrice / 1000) *
+      PalladiumPrice *
       (parseFloat(percent == "" ? "0" : percent) / 100) *
       parseFloat(gram ?? "0");
     setCalc(cal < 0 ? 0 : cal);

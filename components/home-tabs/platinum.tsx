@@ -77,7 +77,7 @@ export const PlatinumPage = ({
     var PlatinumPrice = XPTPrice == "" ? 0 : parseFloat(XPTPrice ?? "0");
 
     var cal =
-      (PlatinumPrice / 1000) *
+      PlatinumPrice *
       (parseFloat(percent == "" ? "0" : percent) / 100) *
       parseFloat(gram ?? "0");
     setCalc(cal < 0 ? 0 : cal);
