@@ -110,21 +110,25 @@ export const BannerSlider = () => {
         </div>
 
         {/* Navigation Arrows */}
-        <button
-          onClick={prevSlide}
-          className=" absolute left-2 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 border  border-white/10 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-all duration-200 hover:scale-110"
-          disabled={isAnimating}
-        >
-          <ChevronLeft size={16} />
-        </button>
+        {banners.length > 1 && (
+          <>
+            <button
+              onClick={prevSlide}
+              className=" absolute left-2 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 border  border-white/10 backdrop-blur-xs hover:bg-white/30 text-white p-3 rounded-full transition-all duration-200 hover:scale-110"
+              disabled={isAnimating}
+            >
+              <ChevronLeft size={16} />
+            </button>
 
-        <button
-          onClick={nextSlide}
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 border border-white/10 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-all duration-200 hover:scale-110"
-          disabled={isAnimating}
-        >
-          <ChevronRight size={16} />
-        </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 border border-white/10 backdrop-blur-xs hover:bg-white/30 text-white p-3 rounded-full transition-all duration-200 hover:scale-110"
+              disabled={isAnimating}
+            >
+              <ChevronRight size={16} />
+            </button>
+          </>
+        )}
 
         {/* Dots Indicator */}
         <div className="absolute bottom-7 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
