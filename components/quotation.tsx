@@ -629,10 +629,10 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                         {item.goldType}
                       </td>
                       <td className="border border-gray-400 text-center">
-                        {item.laborCost.toFixed(1)}
+                        {item.laborCost?.toLocaleString()}
                       </td>
                       <td className="border border-gray-400 text-center">
-                        {item.goldPrice.toFixed(1)}
+                        {item.totalAmount?.toLocaleString()}
                       </td>
                     </tr>
                   ))}
