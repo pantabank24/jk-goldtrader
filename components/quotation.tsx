@@ -150,12 +150,26 @@ const QuotationComponent = ({ items, onChange }: Props) => {
       onclone: (doc) => {
         const clone = doc.getElementById("print-section") as HTMLElement | null;
         if (clone) {
-          // บังคับขนาดเป๊ะตรงตามเป้าหมาย
-          clone.style.width = `${targetW}px`;
-          clone.style.height = `${targetH}px`;
+          // ปรับ style ให้ตารางไม่ล้น
+          clone.style.width = "auto";
+          clone.style.minHeight = "auto";
 
-          // กันเนื้อหา overflow ถ้าจำเป็น
-          clone.style.boxSizing = "border-box";
+          // ปรับ table cells ให้ไม่ล้น
+          const cells = clone.querySelectorAll("td, th");
+          cells.forEach((cell) => {
+            const htmlCell = cell as HTMLElement;
+            htmlCell.style.whiteSpace = "nowrap";
+            htmlCell.style.overflow = "hidden";
+            htmlCell.style.textOverflow = "ellipsis";
+            htmlCell.style.paddingBottom = "12px";
+            htmlCell.style.lineHeight = "1.2";
+          });
+
+          // ปรับ font size ของตาราง
+          const table = clone.querySelector("table");
+          if (table) {
+            (table as HTMLElement).style.fontSize = "12px";
+          }
         }
       },
     });
@@ -617,9 +631,13 @@ const QuotationComponent = ({ items, onChange }: Props) => {
               <table className=" w-full">
                 <thead>
                   <tr>
-                    <th className="border border-gray-400">รายการ</th>
-                    <th className="border border-gray-400">น้ำหนัก</th>
-                    <th className="border border-gray-400">ราคา</th>
+                    <th className="border border-gray-400 text-center">
+                      รายการ
+                    </th>
+                    <th className="border border-gray-400 text-center">
+                      น้ำหนัก
+                    </th>
+                    <th className="border border-gray-400 text-center">ราคา</th>
                   </tr>
                 </thead>
                 <tbody>

@@ -46,6 +46,7 @@ export const HomePages = ({
   const [gPrice, setGPrice] = React.useState<string | null>();
   const [calc, setCalc] = React.useState(0);
   const [blog, setBlog] = React.useState<any>();
+  const [plusType, setPlusType] = React.useState("0");
 
   const [currentQuot, setCurrentQuot] = useState<QuotationModel>();
 
@@ -62,7 +63,7 @@ export const HomePages = ({
 
   useEffect(() => {
     calcPrice();
-  }, [data, gram, plus, percent, option, gPrice]);
+  }, [data, gram, plus, percent, option, gPrice, plusType]);
 
   const calcPrice = () => {
     if (gram == "") {
@@ -104,8 +105,15 @@ export const HomePages = ({
         break;
       case "3":
         var calcs = 0;
+        var plusCal = 0;
+        if (plusType == "0") {
+          plusCal = parseFloat(plus == "" ? "0" : (plus ?? "0"));
+        } else {
+          plusCal =
+            goldPrice * (parseFloat(plus == "" ? "0" : (plus ?? "0")) / 100);
+        }
         calcs =
-          (goldPrice + parseFloat(plus == "" ? "0" : (plus ?? "0"))) *
+          (goldPrice + plusCal) *
           service *
           (parseFloat(percent) / 100) *
           parseFloat(gram ?? "0");
@@ -265,6 +273,12 @@ export const HomePages = ({
   const handleOptionChange = (val: React.ChangeEvent<HTMLSelectElement>) => {
     if (val.target.value !== option && val.target.value) {
       setOption(val.target.value);
+    }
+  };
+
+  const handlePlusTypeChange = (val: React.ChangeEvent<HTMLSelectElement>) => {
+    if (val.target.value !== plusType && val.target.value) {
+      setPlusType(val.target.value);
     }
   };
 
@@ -505,27 +519,42 @@ export const HomePages = ({
                     {option === "3" ? (
                       <div className="flex-1">
                         {/* <span className=" bg-gradient-to-b from-yellow-300 to-yellow-700 bg-clip-text text-transparent font-bold">ราคาบวก</span> */}
-                        <Input
-                          endContent={<div className=" text-xs">บาท</div>}
-                          label={
-                            <div className=" bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent font-bold">
-                              ราคาบวก
-                            </div>
-                          }
-                          classNames={{
-                            inputWrapper:
-                              "backdrop-blur-xl border border-white/10",
-                            label: "text-red-500 !important",
-                          }}
-                          size="lg"
-                          className=" w-full  "
-                          step="1"
-                          type="text"
-                          inputMode="decimal"
-                          min="0"
-                          value={plus ?? ""}
-                          onValueChange={(e) => validatePlusInput(e)}
-                        />
+                        <div className=" grid grid-cols-2 gap-x-2">
+                          <Input
+                            label={
+                              <div className=" bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent font-bold">
+                                ราคาบวก
+                              </div>
+                            }
+                            classNames={{
+                              inputWrapper:
+                                "backdrop-blur-xl border border-white/10",
+                              label: "text-red-500 !important",
+                            }}
+                            size="lg"
+                            className=" w-full  "
+                            step="1"
+                            type="text"
+                            inputMode="decimal"
+                            min="0"
+                            value={plus ?? ""}
+                            onValueChange={(e) => validatePlusInput(e)}
+                          />
+                          <Select
+                            onChange={(e) => handlePlusTypeChange(e)}
+                            className=" w-full"
+                            selectedKeys={plusType}
+                            classNames={{
+                              trigger:
+                                "backdrop-blur-xl border border-white/10 h-16 flex items-center justify-center",
+                              popoverContent:
+                                "backdrop-blur-xl border border-white/10 bg-black/30",
+                            }}
+                          >
+                            <SelectItem key="0">บาท</SelectItem>
+                            <SelectItem key="1">%</SelectItem>
+                          </Select>
+                        </div>
                       </div>
                     ) : null}
                   </div>
