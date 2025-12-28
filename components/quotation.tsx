@@ -12,6 +12,7 @@ import {
   Sparkles,
   SquarePen,
   ImageDown,
+  Share,
 } from "lucide-react";
 import { QuotationModel } from "../app/models/Quotations";
 import { Input } from "@heroui/input";
@@ -121,9 +122,9 @@ const QuotationComponent = ({ items, onChange }: Props) => {
 
   const mmToPx = (mm: number, dpi = 300) => Math.round((mm / 25.4) * dpi);
 
-  const handleDownloadImage = async () => {
+  const generateCanvas = async () => {
     const el = document.getElementById("print-section");
-    if (!el) return;
+    if (!el) return null;
 
     // ตั้งค่ากระดาษที่ต้องการ (ตัวอย่าง A4 แนวตั้ง 300 DPI)
     const dpi = 300;
@@ -133,7 +134,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
     // รอฟอนต์/รูปให้โหลดครบ
     await document.fonts?.ready?.catch(() => {});
 
-    const canvas = await html2canvas(el, {
+    return await html2canvas(el, {
       // สำคัญ: ไม่ให้ html2canvasสเกลซ้ำ
       scale: 1,
 
@@ -173,12 +174,38 @@ const QuotationComponent = ({ items, onChange }: Props) => {
         }
       },
     });
+  };
+
+  const handleDownloadImage = async () => {
+    const canvas = await generateCanvas();
+    if (!canvas) return;
 
     const dataUrl = canvas.toDataURL("image/png");
     const a = document.createElement("a");
     a.href = dataUrl;
     a.download = "A4-300dpi.png";
     a.click();
+  };
+
+  const handleShareImage = async () => {
+    const canvas = await generateCanvas();
+    if (!canvas) return;
+
+    canvas.toBlob(async (blob) => {
+      if (!blob) return;
+      const file = new File([blob], "quotation.png", { type: "image/png" });
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            files: [file],
+          });
+        } catch (error) {
+          console.error("Error sharing:", error);
+        }
+      } else {
+        alert("Sharing is not supported on this browser.");
+      }
+    }, "image/png");
   };
 
   const handleSave = () => {
@@ -268,6 +295,12 @@ const QuotationComponent = ({ items, onChange }: Props) => {
             className=" backdrop-blur-xl border w-12 h-12 justify-center border-white/20 bg-gradient-to-b from-purple-500/60 to-purple-500/50 text-white p-3 rounded-full transition-all duration-200 hover:scale-110 flex flex-row items-center "
           >
             <ImageDown size={20} />
+          </button>
+          <button
+            onClick={handleShareImage}
+            className=" backdrop-blur-xl border w-12 h-12 justify-center border-white/20 bg-gradient-to-b from-pink-500/60 to-pink-500/50 text-white p-3 rounded-full transition-all duration-200 hover:scale-110 flex flex-row items-center "
+          >
+            <Share size={20} />
           </button>
           <Dropdown closeOnSelect={false}>
             <DropdownTrigger>
