@@ -120,19 +120,19 @@ export const HomePages = ({
         setCurrentQuot({
           goldType: "ทองหลอม",
           goldPrice: goldPrice,
-          weightBaht: parseFloat(plus == "" ? "0" : (plus ?? "0")),
+          weightBaht: plusCal,
           percentage: parseFloat(percent),
           laborCost: parseFloat(gram ?? "0"),
           costPerBaht: parseFloat(
             (
-              (goldPrice + parseFloat(plus == "" ? "0" : (plus ?? "0"))) *
+              (goldPrice + plusCal) *
               service *
               (parseFloat(percent) / 100)
             ).toFixed(2)
           ),
           totalAmount: parseFloat(
             (
-              (goldPrice + parseFloat(plus == "" ? "0" : (plus ?? "0"))) *
+              (goldPrice + plusCal) *
               service *
               (parseFloat(percent) / 100) *
               parseFloat(gram ?? "0")
