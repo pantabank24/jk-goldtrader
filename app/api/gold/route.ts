@@ -46,9 +46,9 @@ export async function GET() {
         ask,
         bid,
         diff: ask - bid,
-        change_today: res?.data?.current_prices?.gold_bar?.change ?? 0,
-        change_yesterday: null,
-        latest_update: res?.data?.metadata?.update_info ?? "",
+        change_today: changeToday,
+        change_yesterday: changeFromYesterday,
+        latest_update: latestUpdate,
       },
       timestamp: new Date().toISOString(),
     };
