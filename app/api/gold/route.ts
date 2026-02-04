@@ -58,7 +58,7 @@ export async function GET() {
     });
   } catch (err: any) {
     try {
-      return Reserved();
+      return reserved();
     } catch (err: any) {
       console.error(err);
       return new Response(JSON.stringify({ error: err.message || "Error" }), {
@@ -69,7 +69,7 @@ export async function GET() {
   }
 }
 
-export async function Reserved() {
+const reserved = async () => {
   try {
     const res = await axios.get("https://static-gold.tothanate.workers.dev/");
 
@@ -98,4 +98,4 @@ export async function Reserved() {
       headers: { "Content-Type": "application/json" },
     });
   }
-}
+};
