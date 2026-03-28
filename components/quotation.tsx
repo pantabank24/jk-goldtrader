@@ -17,6 +17,7 @@ import {
 import { QuotationModel } from "../app/models/Quotations";
 import { Input } from "@heroui/input";
 import moment from "moment";
+import "moment/locale/th";
 import { Switch } from "@heroui/switch";
 import AutoResizeTextarea from "./autoresizetextarea";
 import {
@@ -59,7 +60,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
   const [cusTel, setCusTel] = useState("");
   const [namePref, setNamePref] = useState(" ");
   const [date, setDate] = useState(
-    today(getLocalTimeZone()).subtract({ days: 0 })
+    today(getLocalTimeZone()).subtract({ days: 0 }),
   );
 
   const [showSeq, setShowSeq] = React.useState(true);
@@ -221,7 +222,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
   };
 
   const handleKeyDown = (
-    e: React.KeyboardEvent<HTMLInputElement> | KeyboardEvent
+    e: React.KeyboardEvent<HTMLInputElement> | KeyboardEvent,
   ) => {
     console.log("aaaaaaaa");
     if (e.key === "ArrowDown") {
@@ -267,7 +268,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
       }
 
       return acc;
-    }, {})
+    }, {}),
   );
 
   return (
@@ -517,7 +518,10 @@ const QuotationComponent = ({ items, onChange }: Props) => {
             <div className="text-right">
               <p className="font-semibold">
                 วันที่:{" "}
-                {moment(date.toString()).locale("th").format("D MMMM YYYY")}
+                {moment(date.toString())
+                  .locale("th")
+                  .add(543, "year")
+                  .format("D MMMM YYYY")}
               </p>
             </div>
           </div>
@@ -606,11 +610,11 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                   )}
                   {showQty && (
                     <td className="border border-gray-400 px-2  text-center text-sm">
-                      {handleRounding(item.costPerBaht)}
+                      {handleRounding(item.costPerBaht ?? 0)}
                     </td>
                   )}
                   <td className="border border-gray-400 px-2 text-center text-sm">
-                    {item.totalAmount.toLocaleString()}
+                    {handleRounding(item.totalAmount ?? 0)}
                   </td>
                   {showRemark && (
                     <td className="border border-gray-400 px-2 text-center text-sm">
@@ -651,7 +655,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                         <td className="border border-gray-400 px-2 text-center text-sm"></td>
                       )}
                     </tr>
-                  )
+                  ),
                 )}
             </tbody>
           </table>
@@ -683,7 +687,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                         {item.laborCost?.toLocaleString()}
                       </td>
                       <td className="border border-gray-400 text-center">
-                        {item.totalAmount?.toLocaleString()}
+                        {handleRounding(item.totalAmount ?? 0)}
                       </td>
                     </tr>
                   ))}
@@ -702,7 +706,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                   <div className="flex justify-between p-1 border-b border-gray-400">
                     <span className="font-semibold">รวมเป็นเงิน</span>
                     <span className="font-semibold">
-                      {calculateGrandTotal().toLocaleString()}
+                      {handleRounding(calculateGrandTotal())}
                     </span>
                   </div>
                   <div className="flex justify-between p-1">
@@ -712,7 +716,7 @@ const QuotationComponent = ({ items, onChange }: Props) => {
                   <div className="flex justify-between p-1 border-t border-gray-400">
                     <span className="font-bold">จำนวนรวมทั้งสิ้น</span>
                     <span className="font-bold">
-                      {calculateGrandTotal().toLocaleString()}
+                      {handleRounding(calculateGrandTotal())}
                     </span>
                   </div>
                 </div>
