@@ -57,15 +57,11 @@ export async function GET() {
       headers: { "Content-Type": "application/json" },
     });
   } catch (err: any) {
-    try {
-      return reserved();
-    } catch (err: any) {
-      console.error(err);
-      return new Response(JSON.stringify({ error: err.message || "Error" }), {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      });
-    }
+    console.error(err);
+    return new Response(JSON.stringify({ error: err.message || "Error" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }
 
