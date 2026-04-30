@@ -31,7 +31,7 @@
     "@react-aria/visually-hidden": "3.8.22",
     "@react-stately/data": "^3.13.1",
     "@use-gesture/react": "^10.3.1",
-    "axios": "^1.9.0",
+    "axios": "^1.15.2",
     "cheerio": "^1.0.0",
     "clsx": "2.1.1",
     "force": "^0.0.3",
