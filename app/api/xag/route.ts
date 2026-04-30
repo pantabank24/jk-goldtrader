@@ -3,7 +3,7 @@ import axios from "axios";
 
 export async function GET() {
     try {
-        const get = await axios.get('https://besserver.dyndns.org/ipn/response_silverbar.php');
+        const get = await axios.get('https://cloud.bowinsgroup.com/ipn/response_silverbar.php');
 
         const res = {
             timestamp: get.data[0].created,
