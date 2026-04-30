@@ -3,131 +3,103 @@ import * as cheerio from "cheerio";
 
 export const dynamic = "force-dynamic";
 
-const SCRAPE_URL = "https://xn--42cah7d0cxcvbbb9x.com/";
+const CHNWT_API = "https://api.chnwt.dev/thai-gold-api/latest";
+const OFFICIAL_URL = "https://www.goldtraders.or.th/default.aspx";
 const PROXY_API = "https://gold-proxy.benzsnoopdog.workers.dev/";
 
-async function fetchWithScrape() {
-  const response = await fetch(SCRAPE_URL, {
-    method: 'GET',
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-      'Accept-Language': 'th,en;q=0.9,en-US;q=0.8',
-      'Cache-Control': 'no-cache',
-      'Upgrade-Insecure-Requests': '1',
-    },
-    next: { revalidate: 0 }
-  });
+async function fetchFromChnwt() {
+  const response = await fetch(CHNWT_API, { next: { revalidate: 0 } });
+  if (!response.ok) throw new Error(`CHNWT API failed: ${response.status}`);
+  
+  const resData = await response.json();
+  if (resData.status !== "success") throw new Error("CHNWT API returned error status");
 
-  if (!response.ok) throw new Error(`Scrape failed with status: ${response.status}`);
-
-  const html = await response.text();
-  const $ = cheerio.load(html);
-
-  let ask = null;
-  let bid = null;
-  let changeToday: number | null = null;
-  let changeFromYesterday: number | null = null;
-
-  $("tr").each((_, el) => {
-    const tds = $(el).find("td");
-    if (tds.length >= 3 && $(tds[0]).text().includes("ทองคำแท่ง")) {
-      ask = parseFloat($(tds[1]).text().replace(/,/g, ""));
-      bid = parseFloat($(tds[2]).text().replace(/,/g, ""));
-      return false;
-    }
-  });
-
-  $("tr").each((_, el) => {
-    const tds = $(el).find("td");
-    if ($(tds[0]).text().includes("วันนี้ ")) {
-      changeFromYesterday = parseFloat(
-        $(tds[0]).text().replace(/[^\d.-]/g, "")
-      );
-      changeToday = parseFloat($(tds[2]).text().replace(/,/g, ""));
-    }
-  });
-
-  if (bid === null || ask === null) throw new Error("Could not find gold prices in HTML");
+  const price = resData.response.price.gold_bar;
+  const ask = parseFloat(price.buy.replace(/,/g, ""));
+  const bid = parseFloat(price.sell.replace(/,/g, ""));
 
   return {
     gold965: {
       ask,
       bid,
-      diff: ask - bid,
-      change_today: changeToday,
-      change_yesterday: changeFromYesterday,
-      latest_update: null,
+      diff: bid - ask,
+      change_today: null,
+      change_yesterday: null,
+      latest_update: `${resData.response.update_date} ${resData.response.update_time}`,
     },
     timestamp: new Date().toISOString(),
-    source: "direct-scrape"
+    source: "chnwt-api",
   };
 }
 
-async function fetchWithProxy() {
-  const response = await fetch(PROXY_API, {
-    headers: { 'Accept': 'application/json' },
-    next: { revalidate: 0 }
-  });
-
-  if (!response.ok) throw new Error(`Proxy failed with status: ${response.status}`);
-
-  const resData = await response.json();
-  const { prices, meta } = resData;
-
-  const ask = prices.bar.buy;
-  const bid = prices.bar.sell;
+async function fetchViaGlobalProxy() {
+  const bridgeUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(OFFICIAL_URL)}`;
+  const response = await fetch(bridgeUrl, { next: { revalidate: 0 } });
+  if (!response.ok) throw new Error(`Global bridge failed: ${response.status}`);
+  
+  const wrapper = await response.json();
+  const $ = cheerio.load(wrapper.contents || "");
+  
+  const ask = parseFloat($("#DetailPlace_uc_goldprices1_lblBLBuy").text().replace(/,/g, ""));
+  const bid = parseFloat($("#DetailPlace_uc_goldprices1_lblBLSell").text().replace(/,/g, ""));
+  
+  if (isNaN(ask) || isNaN(bid)) throw new Error("Failed to parse prices via bridge");
 
   return {
     gold965: {
       ask,
       bid,
-      diff: ask - bid,
-      change_today: null,
+      diff: bid - ask,
+      change_today: parseFloat($("#DetailPlace_uc_goldprices1_lblDiff").text().replace(/,/g, "")),
       change_yesterday: null,
-      latest_update: meta ? `${meta.date_th} ${meta.time_th} (รอบที่ ${meta.round})` : null,
+      latest_update: $("#DetailPlace_uc_goldprices1_lblLastUpdate").text().trim(),
     },
     timestamp: new Date().toISOString(),
-    source: "benzsnoopdog-proxy"
+    source: "global-bridge-scrape",
   };
 }
 
 export async function GET() {
-  // Try Direct Scrape -> Proxy -> Fallback API
+  // Chain: CHNWT -> Bridge -> Proxy -> Fallback
   try {
-    const data = await fetchWithScrape();
+    const data = await fetchFromChnwt();
     return NextResponse.json(data);
   } catch (err: any) {
-    console.warn("Direct scrape failed, trying proxy:", err.message);
-    
+    console.warn("CHNWT API failed, trying Bridge:", err.message);
+
     try {
-      const data = await fetchWithProxy();
+      const data = await fetchViaGlobalProxy();
       return NextResponse.json(data);
-    } catch (proxyErr: any) {
-      console.warn("Proxy failed, trying fallback API:", proxyErr.message);
-      
+    } catch (bridgeErr: any) {
+      console.warn("Bridge failed, trying Proxy:", bridgeErr.message);
+
       try {
-        const fallback = await fetch("https://static-gold.tothanate.workers.dev/", { next: { revalidate: 0 } });
-        const fbJson = await fallback.json();
-        const fbData = fbJson.current_prices.gold_bar;
+        const response = await fetch(PROXY_API, { next: { revalidate: 0 } });
+        const resData = await response.json();
         
-        return NextResponse.json({
-          gold965: {
-            ask: fbData.buy,
-            bid: fbData.sell,
-            diff: fbData.buy - fbData.sell,
-            change_today: fbData.change,
-            change_yesterday: null,
-            latest_update: fbJson.metadata.update_info,
-          },
-          timestamp: new Date().toISOString(),
-          source: "tothanate-fallback"
-        });
-      } catch (finalErr: any) {
-        return NextResponse.json({ error: "All sources failed", message: finalErr.message }, { status: 500 });
+        if (resData.ok && resData.prices?.bar) {
+            return NextResponse.json({
+              gold965: {
+                ask: resData.prices.bar.buy,
+                bid: resData.prices.bar.sell,
+                diff: resData.prices.bar.sell - resData.prices.bar.buy,
+                change_today: null,
+                change_yesterday: null,
+                latest_update: resData.meta ? `${resData.meta.date_th} ${resData.meta.time_th}` : null,
+              },
+              timestamp: new Date().toISOString(),
+              source: "benzsnoopdog-proxy",
+            });
+        }
+        throw new Error("Proxy response invalid");
+      } catch (proxyErr: any) {
+        return NextResponse.json({ 
+            error: "All sources failed", 
+            message: proxyErr.message,
+            chnwt_error: err.message,
+            bridge_error: bridgeErr.message
+        }, { status: 500 });
       }
     }
   }
 }
-
-
