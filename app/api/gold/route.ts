@@ -20,13 +20,16 @@ export async function GET() {
     const ask = Number(gp.bar_buy);
     const bid = Number(gp.bar_sell);
 
+    // สลับกับชื่อฟิลด์ฝั่ง jk-api โดยตั้งใจ: ของ jk-api ตั้งชื่อตามตารางสมาคม
+    // (change_today = เปลี่ยนแปลงวันนี้) แต่ UI ตัวนี้เอา change_yesterday ไปแสดง
+    // ใต้ป้าย "วันนี้" มาแต่ไหนแต่ไร — แมปแบบนี้เลขที่โชว์ถึงจะเหมือนเดิมทุกช่อง
     const data = {
       gold965: {
         ask,
         bid,
         diff: ask - bid,
-        change_today: Number(gp.change_today),
-        change_yesterday: Number(gp.change_yesterday),
+        change_today: Number(gp.change_yesterday),
+        change_yesterday: Number(gp.change_today),
         latest_update: `${gp.gold_date} ${gp.gold_time}`.trim(),
       },
       timestamp: new Date().toISOString(),
