@@ -1,91 +1,49 @@
-import axios from "axios";
-import * as cheerio from "cheerio";
+import { describeError, fetchFromJkApi } from "@/lib/jk-api";
 
 export const dynamic = "force-dynamic";
 
-// thaigold.info ปฏิเสธ request ที่ไม่ได้มาจาก IP ไทย/เอเชีย ต้องรัน function ใกล้ ๆ ไทย
-export const preferredRegion = ["sin1"];
-
-const TIMEOUT_MS = 8000;
-
-const describe = (err: any) =>
-  axios.isAxiosError(err)
-    ? `${err.config?.url} -> ${err.response?.status ?? err.code ?? "no response"}`
-    : err?.message || String(err);
+// ราคาสมาคม (auto = cron ของ jk-api, manual = ที่ร้านตั้งเอง) อ่านจาก DB ของ jk-api
+type GoldPrice = {
+  bar_buy: number;
+  bar_sell: number;
+  change_today: number;
+  change_yesterday: number;
+  gold_date: string;
+  gold_time: string;
+};
 
 export async function GET() {
   try {
-    const ts = Date.now();
-    const url = `https://thaigold.info/RealTimeDataV2/GoldPriceToday.xml?_=${ts}`;
-    const res = await axios.get(url, { timeout: TIMEOUT_MS });
-    const $ = cheerio.load(res.data, { xmlMode: true });
+    const gp = await fetchFromJkApi<GoldPrice>("/gold-prices/latest");
 
-    const ask = parseFloat($('buyprice').text().replace(/,/g, ''));
-    const bid = parseFloat($('saleprice').text().replace(/,/g, ''));
-    const changeToday = parseFloat($('buypricechg').text().replace(/,/g, ''));
-    const changeFromYesterday = parseFloat($('SumOfChg').text().replace(/,/g, ''));
-    const latestUpdate = $('update').text();
-
-    if (isNaN(bid) || isNaN(ask)) {
-      throw new Error('ไม่ได้พบข้อมูลราคาทองคำแท่ง');
-    }
+    // คงชื่อฟิลด์เดิมไว้ ask = ราคารับซื้อ, bid = ราคาขายออก (ตามที่ UI ใช้อยู่)
+    const ask = Number(gp.bar_buy);
+    const bid = Number(gp.bar_sell);
 
     const data = {
       gold965: {
         ask,
         bid,
         diff: ask - bid,
-        change_today: changeToday,
-        change_yesterday: changeFromYesterday,
-        latest_update: latestUpdate,
+        change_today: Number(gp.change_today),
+        change_yesterday: Number(gp.change_yesterday),
+        latest_update: `${gp.gold_date} ${gp.gold_time}`.trim(),
       },
       timestamp: new Date().toISOString(),
     };
 
     return new Response(JSON.stringify(data), {
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "public, s-maxage=30, stale-while-revalidate=120",
+      },
     });
-  } catch (primaryErr: any) {
-    console.error("[gold] primary (thaigold.info) failed:", describe(primaryErr));
+  } catch (err: any) {
+    console.error("[gold] jk-api failed:", describeError(err));
 
-    try {
-      return await reserved();
-    } catch (fallbackErr: any) {
-      console.error("[gold] fallback failed:", describe(fallbackErr));
-
-      return new Response(
-        JSON.stringify({
-          error: "ดึงราคาทองไม่สำเร็จ",
-          primary: describe(primaryErr),
-          fallback: describe(fallbackErr),
-        }),
-        { status: 502, headers: { "Content-Type": "application/json" } },
-      );
-    }
+    return new Response(
+      JSON.stringify({ error: "ดึงราคาทองไม่สำเร็จ", detail: describeError(err) }),
+      { status: 502, headers: { "Content-Type": "application/json" } },
+    );
   }
 }
-
-const reserved = async () => {
-  const res = await axios.get("https://static-gold.tothanate.workers.dev/", {
-    timeout: TIMEOUT_MS,
-  });
-
-  const ask = res?.data?.current_prices?.gold_bar?.buy ?? 0;
-  const bid = res?.data?.current_prices?.gold_bar?.sell ?? 0;
-
-  const data = {
-    gold965: {
-      ask,
-      bid,
-      diff: ask - bid,
-      change_today: res?.data?.current_prices?.gold_bar?.change ?? 0,
-      change_yesterday: null,
-      latest_update: res?.data?.metadata?.update_info ?? "",
-    },
-    timestamp: new Date().toISOString(),
-  };
-
-  return new Response(JSON.stringify(data), {
-    headers: { "Content-Type": "application/json" },
-  });
-};
