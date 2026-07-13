@@ -1,9 +1,13 @@
-import { XAGModel } from "@/app/models/XAG-Model";
 import axios from "axios";
+
+export const dynamic = "force-dynamic";
+export const preferredRegion = ["sin1"];
 
 export async function GET() {
     try {
-        const get = await axios.get('https://cloud.bowinsgroup.com/ipn/response_silverbar.php');
+        const get = await axios.get('https://cloud.bowinsgroup.com/ipn/response_silverbar.php', {
+            timeout: 8000,
+        });
 
         const res = {
             timestamp: get.data[0].created,
@@ -19,7 +23,14 @@ export async function GET() {
             status: 200,
             headers: { "Content-Type": "application/json" },
         })
-    } catch (e) {
-        console.log(e)
+    } catch (e: any) {
+        console.error("[xag] failed:", axios.isAxiosError(e)
+            ? `${e.config?.url} -> ${e.response?.status ?? e.code ?? "no response"}`
+            : e?.message || String(e));
+
+        return new Response(JSON.stringify({ error: "ดึงราคาเงินไม่สำเร็จ" }), {
+            status: 502,
+            headers: { "Content-Type": "application/json" },
+        })
     }
 }
